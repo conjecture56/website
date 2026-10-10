@@ -15,6 +15,8 @@ const verifyCode = document.querySelector("#verify-command");
 const copyConfigButton = document.querySelector("#copy-config");
 const copyVerifyButton = document.querySelector("#copy-verify");
 const credentialWarning = document.querySelector("#credential-warning");
+const setupSection = document.querySelector("#setup-section");
+const securityNote = document.querySelector("#security-note");
 
 let activeRequest;
 let generatedConfig;
@@ -46,6 +48,8 @@ function resetConfigOutput() {
   copyVerifyButton.disabled = true;
   copyConfigButton.textContent = "Copy ready-to-use config";
   credentialWarning.hidden = true;
+  setupSection.hidden = true;
+  securityNote.hidden = true;
 }
 
 function resetSensitiveState() {
@@ -70,6 +74,13 @@ function durationLabel(value) {
   const count = Number(match[1]);
   const unit = units[match[2]];
   return `${count} ${unit}${count === 1 ? "" : "s"}`;
+}
+
+function cleanProvider(value) {
+  if (typeof value !== "string") return null;
+  const trimmed = value.trim();
+  if (!trimmed || /^(nan|null|undefined|\*)$/i.test(trimmed)) return null;
+  return trimmed;
 }
 
 function metricCard(label, current, maximum, resetDuration, formatter = formatNumber) {
@@ -110,33 +121,49 @@ function renderRateLimit(rateLimit, container) {
   );
 }
 
+function modelsFromUsage(quota) {
+  const ids = new Set();
+  const collect = (config) => {
+    for (const budget of config?.budgets ?? []) {
+      for (const usage of budget.per_model_usage ?? []) {
+        if (usage?.model && usage.model !== "*") ids.add(usage.model);
+      }
+    }
+  };
+
+  for (const budget of quota?.budgets ?? []) collect({ budgets: [budget] });
+  for (const config of quota?.model_configs ?? []) collect(config);
+  return [...ids];
+}
+
 function mergeModels(inventory, quota) {
-  const configs = new Map((quota.model_configs ?? []).map((model) => [model.model_name, model]));
+  const configs = new Map((quota?.model_configs ?? []).map((model) => [model.model_name, model]));
   const models = [];
   const seen = new Set();
 
-  for (const item of inventory ?? []) {
-    const id = item?.id;
-    if (!id || seen.has(id)) continue;
+  const addModel = (id, provider) => {
+    if (!id || id === "*" || seen.has(id)) return;
     seen.add(id);
-    models.push({ id, provider: item.owned_by ?? configs.get(id)?.provider });
-  }
+    models.push({
+      id,
+      provider: cleanProvider(provider) ?? cleanProvider(configs.get(id)?.provider),
+      config: configs.get(id) ?? null,
+    });
+  };
 
-  for (const [name, config] of configs) {
-    if (seen.has(name)) continue;
-    seen.add(name);
-    models.push({ id: name, provider: config.provider, configOnly: true });
-  }
+  for (const item of inventory ?? []) addModel(item?.id, item?.owned_by);
+  for (const id of modelsFromUsage(quota)) addModel(id);
+  for (const [name, config] of configs) addModel(name, config.provider);
 
-  return models;
+  return { models, wildcard: configs.get("*") ?? null };
 }
 
 function renderModel(model) {
   const card = element("article", "model-card");
   const heading = element("div", "model-heading");
   heading.append(element("h4", "", model.id));
-  const badge = element("span", "model-provider", model.configOnly ? "key config" : "available");
-  heading.append(badge);
+  const badgeText = model.keyLevel ? "key-level limits" : model.config ? "key config" : "available";
+  heading.append(element("span", "model-provider", badgeText));
   card.append(heading);
 
   const facts = element("dl", "model-facts");
@@ -167,7 +194,7 @@ function renderModel(model) {
   return card;
 }
 
-function renderQuota(data, models) {
+function renderQuota(data, merged) {
   const fragment = document.createDocumentFragment();
   const summary = element("section", "result-summary");
   const identity = element("div", "result-identity");
@@ -190,11 +217,17 @@ function renderQuota(data, models) {
   limitsSection.append(metrics);
   fragment.append(limitsSection);
 
-  if (models.length) {
+  if (merged.models.length || merged.wildcard) {
     const modelsSection = element("section", "result-section");
-    modelsSection.append(element("h3", "result-title", `Models (${models.length})`));
+    const title = merged.wildcard && !merged.models.length
+      ? "Model limits"
+      : `Models (${merged.models.length})`;
+    modelsSection.append(element("h3", "result-title", title));
     const modelGrid = element("div", "model-grid");
-    models.forEach((model) => modelGrid.append(renderModel(model)));
+    merged.models.forEach((model) => modelGrid.append(renderModel(model)));
+    if (merged.wildcard) {
+      modelGrid.append(renderModel({ id: "All models", config: merged.wildcard, keyLevel: true }));
+    }
     modelsSection.append(modelGrid);
     fragment.append(modelsSection);
   } else {
@@ -247,6 +280,8 @@ function renderConfig(key, models) {
   configCode.textContent = generatedConfig;
   copyConfigButton.disabled = false;
   credentialWarning.hidden = false;
+  setupSection.hidden = false;
+  securityNote.hidden = false;
 
   const firstModel = models[0]?.id;
   if (firstModel) {
@@ -307,16 +342,16 @@ form?.addEventListener("submit", async (event) => {
     if (quotaResult.status === "rejected") throw quotaResult.reason;
 
     const quota = quotaResult.value;
-    const models = modelsResult.status === "fulfilled"
-      ? mergeModels(modelsResult.value?.data, quota)
-      : mergeModels([], quota);
+    const inventory = modelsResult.status === "fulfilled" ? modelsResult.value?.data : null;
+    const merged = mergeModels(inventory, quota);
 
-    renderQuota(quota, models);
-    if (models.length) {
-      renderConfig(key, models);
-      setStatus("Quota loaded and configuration generated. Your key has not been stored.", "success");
+    renderQuota(quota, merged);
+
+    if (merged.models.length) {
+      renderConfig(key, merged.models);
+      setStatus("Quota loaded and configuration generated below. Your key has not been stored.", "success");
     } else {
-      setStatus("Quota loaded, but this key has no models available yet.", "success");
+      setStatus("Quota loaded, but no named models are advertised for this key, so the configuration cannot be generated.", "success");
     }
   } catch (error) {
     if (error.name !== "AbortError") setStatus(error.message || "The data could not be loaded.", "error");
