@@ -109,13 +109,19 @@ if [ -f "$TARGET" ]; then
 fi
 
 # ---------- OpenCode schema detection (V1 vs V2) ----------
-# V1: "provider" (singular) + npm + options   (discarded by V2? no — V2 uses providers/package/settings)
+# V1: "provider" (singular) + npm + options
 # V2: "providers" (plural) + package + settings
+if command -v opencode >/dev/null 2>&1; then
+  OPENCODE_FOUND=1
+else
+  OPENCODE_FOUND=0
+  log "note: opencode was not found in PATH; the configuration will be written anyway, assuming the latest (V2) schema. Install OpenCode to use it."
+fi
 SCHEMA="${INSTALLER_SCHEMA:-}"
 if [ -z "$SCHEMA" ]; then
   SCHEMA="v2"
   OPENCODE_VERSION=""
-  if command -v opencode >/dev/null 2>&1; then
+  if [ "$OPENCODE_FOUND" = 1 ]; then
     OPENCODE_VERSION=$(opencode --version 2>/dev/null | head -n 1 || true)
   fi
   case "$OPENCODE_VERSION" in
@@ -424,4 +430,8 @@ if [ "$ORIG_FLAG" = "new" ]; then
 fi
 
 log "updated: $TARGET"
-log "done. verify with: opencode run --model $PROVIDER_ID/<model> \"Reply exactly: gateway-ok\""
+if [ "$OPENCODE_FOUND" = 1 ]; then
+  log "done. verify with: opencode run --model $PROVIDER_ID/<model> \"Reply exactly: Conjecture 56 ok\""
+else
+  log "done. install OpenCode, then verify with: opencode run --model $PROVIDER_ID/<model> \"Reply exactly: Conjecture 56 ok\""
+fi

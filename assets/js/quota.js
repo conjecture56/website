@@ -243,7 +243,7 @@ function renderConfig(models) {
 
   const firstModel = models[0]?.id;
   if (firstModel) {
-    verifyCode.textContent = `opencode run --model conjecture56/${firstModel} \\\n  "Reply exactly: gateway-ok"`;
+    verifyCode.textContent = `opencode run --model conjecture56/${firstModel} \\\n  "Reply exactly: Conjecture 56 ok"`;
     copyVerifyButton.disabled = false;
   }
 }

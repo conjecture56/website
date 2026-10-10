@@ -103,7 +103,7 @@ A minimal verification command:
 
 ```bash
 opencode run --model conjecture56/qwen3.6 \
-  "Reply exactly: gateway-ok"
+  "Reply exactly: Conjecture 56 ok"
 ```
 
 ## Security requirements
