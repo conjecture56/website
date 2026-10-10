@@ -11,6 +11,7 @@
 # by this script outside the resulting configuration file).
 #
 # JSON editing requires one of: python3, node, bun, jq.
+# JSONC targets (opencode.jsonc with comments) require python3 or node/bun.
 
 set -eu
 
@@ -69,11 +70,18 @@ fetch "$QUOTA_URL" > "$QUOTA_FILE" 2>/dev/null || die "the API rejected the key 
 fetch "$MODELS_URL" > "$MODELS_FILE" 2>/dev/null || printf '{"data":[]}' > "$MODELS_FILE"
 
 # ---------- target configuration ----------
+# opencode.jsonc is preferred over opencode.json when both exist: OpenCode
+# documentation leaves the coexistence undefined, and in practice the .jsonc
+# form is the one OpenCode keeps reading.
 TARGET="${OPENCODE_CONFIG:-}"
 if [ -n "$TARGET" ]; then
   mkdir -p "$(dirname "$TARGET")"
 else
-  for candidate in ./opencode.json ./.opencode/opencode.json "$HOME/.config/opencode/opencode.json"; do
+  for candidate in \
+    ./opencode.jsonc ./opencode.json \
+    ./.opencode/opencode.jsonc ./.opencode/opencode.json \
+    "$HOME/.config/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.json"
+  do
     if [ -f "$candidate" ]; then
       TARGET=$candidate
       break
@@ -91,18 +99,77 @@ else
   ORIG_FLAG="new"
 fi
 
+# Warn when both formats coexist in the same directory.
+if [ -f "$TARGET" ]; then
+  TARGET_DIR=$(dirname "$TARGET")
+  if [ -f "$TARGET_DIR/opencode.json" ] && [ -f "$TARGET_DIR/opencode.jsonc" ]; then
+    log "warning: both opencode.json and opencode.jsonc exist in $TARGET_DIR"
+    log "warning: OpenCode reads only one of them. After this run, delete the file that does not contain your other settings (usually the installer-created opencode.json)."
+  fi
+fi
+
 export OP_FLAG="$ORIG_FLAG" OP_KEY="$KEY" OP_TARGET="$TARGET" OP_MODELS="$MODELS_FILE" OP_QUOTA="$QUOTA_FILE" OP_PROVIDER="$PROVIDER_ID"
 
 # ---------- merge engines (each writes the merged config to stdout) ----------
 run_python3() {
   python3 - <<'PY'
-import json, os, sys
+import json, os, re, sys
 
 def fail(message):
     sys.stderr.write("install error: %s\n" % message)
     sys.exit(1)
 
-def load(path):
+def strip_jsonc(text):
+    out = []
+    i, n = 0, len(text)
+    in_str = False
+    while i < n:
+        c = text[i]
+        if in_str:
+            out.append(c)
+            if c == "\\" and i + 1 < n:
+                out.append(text[i + 1])
+                i += 2
+                continue
+            if c == '"':
+                in_str = False
+            i += 1
+            continue
+        if c == '"':
+            in_str = True
+            out.append(c)
+            i += 1
+            continue
+        if c == "/" and i + 1 < n and text[i + 1] == "/":
+            while i < n and text[i] != "\n":
+                i += 1
+            continue
+        if c == "/" and i + 1 < n and text[i + 1] == "*":
+            i += 2
+            while i + 1 < n and not (text[i] == "*" and text[i + 1] == "/"):
+                i += 1
+            i += 2
+            continue
+        out.append(c)
+        i += 1
+    return "".join(out)
+
+def parse_config_text(raw, label):
+    try:
+        return json.loads(raw), False
+    except ValueError:
+        pass
+    stripped = strip_jsonc(raw)
+    try:
+        return json.loads(stripped), True
+    except ValueError:
+        pass
+    try:
+        return json.loads(re.sub(r",\s*([}\]])", r"\1", stripped)), True
+    except ValueError as exc:
+        fail("%s is not valid JSON or JSONC (%s). Nothing was modified." % (label, exc))
+
+def load_file(path):
     try:
         with open(path, "r", encoding="utf-8") as handle:
             return json.load(handle)
@@ -114,8 +181,8 @@ try:
     key = os.environ["OP_KEY"]
     target = os.environ["OP_TARGET"]
     provider = os.environ["OP_PROVIDER"]
-    models_resp = load(os.environ["OP_MODELS"])
-    quota_resp = load(os.environ["OP_QUOTA"])
+    models_resp = load_file(os.environ["OP_MODELS"])
+    quota_resp = load_file(os.environ["OP_QUOTA"])
 except KeyError as exc:
     fail("missing environment variable: %s" % exc)
 
@@ -144,11 +211,13 @@ config = {}
 if flag == "exists":
     try:
         with open(target, "r", encoding="utf-8") as handle:
-            config = json.load(handle)
+            raw = handle.read()
     except FileNotFoundError:
-        config = {}
-    except ValueError as exc:
-        fail("the existing config is not valid JSON (%s). Nothing was modified." % exc)
+        raw = None
+    if raw is not None:
+        config, simplified = parse_config_text(raw, "the existing config")
+else:
+    simplified = False
 if not isinstance(config, dict):
     fail("the existing config is not a JSON object. Nothing was modified.")
 
@@ -170,6 +239,8 @@ providers[provider] = {
 config["providers"] = providers
 
 sys.stderr.write("models: %s\n" % ", ".join(ids))
+if simplified:
+    sys.stderr.write("note: the original file used JSONC syntax; comments and trailing commas were simplified. A backup was kept.\n")
 json.dump(config, sys.stdout, indent=2)
 PY
 }
@@ -179,11 +250,41 @@ run_node() {
 const fs = require("fs");
 const env = process.env;
 const fail = (message) => { console.error("install error: " + message); process.exit(1); };
-const load = (path) => { try { return JSON.parse(fs.readFileSync(path, "utf8")); } catch (e) { if (e.code === "ENOENT") return {}; fail("the existing config is not valid JSON (" + e.message + "). Nothing was modified."); } };
 
-let modelsResp = {};
-try { modelsResp = JSON.parse(fs.readFileSync(env.OP_MODELS, "utf8")); } catch (e) { modelsResp = {}; }
-const quotaResp = JSON.parse(fs.readFileSync(env.OP_QUOTA, "utf8"));
+function stripJsonc(text) {
+  const out = [];
+  let i = 0, inStr = false;
+  while (i < text.length) {
+    const c = text[i];
+    if (inStr) {
+      out.push(c);
+      if (c === "\\" && i + 1 < text.length) { out.push(text[i + 1]); i += 2; continue; }
+      if (c === "\"") inStr = false;
+      i += 1;
+      continue;
+    }
+    if (c === "\"") { inStr = true; out.push(c); i += 1; continue; }
+    if (c === "/" && text[i + 1] === "/") { while (i < text.length && text[i] !== "\n") i += 1; continue; }
+    if (c === "/" && text[i + 1] === "*") { i += 2; while (i + 1 < text.length && !(text[i] === "*" && text[i + 1] === "/")) i += 1; i += 2; continue; }
+    out.push(c);
+    i += 1;
+  }
+  return out.join("");
+}
+
+function parseConfigText(raw, label) {
+  try { return { config: JSON.parse(raw), simplified: false }; } catch (e) {}
+  const stripped = stripJsonc(raw);
+  let simplified = true;
+  try { return { config: JSON.parse(stripped), simplified }; } catch (e) {}
+  try { return { config: JSON.parse(stripped.replace(/,\s*([}\]])/g, "$1")), simplified }; }
+  catch (e) { fail(label + " is not valid JSON or JSONC (" + e.message + "). Nothing was modified."); }
+}
+
+function loadFile(path) { try { return JSON.parse(fs.readFileSync(path, "utf8")); } catch (e) { if (e.code === "ENOENT") return {}; fail("downloaded API data is not valid JSON. Nothing was modified."); } }
+
+const modelsResp = loadFile(env.OP_MODELS);
+const quotaResp = loadFile(env.OP_QUOTA);
 
 const ids = [];
 const add = (value) => { if (typeof value === "string" && value && value !== "*" && !ids.includes(value)) ids.push(value); };
@@ -197,8 +298,12 @@ for (const id of ids) {
   models[id] = { name: pretty };
 }
 
-let config = {};
-if (env.OP_FLAG === "exists") config = load(env.OP_TARGET);
+let config = {}, simplified = false;
+if (env.OP_FLAG === "exists") {
+  let raw = null;
+  try { raw = fs.readFileSync(env.OP_TARGET, "utf8"); } catch (e) { if (e.code !== "ENOENT") fail("cannot read the existing config (" + e.message + "). Nothing was modified."); }
+  if (raw !== null) { const parsed = parseConfigText(raw, "the existing config"); config = parsed.config; simplified = parsed.simplified; }
+}
 if (typeof config !== "object" || config === null || Array.isArray(config)) fail("the existing config is not a JSON object. Nothing was modified.");
 let providers = config.providers;
 if (providers === undefined || providers === null) providers = {};
@@ -213,6 +318,7 @@ providers[env.OP_PROVIDER] = {
 config.providers = providers;
 
 console.error("models: " + ids.join(", "));
+if (simplified) console.error("note: the original file used JSONC syntax; comments and trailing commas were simplified. A backup was kept.");
 process.stdout.write(JSON.stringify(config, null, 2));
 '
 }
@@ -244,7 +350,7 @@ run_jq() {
           models: $models
         }
       })
-    ' "$OP_TARGET" || die "the existing config is not valid JSON. Nothing was modified."
+    ' "$OP_TARGET" || die "the existing config could not be parsed. If it is an opencode.jsonc with comments, python3 or node is required to merge it safely. Nothing was modified."
   else
     jq -n --arg key "$OP_KEY" --argjson models "$MODELS_JSON" --arg provider "$OP_PROVIDER" '
       {
