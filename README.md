@@ -64,14 +64,25 @@ Present the response as readable cards or tables rather than raw JSON:
 
 ## OpenCode tutorial
 
-The `/keys/` page generates a ready-to-use configuration after a successful
-quota inspection. The generated file is saved as
-`.opencode/opencode.json` in the user's project root; OpenCode merges it with
-any existing `opencode.json` automatically. Its structure:
+The `/keys/` page shows a one-line installer after a successful quota
+inspection:
+
+```bash
+curl -fsSL https://conjecture56.org/install.sh | sh
+```
+
+The installer (source: `install.sh` in this repository) asks for the API key
+with hidden input, queries the quota endpoint for the models available to
+that key, and merges a `providers.conjecture56` block into the first OpenCode
+configuration it finds (`./opencode.json`, `./.opencode/opencode.json`, or
+`~/.config/opencode/opencode.json`, created if absent). It backs up the file
+before writing and never prints the key.
+
+JSON editing needs `python3`, `node`, `bun`, or `jq`; without any of them the
+script modifies nothing and prints manual instructions. The resulting block:
 
 ```jsonc
 {
-  "$schema": "https://opencode.ai/config.json",
   "providers": {
     "conjecture56": {
       "name": "Conjecture 56",
@@ -81,18 +92,12 @@ any existing `opencode.json` automatically. Its structure:
         "apiKey": "sk-YOUR-KEY"
       },
       "models": {
-        "qwen3.6": {
-          "name": "Qwen3.6"
-        }
+        "qwen3.6": { "name": "Qwen3.6" }
       }
     }
   }
 }
 ```
-
-`models` lists every model the submitted virtual key can reach, sourced from
-the quota endpoint's named model configs. The file contains the API key, so
-the page warns against committing or sharing it.
 
 A minimal verification command:
 

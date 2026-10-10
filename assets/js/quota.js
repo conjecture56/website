@@ -1,7 +1,6 @@
 const API_BASE = "https://api.conjecture56.org";
 const QUOTA_ENDPOINT = `${API_BASE}/api/governance/virtual-keys/quota`;
 const MODELS_ENDPOINT = `${API_BASE}/v1/models`;
-const CONFIG_PLACEHOLDER = "Inspect your key above to generate the configuration.";
 const VERIFY_PLACEHOLDER = "A verification command will appear with your configuration.";
 // Used when a key advertises no named models anywhere (no /v1/models inventory,
 // no named model_configs, no per-model usage). Matches the gateway's base model.
@@ -13,16 +12,12 @@ const toggleButton = document.querySelector("#toggle-key");
 const clearButton = document.querySelector("#clear-key");
 const statusRegion = document.querySelector("#quota-status");
 const resultsRegion = document.querySelector("#quota-results");
-const configCode = document.querySelector("#config-example");
 const verifyCode = document.querySelector("#verify-command");
-const copyConfigButton = document.querySelector("#copy-config");
 const copyVerifyButton = document.querySelector("#copy-verify");
-const credentialWarning = document.querySelector("#credential-warning");
 const setupSection = document.querySelector("#setup-section");
 const securityNote = document.querySelector("#security-note");
 
 let activeRequest;
-let generatedConfig;
 
 const formatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
 const formatMoney = new Intl.NumberFormat("en-US", {
@@ -44,13 +39,8 @@ function setStatus(message = "", tone = "") {
 }
 
 function resetConfigOutput() {
-  generatedConfig = undefined;
-  configCode.textContent = CONFIG_PLACEHOLDER;
   verifyCode.textContent = VERIFY_PLACEHOLDER;
-  copyConfigButton.disabled = true;
   copyVerifyButton.disabled = true;
-  copyConfigButton.textContent = "Copy ready-to-use config";
-  credentialWarning.hidden = true;
   setupSection.hidden = true;
   securityNote.hidden = true;
 }
@@ -246,46 +236,8 @@ function renderQuota(data, merged, fallbackUsed) {
   resultsRegion.hidden = false;
 }
 
-function prettifyModelName(id) {
-  const base = String(id).split("/").pop();
-  return base
-    .split(/[-_]+/)
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
-
-function buildConfig(key, models) {
-  const entries = {};
-  for (const model of models) {
-    entries[model.id] = { name: prettifyModelName(model.id) };
-  }
-
-  return JSON.stringify(
-    {
-      $schema: "https://opencode.ai/config.json",
-      providers: {
-        conjecture56: {
-          name: "Conjecture 56",
-          package: "@opencode/ai/providers/openai-compatible",
-          settings: {
-            baseURL: `${API_BASE}/v1`,
-            apiKey: key,
-          },
-          models: entries,
-        },
-      },
-    },
-    null,
-    2,
-  );
-}
-
-function renderConfig(key, models) {
-  generatedConfig = buildConfig(key, models);
-  configCode.textContent = generatedConfig;
-  copyConfigButton.disabled = false;
-  credentialWarning.hidden = false;
+function renderConfig(models) {
+  copyVerifyButton.disabled = true;
   setupSection.hidden = false;
   securityNote.hidden = false;
 
@@ -358,15 +310,15 @@ form?.addEventListener("submit", async (event) => {
     renderQuota(quota, merged, fallbackUsed);
 
     if (merged.models.length) {
-      renderConfig(key, merged.models);
+      renderConfig(merged.models);
       setStatus(
         fallbackUsed
-          ? "Quota loaded. No advertised models, so the configuration below uses the gateway default. Your key has not been stored."
-          : "Quota loaded and configuration generated below. Your key has not been stored.",
+          ? "Quota loaded. No advertised models, so the installer below will configure the gateway default. Your key has not been stored."
+          : "Quota loaded. Run the installer below to configure OpenCode. Your key has not been stored.",
         "success",
       );
     } else {
-      setStatus("Quota loaded, but no named models are advertised for this key, so the configuration cannot be generated.", "success");
+      setStatus("Quota loaded, but no named models are advertised for this key.", "success");
     }
   } catch (error) {
     if (error.name !== "AbortError") setStatus(error.message || "The data could not be loaded.", "error");
