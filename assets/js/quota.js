@@ -1,4 +1,8 @@
-const QUOTA_ENDPOINT = "https://api.conjecture56.org/api/governance/virtual-keys/quota";
+const API_BASE = "https://api.conjecture56.org";
+const QUOTA_ENDPOINT = `${API_BASE}/api/governance/virtual-keys/quota`;
+const MODELS_ENDPOINT = `${API_BASE}/v1/models`;
+const CONFIG_PLACEHOLDER = "Inspect your key above to generate the configuration.";
+const VERIFY_PLACEHOLDER = "A verification command will appear with your configuration.";
 
 const form = document.querySelector("#quota-form");
 const keyInput = document.querySelector("#api-key");
@@ -6,8 +10,14 @@ const toggleButton = document.querySelector("#toggle-key");
 const clearButton = document.querySelector("#clear-key");
 const statusRegion = document.querySelector("#quota-status");
 const resultsRegion = document.querySelector("#quota-results");
+const configCode = document.querySelector("#config-example");
+const verifyCode = document.querySelector("#verify-command");
+const copyConfigButton = document.querySelector("#copy-config");
+const copyVerifyButton = document.querySelector("#copy-verify");
+const credentialWarning = document.querySelector("#credential-warning");
 
 let activeRequest;
+let generatedConfig;
 
 const formatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
 const formatMoney = new Intl.NumberFormat("en-US", {
@@ -28,6 +38,16 @@ function setStatus(message = "", tone = "") {
   statusRegion.textContent = message;
 }
 
+function resetConfigOutput() {
+  generatedConfig = undefined;
+  configCode.textContent = CONFIG_PLACEHOLDER;
+  verifyCode.textContent = VERIFY_PLACEHOLDER;
+  copyConfigButton.disabled = true;
+  copyVerifyButton.disabled = true;
+  copyConfigButton.textContent = "Copy ready-to-use config";
+  credentialWarning.hidden = true;
+}
+
 function resetSensitiveState() {
   activeRequest?.abort();
   activeRequest = undefined;
@@ -38,6 +58,7 @@ function resetSensitiveState() {
   toggleButton.setAttribute("aria-pressed", "false");
   resultsRegion.replaceChildren();
   resultsRegion.hidden = true;
+  resetConfigOutput();
   setStatus();
 }
 
@@ -89,11 +110,33 @@ function renderRateLimit(rateLimit, container) {
   );
 }
 
+function mergeModels(inventory, quota) {
+  const configs = new Map((quota.model_configs ?? []).map((model) => [model.model_name, model]));
+  const models = [];
+  const seen = new Set();
+
+  for (const item of inventory ?? []) {
+    const id = item?.id;
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    models.push({ id, provider: item.owned_by ?? configs.get(id)?.provider });
+  }
+
+  for (const [name, config] of configs) {
+    if (seen.has(name)) continue;
+    seen.add(name);
+    models.push({ id: name, provider: config.provider, configOnly: true });
+  }
+
+  return models;
+}
+
 function renderModel(model) {
   const card = element("article", "model-card");
   const heading = element("div", "model-heading");
-  heading.append(element("h4", "", model.model_name || "Unnamed model"));
-  if (model.provider) heading.append(element("span", "model-provider", model.provider));
+  heading.append(element("h4", "", model.id));
+  const badge = element("span", "model-provider", model.configOnly ? "key config" : "available");
+  heading.append(badge);
   card.append(heading);
 
   const facts = element("dl", "model-facts");
@@ -101,18 +144,22 @@ function renderModel(model) {
     facts.append(element("dt", "", term), element("dd", "", value));
   };
 
-  const rate = model.rate_limit;
-  if (rate?.request_max_limit != null) {
-    addFact("Requests", `${formatNumber.format(rate.request_current_usage ?? 0)} / ${formatNumber.format(rate.request_max_limit)} per ${durationLabel(rate.request_reset_duration)}`);
-  }
-  if (rate?.token_max_limit != null) {
-    addFact("Tokens", `${formatNumber.format(rate.token_current_usage ?? 0)} / ${formatNumber.format(rate.token_max_limit)} per ${durationLabel(rate.token_reset_duration)}`);
-  }
+  if (model.provider) addFact("Provider", model.provider);
 
-  const budgets = Array.isArray(model.budgets) ? model.budgets : [];
-  if (budgets.length) {
-    const budget = budgets[0];
-    addFact("Spend", `${formatMoney.format(budget.current_usage ?? 0)} / ${formatMoney.format((budget.max_limit ?? 0) + (budget.override_amount ?? 0))} per ${durationLabel(budget.reset_duration)}`);
+  const config = model.config;
+  if (config) {
+    const rate = config.rate_limit;
+    if (rate?.request_max_limit != null) {
+      addFact("Requests", `${formatNumber.format(rate.request_current_usage ?? 0)} / ${formatNumber.format(rate.request_max_limit)} per ${durationLabel(rate.request_reset_duration)}`);
+    }
+    if (rate?.token_max_limit != null) {
+      addFact("Tokens", `${formatNumber.format(rate.token_current_usage ?? 0)} / ${formatNumber.format(rate.token_max_limit)} per ${durationLabel(rate.token_reset_duration)}`);
+    }
+
+    const budget = (Array.isArray(config.budgets) ? config.budgets : [])[0];
+    if (budget) {
+      addFact("Spend", `${formatMoney.format(budget.current_usage ?? 0)} / ${formatMoney.format((budget.max_limit ?? 0) + (budget.override_amount ?? 0))} per ${durationLabel(budget.reset_duration)}`);
+    }
   }
 
   if (!facts.children.length) addFact("Limits", "Uses the key-level allowance");
@@ -120,7 +167,7 @@ function renderModel(model) {
   return card;
 }
 
-function renderQuota(data) {
+function renderQuota(data, models) {
   const fragment = document.createDocumentFragment();
   const summary = element("section", "result-summary");
   const identity = element("div", "result-identity");
@@ -143,18 +190,83 @@ function renderQuota(data) {
   limitsSection.append(metrics);
   fragment.append(limitsSection);
 
-  const models = Array.isArray(data.model_configs) ? data.model_configs : [];
   if (models.length) {
     const modelsSection = element("section", "result-section");
-    modelsSection.append(element("h3", "result-title", "Model-specific limits"));
+    modelsSection.append(element("h3", "result-title", `Models (${models.length})`));
     const modelGrid = element("div", "model-grid");
     models.forEach((model) => modelGrid.append(renderModel(model)));
     modelsSection.append(modelGrid);
     fragment.append(modelsSection);
+  } else {
+    const emptySection = element("section", "result-section");
+    emptySection.append(element("p", "result-warning", "No models are currently available to this key. Contact its issuer to enable model access."));
+    fragment.append(emptySection);
   }
 
   resultsRegion.replaceChildren(fragment);
   resultsRegion.hidden = false;
+}
+
+function prettifyModelName(id) {
+  const base = String(id).split("/").pop();
+  return base
+    .split(/[-_.]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function buildConfig(key, models) {
+  const entries = {};
+  for (const model of models) {
+    entries[model.id] = { name: prettifyModelName(model.id) };
+  }
+
+  return JSON.stringify(
+    {
+      $schema: "https://opencode.ai/config.json",
+      providers: {
+        conjecture56: {
+          name: "Conjecture 56",
+          package: "@opencode/ai/providers/openai-compatible",
+          settings: {
+            baseURL: `${API_BASE}/v1`,
+            apiKey: key,
+          },
+          models: entries,
+        },
+      },
+    },
+    null,
+    2,
+  );
+}
+
+function renderConfig(key, models) {
+  generatedConfig = buildConfig(key, models);
+  configCode.textContent = generatedConfig;
+  copyConfigButton.disabled = false;
+  credentialWarning.hidden = false;
+
+  const firstModel = models[0]?.id;
+  if (firstModel) {
+    verifyCode.textContent = `opencode run --model conjecture56/${firstModel} \\\n  "Reply exactly: gateway-ok"`;
+    copyVerifyButton.disabled = false;
+  }
+}
+
+async function fetchJson(endpoint, key, signal) {
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: { "X-Api-Key": key },
+    cache: "no-store",
+    credentials: "omit",
+    referrerPolicy: "no-referrer",
+    signal,
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(errorMessage(response, body));
+  return body;
 }
 
 function errorMessage(response, body) {
@@ -164,7 +276,7 @@ function errorMessage(response, body) {
   if (response.status >= 500) return "The quota service is temporarily unavailable. Try again in a few minutes.";
 
   const apiMessage = typeof body?.error === "string" ? body.error : body?.error?.message;
-  return apiMessage || "The quota could not be loaded. Please try again.";
+  return apiMessage || "The data could not be loaded. Please try again.";
 }
 
 form?.addEventListener("submit", async (event) => {
@@ -182,25 +294,32 @@ form?.addEventListener("submit", async (event) => {
   activeRequest = controller;
   resultsRegion.hidden = true;
   resultsRegion.replaceChildren();
-  setStatus("Checking your current allowance…", "loading");
+  resetConfigOutput();
+  setStatus("Checking your key, quota, and available models…", "loading");
   form.setAttribute("aria-busy", "true");
 
   try {
-    const response = await fetch(QUOTA_ENDPOINT, {
-      method: "GET",
-      headers: { "X-Api-Key": key },
-      cache: "no-store",
-      credentials: "omit",
-      referrerPolicy: "no-referrer",
-      signal: controller.signal,
-    });
-    const body = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(errorMessage(response, body));
+    const [quotaResult, modelsResult] = await Promise.allSettled([
+      fetchJson(QUOTA_ENDPOINT, key, controller.signal),
+      fetchJson(MODELS_ENDPOINT, key, controller.signal),
+    ]);
 
-    renderQuota(body);
-    setStatus("Quota loaded. Your key has not been stored.", "success");
+    if (quotaResult.status === "rejected") throw quotaResult.reason;
+
+    const quota = quotaResult.value;
+    const models = modelsResult.status === "fulfilled"
+      ? mergeModels(modelsResult.value?.data, quota)
+      : mergeModels([], quota);
+
+    renderQuota(quota, models);
+    if (models.length) {
+      renderConfig(key, models);
+      setStatus("Quota loaded and configuration generated. Your key has not been stored.", "success");
+    } else {
+      setStatus("Quota loaded, but this key has no models available yet.", "success");
+    }
   } catch (error) {
-    if (error.name !== "AbortError") setStatus(error.message || "The quota could not be loaded.", "error");
+    if (error.name !== "AbortError") setStatus(error.message || "The data could not be loaded.", "error");
   } finally {
     form.removeAttribute("aria-busy");
     if (activeRequest === controller) activeRequest = undefined;

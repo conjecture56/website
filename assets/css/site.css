@@ -199,6 +199,10 @@ h1 em { color: var(--accent); font-weight: 400; }
 .code-block { min-width: 0; overflow: hidden; border: 1px solid #34423d; border-radius: .75rem; color: #e9ece8; background: #17221f; box-shadow: 0 16px 40px rgb(23 34 31 / .08); }
 .code-toolbar { min-height: 2.8rem; display: flex; align-items: center; justify-content: space-between; padding-inline: 1rem; border-bottom: 1px solid #34423d; color: #9caaa4; font: .65rem ui-monospace, monospace; }
 .copy-button { padding: .35rem .55rem; border: 1px solid #4d5b56; border-radius: .3rem; color: #dce3df; background: transparent; font: inherit; cursor: pointer; }
+.copy-button:disabled { opacity: .4; cursor: not-allowed; }
+.copy-button:disabled:hover { border-color: #4d5b56; color: #dce3df; }
+.credential-warning { margin: 0 0 .75rem; padding: .8rem 1rem; border: 1px solid #e0c184; border-radius: .5rem; color: #7a5a17; background: #fbf4e5; font-size: .78rem; }
+.credential-warning strong { color: #5e440e; }
 .copy-button:hover { border-color: var(--accent-light); color: var(--accent-light); }
 .code-block pre { margin: 0; padding: 1.25rem; overflow-x: auto; }
 .code-block code { font: .75rem/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; }
