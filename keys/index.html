@@ -9,8 +9,8 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://conjecture56.org/keys/">
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/site.css?v=20261012-4">
-    <script src="/assets/js/quota.js?v=20261012-4" type="module"></script>
+    <link rel="stylesheet" href="/assets/css/site.css?v=20261012-5">
+    <script src="/assets/js/quota.js?v=20261012-5" type="module"></script>
   </head>
   <body class="access-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -71,7 +71,7 @@
             <p class="step-label">02 / Connect</p>
             <h2 id="setup-title">Configure OpenCode</h2>
           </div>
-          <p>After a successful inspection, we generate one ready-to-use configuration containing your key and every model available to it.</p>
+          <p>After a successful inspection, run the installer: it adds Conjecture 56 to your OpenCode setup with every model available to your key.</p>
         </div>
 
         <ol class="setup-steps">
@@ -86,16 +86,6 @@
                 <pre><code id="config-example">curl -fsSL https://conjecture56.org/install.sh | sh</code></pre>
               </div>
               <p class="field-help">The installer stores your API key inside the chosen OpenCode configuration file on this machine.</p>
-            </div>
-          </li>
-          <li>
-            <div class="step-copy">
-              <span>2</span>
-              <div><h3>Verify the connection</h3><p>Run one deterministic prompt to confirm the provider and model are available.</p></div>
-            </div>
-            <div class="code-block">
-              <div class="code-toolbar"><span>Terminal</span><button id="copy-verify" class="copy-button" type="button" data-copy="verify-command" disabled>Copy</button></div>
-              <pre><code id="verify-command">A verification command will appear with your configuration.</code></pre>
             </div>
           </li>
         </ol>

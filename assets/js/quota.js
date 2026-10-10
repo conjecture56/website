@@ -1,7 +1,6 @@
 const API_BASE = "https://api.conjecture56.org";
 const QUOTA_ENDPOINT = `${API_BASE}/api/governance/virtual-keys/quota`;
 const MODELS_ENDPOINT = `${API_BASE}/v1/models`;
-const VERIFY_PLACEHOLDER = "A verification command will appear with your configuration.";
 // Used when a key advertises no named models anywhere (no /v1/models inventory,
 // no named model_configs, no per-model usage). Matches the gateway's base model.
 const FALLBACK_MODELS = ["qwen3.6"];
@@ -12,8 +11,6 @@ const toggleButton = document.querySelector("#toggle-key");
 const clearButton = document.querySelector("#clear-key");
 const statusRegion = document.querySelector("#quota-status");
 const resultsRegion = document.querySelector("#quota-results");
-const verifyCode = document.querySelector("#verify-command");
-const copyVerifyButton = document.querySelector("#copy-verify");
 const setupSection = document.querySelector("#setup-section");
 const securityNote = document.querySelector("#security-note");
 
@@ -39,8 +36,6 @@ function setStatus(message = "", tone = "") {
 }
 
 function resetConfigOutput() {
-  verifyCode.textContent = VERIFY_PLACEHOLDER;
-  copyVerifyButton.disabled = true;
   setupSection.hidden = true;
   securityNote.hidden = true;
 }
@@ -236,16 +231,9 @@ function renderQuota(data, merged, fallbackUsed) {
   resultsRegion.hidden = false;
 }
 
-function renderConfig(models) {
-  copyVerifyButton.disabled = true;
+function renderConfig() {
   setupSection.hidden = false;
   securityNote.hidden = false;
-
-  const firstModel = models[0]?.id;
-  if (firstModel) {
-    verifyCode.textContent = `opencode run --model conjecture56/${firstModel} \\\n  "Reply exactly: Conjecture 56 ok"`;
-    copyVerifyButton.disabled = false;
-  }
 }
 
 async function fetchJson(endpoint, key, signal) {
@@ -310,7 +298,7 @@ form?.addEventListener("submit", async (event) => {
     renderQuota(quota, merged, fallbackUsed);
 
     if (merged.models.length) {
-      renderConfig(merged.models);
+      renderConfig();
       setStatus(
         fallbackUsed
           ? "Quota loaded. No advertised models, so the installer below will configure the gateway default. Your key has not been stored."
