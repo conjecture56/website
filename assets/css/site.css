@@ -207,6 +207,15 @@ h1 em { color: var(--accent); font-weight: 400; }
 .security-note h2 { margin-bottom: .35rem; font: 400 1.25rem Georgia, serif; }
 .security-note p { max-width: 60rem; margin-bottom: 0; color: var(--ink-soft); font-size: .82rem; }
 
+/* Error page */
+.not-found { min-height: 100vh; display: flex; flex-direction: column; padding-block: 2.5rem; overflow: hidden; }
+.not-found-copy { position: relative; z-index: 1; max-width: 720px; margin-block: auto; padding-block: 5rem; }
+.error-code { margin-bottom: 1.2rem; color: var(--accent); font: 700 .68rem ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+.not-found-copy h1 { margin-bottom: 1.5rem; }
+.not-found-copy > p:not(.error-code) { max-width: 32rem; margin-bottom: 2rem; color: var(--ink-soft); font-size: 1.1rem; }
+.not-found-plot { position: absolute; right: 0; bottom: 6%; width: min(48vw, 640px); opacity: .7; }
+.not-found-plot path { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 6; }
+
 @media (prefers-reduced-motion: no-preference) {
   .signal { animation: draw 1.5s ease-out both; }
   .hero-copy > * { animation: rise .7s ease-out both; }

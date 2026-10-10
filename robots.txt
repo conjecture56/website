@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /keys/
+
+Sitemap: https://conjecture56.org/sitemap.xml
