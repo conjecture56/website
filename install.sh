@@ -108,7 +108,22 @@ if [ -f "$TARGET" ]; then
   fi
 fi
 
-export OP_FLAG="$ORIG_FLAG" OP_KEY="$KEY" OP_TARGET="$TARGET" OP_MODELS="$MODELS_FILE" OP_QUOTA="$QUOTA_FILE" OP_PROVIDER="$PROVIDER_ID"
+# ---------- OpenCode schema detection (V1 vs V2) ----------
+# V1: "provider" (singular) + npm + options   (discarded by V2? no — V2 uses providers/package/settings)
+# V2: "providers" (plural) + package + settings
+SCHEMA="${INSTALLER_SCHEMA:-}"
+if [ -z "$SCHEMA" ]; then
+  SCHEMA="v2"
+  OPENCODE_VERSION=""
+  if command -v opencode >/dev/null 2>&1; then
+    OPENCODE_VERSION=$(opencode --version 2>/dev/null | head -n 1 || true)
+  fi
+  case "$OPENCODE_VERSION" in
+    [01].*) SCHEMA="v1" ;;
+  esac
+fi
+
+export OP_FLAG="$ORIG_FLAG" OP_KEY="$KEY" OP_TARGET="$TARGET" OP_MODELS="$MODELS_FILE" OP_QUOTA="$QUOTA_FILE" OP_PROVIDER="$PROVIDER_ID" OP_SCHEMA="$SCHEMA"
 
 # ---------- merge engines (each writes the merged config to stdout) ----------
 run_python3() {
@@ -221,23 +236,40 @@ else:
 if not isinstance(config, dict):
     fail("the existing config is not a JSON object. Nothing was modified.")
 
-providers = config.get("providers")
-if providers is None:
-    providers = {}
-if not isinstance(providers, dict):
-    fail("the existing 'providers' entry is not an object. Nothing was modified.")
+schema = os.environ.get("OP_SCHEMA", "v2")
+if schema == "v1":
+    container_key = "provider"
+    entry = {
+        "name": "Conjecture 56",
+        "npm": "@ai-sdk/openai-compatible",
+        "options": {
+            "baseURL": "https://api.conjecture56.org/v1",
+            "apiKey": key,
+        },
+        "models": models,
+    }
+else:
+    container_key = "providers"
+    entry = {
+        "name": "Conjecture 56",
+        "package": "@opencode/ai/providers/openai-compatible",
+        "settings": {
+            "baseURL": "https://api.conjecture56.org/v1",
+            "apiKey": key,
+        },
+        "models": models,
+    }
 
-providers[provider] = {
-    "name": "Conjecture 56",
-    "package": "@opencode/ai/providers/openai-compatible",
-    "settings": {
-        "baseURL": "https://api.conjecture56.org/v1",
-        "apiKey": key,
-    },
-    "models": models,
-}
-config["providers"] = providers
+container = config.get(container_key)
+if container is None:
+    container = {}
+if not isinstance(container, dict):
+    fail("the existing '%s' entry is not an object. Nothing was modified." % container_key)
 
+container[provider] = entry
+config[container_key] = container
+
+sys.stderr.write("schema: %s\n" % schema)
 sys.stderr.write("models: %s\n" % ", ".join(ids))
 if simplified:
     sys.stderr.write("note: the original file used JSONC syntax; comments and trailing commas were simplified. A backup was kept.\n")
@@ -298,6 +330,12 @@ for (const id of ids) {
   models[id] = { name: pretty };
 }
 
+const schema = env.OP_SCHEMA === "v1" ? "v1" : "v2";
+const entry = schema === "v1"
+  ? { name: "Conjecture 56", npm: "@ai-sdk/openai-compatible", options: { baseURL: "https://api.conjecture56.org/v1", apiKey: env.OP_KEY }, models }
+  : { name: "Conjecture 56", package: "@opencode/ai/providers/openai-compatible", settings: { baseURL: "https://api.conjecture56.org/v1", apiKey: env.OP_KEY }, models };
+const containerKey = schema === "v1" ? "provider" : "providers";
+
 let config = {}, simplified = false;
 if (env.OP_FLAG === "exists") {
   let raw = null;
@@ -305,18 +343,14 @@ if (env.OP_FLAG === "exists") {
   if (raw !== null) { const parsed = parseConfigText(raw, "the existing config"); config = parsed.config; simplified = parsed.simplified; }
 }
 if (typeof config !== "object" || config === null || Array.isArray(config)) fail("the existing config is not a JSON object. Nothing was modified.");
-let providers = config.providers;
-if (providers === undefined || providers === null) providers = {};
-if (typeof providers !== "object" || Array.isArray(providers)) fail("the existing providers entry is not an object. Nothing was modified.");
+let container = config[containerKey];
+if (container === undefined || container === null) container = {};
+if (typeof container !== "object" || Array.isArray(container)) fail("the existing " + containerKey + " entry is not an object. Nothing was modified.");
 
-providers[env.OP_PROVIDER] = {
-  name: "Conjecture 56",
-  package: "@opencode/ai/providers/openai-compatible",
-  settings: { baseURL: "https://api.conjecture56.org/v1", apiKey: env.OP_KEY },
-  models,
-};
-config.providers = providers;
+container[env.OP_PROVIDER] = entry;
+config[containerKey] = container;
 
+console.error("schema: " + schema);
 console.error("models: " + ids.join(", "));
 if (simplified) console.error("note: the original file used JSONC syntax; comments and trailing commas were simplified. A backup was kept.");
 process.stdout.write(JSON.stringify(config, null, 2));
@@ -341,33 +375,31 @@ run_jq() {
   ') || die "could not build the model list."
 
   if [ "$OP_FLAG" = "exists" ]; then
-    jq --arg key "$OP_KEY" --argjson models "$MODELS_JSON" --arg provider "$OP_PROVIDER" '
-      .providers = (((.providers // {}) + {}) + {
-        ($provider): {
-          name: "Conjecture 56",
-          package: "@opencode/ai/providers/openai-compatible",
-          settings: { baseURL: "https://api.conjecture56.org/v1", apiKey: $key },
-          models: $models
-        }
-      })
+    jq --arg key "$OP_KEY" --argjson models "$MODELS_JSON" --arg provider "$OP_PROVIDER" --arg schema "$OP_SCHEMA" '
+      def entry:
+        if $schema == "v1" then
+          { name: "Conjecture 56", npm: "@ai-sdk/openai-compatible", options: { baseURL: "https://api.conjecture56.org/v1", apiKey: $key }, models: $models }
+        else
+          { name: "Conjecture 56", package: "@opencode/ai/providers/openai-compatible", settings: { baseURL: "https://api.conjecture56.org/v1", apiKey: $key }, models: $models }
+        end;
+      (if $schema == "v1" then "provider" else "providers" end) as $container
+      | .[$container] = (((.[$container] // {}) + {}) + { ($provider): entry })
     ' "$OP_TARGET" || die "the existing config could not be parsed. If it is an opencode.jsonc with comments, python3 or node is required to merge it safely. Nothing was modified."
   else
-    jq -n --arg key "$OP_KEY" --argjson models "$MODELS_JSON" --arg provider "$OP_PROVIDER" '
-      {
-        providers: {
-          ($provider): {
-            name: "Conjecture 56",
-            package: "@opencode/ai/providers/openai-compatible",
-            settings: { baseURL: "https://api.conjecture56.org/v1", apiKey: $key },
-            models: $models
-          }
-        }
-      }
+    jq -n --arg key "$OP_KEY" --argjson models "$MODELS_JSON" --arg provider "$OP_PROVIDER" --arg schema "$OP_SCHEMA" '
+      def entry:
+        if $schema == "v1" then
+          { name: "Conjecture 56", npm: "@ai-sdk/openai-compatible", options: { baseURL: "https://api.conjecture56.org/v1", apiKey: $key }, models: $models }
+        else
+          { name: "Conjecture 56", package: "@opencode/ai/providers/openai-compatible", settings: { baseURL: "https://api.conjecture56.org/v1", apiKey: $key }, models: $models }
+        end;
+      (if $schema == "v1" then "provider" else "providers" end) as $container
+      | { ($container): { ($provider): entry } }
     '
   fi
 }
 
-log "configuring the $PROVIDER_ID provider (engine: $ENGINE)…"
+log "configuring the $PROVIDER_ID provider (engine: $ENGINE, schema: $SCHEMA)…"
 case "$ENGINE" in
   python3) MERGED=$(run_python3) || die "could not build the merged configuration. Nothing was modified." ;;
   node)    MERGED=$(run_node)    || die "could not build the merged configuration. Nothing was modified." ;;
