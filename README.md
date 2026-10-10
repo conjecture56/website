@@ -64,7 +64,10 @@ Present the response as readable cards or tables rather than raw JSON:
 
 ## OpenCode tutorial
 
-The `/keys/` page must include a copyable example based on this structure:
+The `/keys/` page generates a ready-to-use configuration after a successful
+quota inspection. The generated file is saved as
+`.opencode/opencode.json` in the user's project root; OpenCode merges it with
+any existing `opencode.json` automatically. Its structure:
 
 ```jsonc
 {
@@ -72,18 +75,14 @@ The `/keys/` page must include a copyable example based on this structure:
   "providers": {
     "conjecture56": {
       "name": "Conjecture 56",
-      "env": ["CONJECTURE56_API_KEY"],
       "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
-        "baseURL": "https://api.conjecture56.org/v1"
+        "baseURL": "https://api.conjecture56.org/v1",
+        "apiKey": "sk-YOUR-KEY"
       },
       "models": {
         "qwen3.6": {
-          "name": "Qwen 3.6",
-          "limit": {
-            "context": 262144,
-            "output": 65536
-          }
+          "name": "Qwen3.6"
         }
       }
     }
@@ -91,13 +90,11 @@ The `/keys/` page must include a copyable example based on this structure:
 }
 ```
 
-Set the credential in the shell before starting OpenCode:
+`models` lists every model the submitted virtual key can reach, sourced from
+the quota endpoint's named model configs. The file contains the API key, so
+the page warns against committing or sharing it.
 
-```bash
-export CONJECTURE56_API_KEY="sk-YOUR-KEY"
-```
-
-Also show a minimal verification command:
+A minimal verification command:
 
 ```bash
 opencode run --model conjecture56/qwen3.6 \
