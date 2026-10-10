@@ -3,6 +3,9 @@ const QUOTA_ENDPOINT = `${API_BASE}/api/governance/virtual-keys/quota`;
 const MODELS_ENDPOINT = `${API_BASE}/v1/models`;
 const CONFIG_PLACEHOLDER = "Inspect your key above to generate the configuration.";
 const VERIFY_PLACEHOLDER = "A verification command will appear with your configuration.";
+// Used when a key advertises no named models anywhere (no /v1/models inventory,
+// no named model_configs, no per-model usage). Matches the gateway's base model.
+const FALLBACK_MODELS = ["qwen3.6"];
 
 const form = document.querySelector("#quota-form");
 const keyInput = document.querySelector("#api-key");
@@ -162,7 +165,7 @@ function renderModel(model) {
   const card = element("article", "model-card");
   const heading = element("div", "model-heading");
   heading.append(element("h4", "", model.id));
-  const badgeText = model.keyLevel ? "key-level limits" : model.config ? "key config" : "available";
+  const badgeText = model.keyLevel ? "key-level limits" : model.fallback ? "default" : model.config ? "key config" : "available";
   heading.append(element("span", "model-provider", badgeText));
   card.append(heading);
 
@@ -194,7 +197,7 @@ function renderModel(model) {
   return card;
 }
 
-function renderQuota(data, merged) {
+function renderQuota(data, merged, fallbackUsed) {
   const fragment = document.createDocumentFragment();
   const summary = element("section", "result-summary");
   const identity = element("div", "result-identity");
@@ -223,6 +226,9 @@ function renderQuota(data, merged) {
       ? "Model limits"
       : `Models (${merged.models.length})`;
     modelsSection.append(element("h3", "result-title", title));
+    if (fallbackUsed) {
+      modelsSection.append(element("p", "result-warning", "This key does not advertise specific models, so the gateway default is shown and used in the configuration below. If requests with it fail, contact the key issuer."));
+    }
     const modelGrid = element("div", "model-grid");
     merged.models.forEach((model) => modelGrid.append(renderModel(model)));
     if (merged.wildcard) {
@@ -243,7 +249,7 @@ function renderQuota(data, merged) {
 function prettifyModelName(id) {
   const base = String(id).split("/").pop();
   return base
-    .split(/[-_.]+/)
+    .split(/[-_]+/)
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
@@ -344,12 +350,21 @@ form?.addEventListener("submit", async (event) => {
     const quota = quotaResult.value;
     const inventory = modelsResult.status === "fulfilled" ? modelsResult.value?.data : null;
     const merged = mergeModels(inventory, quota);
+    const fallbackUsed = merged.models.length === 0;
+    if (fallbackUsed) {
+      merged.models = FALLBACK_MODELS.map((id) => ({ id, provider: null, config: null, fallback: true }));
+    }
 
-    renderQuota(quota, merged);
+    renderQuota(quota, merged, fallbackUsed);
 
     if (merged.models.length) {
       renderConfig(key, merged.models);
-      setStatus("Quota loaded and configuration generated below. Your key has not been stored.", "success");
+      setStatus(
+        fallbackUsed
+          ? "Quota loaded. No advertised models, so the configuration below uses the gateway default. Your key has not been stored."
+          : "Quota loaded and configuration generated below. Your key has not been stored.",
+        "success",
+      );
     } else {
       setStatus("Quota loaded, but no named models are advertised for this key, so the configuration cannot be generated.", "success");
     }
