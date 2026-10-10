@@ -68,13 +68,14 @@ The `/keys/` page must include a copyable example based on this structure:
 
 ```jsonc
 {
+  "$schema": "https://opencode.ai/config.json",
   "providers": {
     "conjecture56": {
       "name": "Conjecture 56",
+      "env": ["CONJECTURE56_API_KEY"],
       "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
-        "baseURL": "https://api.conjecture56.org/v1",
-        "apiKey": "sk-YOUR-KEY"
+        "baseURL": "https://api.conjecture56.org/v1"
       },
       "models": {
         "qwen3.6": {
@@ -88,6 +89,12 @@ The `/keys/` page must include a copyable example based on this structure:
     }
   }
 }
+```
+
+Set the credential in the shell before starting OpenCode:
+
+```bash
+export CONJECTURE56_API_KEY="sk-YOUR-KEY"
 ```
 
 Also show a minimal verification command:

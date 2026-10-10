@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API access — Conjecture 56</title>
+    <meta name="description" content="Inspect your Conjecture 56 API quota and configure OpenCode without exposing your key.">
+    <meta name="theme-color" content="#f4f2ec">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://conjecture56.org/keys/">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script src="/assets/js/quota.js" type="module"></script>
+  </head>
+  <body class="access-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="/" aria-label="Conjecture 56 home">
+          <svg class="brand-mark" aria-hidden="true" viewBox="0 0 40 40"><use href="/assets/images/mark.svg#mark"></use></svg>
+          <span>Conjecture <strong>56</strong></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/">Laboratory</a>
+          <span class="nav-current" aria-current="page">API access</span>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="access-intro shell">
+        <p class="eyebrow"><span class="status-dot"></span> Key holder workspace</p>
+        <h1>Your access,<br><em>at a glance.</em></h1>
+        <p>Check the current limits attached to your key, then connect the Conjecture 56 API to OpenCode.</p>
+      </section>
+
+      <section class="quota-section shell" aria-labelledby="quota-title">
+        <div class="quota-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="step-label">01 / Inspect</p>
+              <h2 id="quota-title">Check your quota</h2>
+            </div>
+            <span class="privacy-badge"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5.5 9V6.5a4.5 4.5 0 0 1 9 0V9m-10 0h11v8h-11z"></path></svg> Memory only</span>
+          </div>
+
+          <p class="panel-description">Your key is sent directly to the API over HTTPS. It is never stored by this site or included in the page URL.</p>
+
+          <form id="quota-form" class="key-form" novalidate>
+            <label for="api-key">Virtual API key</label>
+            <div class="key-field">
+              <input id="api-key" name="api-key" type="password" placeholder="sk-••••••••••••••••" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="key-help">
+              <button id="toggle-key" class="field-action" type="button" aria-label="Show API key" aria-pressed="false">Show</button>
+            </div>
+            <p id="key-help" class="field-help">The key remains in this tab only until you clear it or leave the page.</p>
+            <div class="form-actions">
+              <button class="button button-primary" type="submit">Inspect quota <span aria-hidden="true">→</span></button>
+              <button id="clear-key" class="button button-ghost" type="button">Clear data</button>
+            </div>
+          </form>
+
+          <div id="quota-status" class="quota-status" role="status" aria-live="polite"></div>
+          <div id="quota-results" class="quota-results" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <section class="setup-section shell" aria-labelledby="setup-title">
+        <div class="setup-intro">
+          <div>
+            <p class="step-label">02 / Connect</p>
+            <h2 id="setup-title">Configure OpenCode</h2>
+          </div>
+          <p>Keep the credential in an environment variable and the provider definition in your OpenCode configuration.</p>
+        </div>
+
+        <ol class="setup-steps">
+          <li>
+            <div class="step-copy">
+              <span>1</span>
+              <div><h3>Set your key</h3><p>Add the variable to your shell session. Avoid committing credentials to a configuration file.</p></div>
+            </div>
+            <div class="code-block">
+              <div class="code-toolbar"><span>Terminal</span><button class="copy-button" type="button" data-copy="env-command">Copy</button></div>
+              <pre><code id="env-command">export CONJECTURE56_API_KEY="sk-YOUR-KEY"</code></pre>
+            </div>
+          </li>
+          <li>
+            <div class="step-copy">
+              <span>2</span>
+              <div><h3>Add the provider</h3><p>Place this in <code>opencode.jsonc</code> at the project root or in your global OpenCode configuration.</p></div>
+            </div>
+            <div class="code-block code-block-large">
+              <div class="code-toolbar"><span>opencode.jsonc</span><button class="copy-button" type="button" data-copy="config-example">Copy</button></div>
+              <pre><code id="config-example">{
+  "$schema": "https://opencode.ai/config.json",
+  "providers": {
+    "conjecture56": {
+      "name": "Conjecture 56",
+      "env": ["CONJECTURE56_API_KEY"],
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "https://api.conjecture56.org/v1"
+      },
+      "models": {
+        "qwen3.6": {
+          "name": "Qwen 3.6",
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+            </div>
+          </li>
+          <li>
+            <div class="step-copy">
+              <span>3</span>
+              <div><h3>Verify the connection</h3><p>Run one deterministic prompt to confirm the provider and model are available.</p></div>
+            </div>
+            <div class="code-block">
+              <div class="code-toolbar"><span>Terminal</span><button class="copy-button" type="button" data-copy="verify-command">Copy</button></div>
+              <pre><code id="verify-command">opencode run --model conjecture56/qwen3.6 \
+  "Reply exactly: gateway-ok"</code></pre>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <aside class="security-note shell">
+        <div class="security-icon" aria-hidden="true">i</div>
+        <div><h2>A note on credentials</h2><p>Treat an API key like a password. Do not paste it into support messages, commit it to Git, or expose it in screenshots. If you believe a key has leaked, ask its issuer to rotate it.</p></div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <a class="brand footer-brand" href="/">
+          <svg class="brand-mark" aria-hidden="true" viewBox="0 0 40 40"><use href="/assets/images/mark.svg#mark"></use></svg>
+          <span>Conjecture <strong>56</strong></span>
+        </a>
+        <p>API host: api.conjecture56.org</p>
+        <p>© 2026 Conjecture 56</p>
+      </div>
+    </footer>
+  </body>
+</html>
