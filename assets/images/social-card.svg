@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f2ec"/>
+  <g transform="translate(72 70)">
+    <circle cx="28" cy="28" r="27" fill="none" stroke="#17221f" stroke-width="2"/>
+    <path d="m17 36 9-18 7 13 8-18" fill="none" stroke="#17221f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="41" cy="13" r="4" fill="#db6032"/>
+    <text x="75" y="38" fill="#17221f" font-family="Arial, sans-serif" font-size="28">Conjecture <tspan fill="#db6032" font-weight="700">56</tspan></text>
+  </g>
+  <text x="72" y="330" fill="#17221f" font-family="Georgia, serif" font-size="92" letter-spacing="-4">Applied intelligence,</text>
+  <text x="72" y="430" fill="#db6032" font-family="Georgia, serif" font-size="92" font-style="italic" letter-spacing="-4">measured.</text>
+  <text x="76" y="530" fill="#52605b" font-family="Arial, sans-serif" font-size="24" letter-spacing="2">INDEPENDENT DATA SCIENCE LABORATORY</text>
+</svg>
