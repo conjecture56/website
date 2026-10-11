@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#f4f2ec"/>
   <g transform="translate(72 70)">
-    <circle cx="28" cy="28" r="27" fill="none" stroke="#17221f" stroke-width="2"/>
-    <path d="m17 36 9-18 7 13 8-18" fill="none" stroke="#17221f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="41" cy="13" r="4" fill="#db6032"/>
+    <path d="M47.5 14.35 A23.8 23.8 0 1 0 47.5 41.65" fill="none" stroke="#17221f" stroke-width="3.36" stroke-linecap="round"/>
+    <text x="28" y="35.8" text-anchor="middle" font-family="CMU Serif, Georgia, serif" font-size="21.7" font-weight="700" fill="#db6032">56</text>
     <text x="75" y="38" fill="#17221f" font-family="Arial, sans-serif" font-size="28">Conjecture <tspan fill="#db6032" font-weight="700">56</tspan></text>
   </g>
   <text x="72" y="330" fill="#17221f" font-family="Georgia, serif" font-size="92" letter-spacing="-4">Applied intelligence,</text>
