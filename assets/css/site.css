@@ -67,7 +67,7 @@ h1 em { color: var(--accent); font-style: italic; }
 .section-lead { margin: 0 0 1.8rem; max-width: 44rem; font-size: 1.05rem; line-height: 1.7; }
 .section-lead:last-child { margin-bottom: 0; }
 .section-lead strong { font-weight: 700; }
-.about-page .hero { padding-block: 4.5rem .7rem; }
+.about-page .hero { padding-block: 5rem .7rem; }
 .about-page .section { padding-block: .7rem; }
 .about-page .section:last-of-type { padding-bottom: 0; }
 .access-page .section { padding-block: clamp(.75rem, 2.5vh, 1.75rem); }
@@ -83,7 +83,7 @@ main { flex: 1; }
 .footer-inner p { margin-bottom: 0; }
 
 /* API access */
-.access-intro { padding-block: clamp(2rem, 5vh, 5rem) clamp(.75rem, 2.5vh, 1.75rem); }
+.access-intro { padding-block: 5rem clamp(.75rem, 2.5vh, 1.75rem); }
 .access-intro h1 { margin-bottom: 1.2rem; }
 .access-intro > p:last-child { max-width: 42rem; margin-bottom: 0; color: var(--ink-soft); font-size: 1.15rem; }
 .key-form { margin-top: 1.5rem; }
@@ -152,13 +152,6 @@ main { flex: 1; }
 .code-block code { font: .75rem/1.7 var(--mono); }
 
 /* Error page */
-.not-found { min-height: 100vh; display: flex; flex-direction: column; padding-block: 2.5rem; overflow: hidden; }
-.not-found-copy { position: relative; z-index: 1; max-width: 720px; margin-block: auto; padding-block: 5rem; }
-.error-code { margin-bottom: 1.2rem; color: var(--accent); font: 700 .68rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-.not-found-copy h1 { margin-bottom: 1.5rem; }
-.not-found-copy > p:not(.error-code) { max-width: 32rem; margin-bottom: 2rem; color: var(--ink-soft); font-size: 1.1rem; }
-.not-found-plot { position: absolute; right: 0; bottom: 6%; width: min(48vw, 640px); opacity: .7; }
-.not-found-plot path { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 6; }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero > * { animation: rise .6s ease-out both; }
