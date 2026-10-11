@@ -72,18 +72,18 @@ h1 em { color: var(--accent); font-style: italic; }
 .about-page .hero { padding-block: 4.5rem .7rem; }
 .about-page .section { padding-block: .7rem; }
 .about-page .section:last-of-type { padding-bottom: 0; }
-.access-page .section { padding-block: 1.75rem; }
+.access-page .section { padding-block: clamp(.75rem, 2.5vh, 1.75rem); }
 .hero-quote { margin: 0 0 1.8rem; padding-left: 1.5rem; border-left: 2px solid var(--line); }
 .hero-quote p { margin: 0; font-size: 1.02rem; line-height: 1.75; }
 .hero-quote cite { display: block; margin-top: .8rem; color: var(--ink-soft); font-size: .85rem; font-style: normal; text-align: left; }
 
-.site-footer { margin-top: 2rem; }
-.footer-inner { border-top: 1px solid var(--line); padding-block: 2rem; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
+.site-footer { margin-top: 2rem; border-top: 1px solid var(--line); }
+.footer-inner { padding-block: 2rem; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
 html, body { overflow-x: clip; }
 .footer-inner p { margin-bottom: 0; }
 
 /* API access */
-.access-intro { padding-block: 5rem 1.75rem; }
+.access-intro { padding-block: clamp(2rem, 5vh, 5rem) clamp(.75rem, 2.5vh, 1.75rem); }
 .access-intro h1 { margin-bottom: 1.2rem; }
 .access-intro > p:last-child { max-width: 42rem; margin-bottom: 0; color: var(--ink-soft); font-size: 1.15rem; }
 .key-form { margin-top: 1.5rem; }
