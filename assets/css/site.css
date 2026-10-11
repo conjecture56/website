@@ -71,15 +71,14 @@ h1 em { color: var(--accent); font-style: italic; }
 .section-lead strong { font-weight: 700; }
 .about-page .hero { padding-block: 4.5rem .7rem; }
 .about-page .section { padding-block: .7rem; }
-.about-page .section:last-of-type { padding-bottom: 2.5rem; }
-.about-page .site-footer, .access-page .site-footer { margin-top: 0; }
+.about-page .section:last-of-type { padding-bottom: 0; }
 .access-page .section { padding-block: 1.75rem; }
 .hero-quote { margin: 0 0 1.8rem; padding-left: 1.5rem; border-left: 2px solid var(--line); }
 .hero-quote p { margin: 0; font-size: 1.02rem; line-height: 1.75; }
 .hero-quote cite { display: block; margin-top: .8rem; color: var(--ink-soft); font-size: .85rem; font-style: normal; text-align: left; }
 
-.site-footer { margin-top: 5rem; }
-.footer-inner { border-top: 1px solid var(--line); padding-block: 2.5rem; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
+.site-footer { margin-top: 2rem; }
+.footer-inner { border-top: 1px solid var(--line); padding-block: 2rem; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
 html, body { overflow-x: clip; }
 .footer-inner p { margin-bottom: 0; }
 
