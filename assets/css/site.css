@@ -78,7 +78,7 @@ h1 em { color: var(--accent); font-style: italic; }
 .hero-quote cite { display: block; margin-top: .8rem; color: var(--ink-soft); font-size: .85rem; font-style: normal; text-align: left; }
 
 .site-footer { margin-top: 2rem; border-top: 1px solid var(--line); }
-.footer-inner { padding-block: 2rem; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
+.footer-inner { height: 5.25rem; padding-block: 0; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
 html, body { overflow-x: clip; }
 .footer-inner p { margin-bottom: 0; }
 
@@ -180,7 +180,7 @@ html, body { overflow-x: clip; }
   .hero { padding-block: 4rem 5rem; }
   .keywords { line-height: 1.9; }
   .section { padding-block: 3.5rem 4.5rem; }
-  .footer-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .footer-inner { height: auto; padding-block: 2rem; grid-template-columns: 1fr; gap: 1rem; }
   .access-intro { padding-block: 4rem 3rem; }
   .metrics-grid, .model-grid { grid-template-columns: 1fr; }
   .setup-steps > li { padding-block: 0; }
