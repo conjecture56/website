@@ -71,7 +71,9 @@ h1 em { color: var(--accent); font-style: italic; }
 .section-lead strong { font-weight: 700; }
 .about-page .hero { padding-block: 4.5rem .7rem; }
 .about-page .section { padding-block: .7rem; }
-.about-page .section:last-of-type { padding-bottom: 4.5rem; }
+.about-page .section:last-of-type { padding-bottom: 2.5rem; }
+.about-page .site-footer, .access-page .site-footer { margin-top: 0; }
+.access-page .section { padding-block: 1.75rem; }
 .hero-quote { margin: 0 0 1.8rem; padding-left: 1.5rem; border-left: 2px solid var(--line); }
 .hero-quote p { margin: 0; font-size: 1.02rem; line-height: 1.75; }
 .hero-quote cite { display: block; margin-top: .8rem; color: var(--ink-soft); font-size: .85rem; font-style: normal; text-align: left; }
@@ -81,12 +83,12 @@ h1 em { color: var(--accent); font-style: italic; }
 .footer-inner p { margin-bottom: 0; }
 
 /* API access */
-.access-intro { padding-block: 5rem 3.5rem; }
+.access-intro { padding-block: 5rem 1.75rem; }
 .access-intro h1 { margin-bottom: 1.2rem; }
 .access-intro > p:last-child { max-width: 42rem; margin-bottom: 0; color: var(--ink-soft); font-size: 1.15rem; }
 .key-form { margin-top: 1.5rem; }
 .section h2 { margin-bottom: .9rem; }
-.step-label { margin-bottom: .9rem; color: var(--accent); font-family: var(--mono); font-size: .67rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.step-label { margin-bottom: .9rem; color: var(--accent); font-family: var(--mono); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .section h2 { margin-bottom: .9rem; font-size: 1.35rem; font-weight: 700; line-height: 1.25; }
 .privacy-badge { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .45rem; padding: .45rem .7rem; border: 1px solid #b9ccb0; border-radius: .15rem; color: #416137; background: #f0f6eb; font-size: .67rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
 .privacy-badge svg { width: .85rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
