@@ -46,6 +46,7 @@ svg { display: block; }
 .site-nav { display: flex; align-items: center; gap: 2.1rem; font-size: .88rem; font-weight: 550; }
 .site-nav a { text-decoration: none; }
 .site-nav a:hover { color: var(--accent); }
+.site-nav a[aria-current="page"] { color: var(--accent); pointer-events: none; }
 
 .hero { width: var(--shell); margin-inline: auto; padding-block: 5rem 4.5rem; }
 h1, h2, h3, p { margin-top: 0; }
