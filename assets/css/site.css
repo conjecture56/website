@@ -78,8 +78,9 @@ h1 em { color: var(--accent); font-style: italic; }
 .hero-quote p { margin: 0; font-size: 1.02rem; line-height: 1.75; }
 .hero-quote cite { display: block; margin-top: .8rem; color: var(--ink-soft); font-size: .85rem; font-style: normal; text-align: left; }
 
-.site-footer { margin-top: 5rem; padding-block: 2.5rem; border-top: 1px solid var(--line); }
-.footer-inner { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
+.site-footer { margin-top: 5rem; }
+.footer-inner { border-top: 1px solid var(--line); padding-block: 2.5rem; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
+html, body { overflow-x: clip; }
 .footer-inner p { margin-bottom: 0; }
 
 /* API access */
