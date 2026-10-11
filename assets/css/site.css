@@ -57,6 +57,7 @@ h1 { margin-bottom: 1.6rem; font-size: clamp(1.15rem, 1rem + 1.7vw, 2.3rem); fon
 h1 em { color: var(--accent); font-style: italic; }
 .hero-lede { margin: 0 0 1.8rem; max-width: 42rem; color: var(--ink-soft); font-size: 1.05rem; }
 .keywords { margin: 0 0 2rem; font-variant: small-caps; letter-spacing: .06em; font-size: 1.02rem; }
+.section > .keywords:last-child { margin-bottom: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1.2rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .8rem; min-height: 3rem; padding: .7rem 1.5rem; border: 1px solid var(--ink); border-radius: .15rem; text-decoration: none; font-size: .92rem; font-weight: 700; transition: background .2s, color .2s; }
 .button-primary { color: var(--white); background: var(--ink); }
