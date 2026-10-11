@@ -69,6 +69,9 @@ h1 em { color: var(--accent); font-style: italic; }
 .section-lead { margin: 0 0 1.8rem; max-width: 44rem; font-size: 1.05rem; line-height: 1.7; }
 .section-lead:last-child { margin-bottom: 0; }
 .section-lead strong { font-weight: 700; }
+.about-page .hero { padding-block: 4.5rem 2.5rem; }
+.about-page .section { padding-block: 2.25rem 2.5rem; }
+.about-page .section:last-of-type { padding-bottom: 5rem; }
 .hero-quote { margin: 0 0 1.8rem; padding-left: 1.5rem; border-left: 2px solid var(--line); }
 .hero-quote p { margin: 0; font-size: 1.02rem; line-height: 1.75; }
 .hero-quote cite { display: block; margin-top: .8rem; color: var(--ink-soft); font-size: .85rem; font-style: normal; text-align: left; }
