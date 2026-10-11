@@ -166,6 +166,10 @@ main { flex: 1; }
   .hero > * { animation: rise .6s ease-out both; }
   .hero > :nth-child(2) { animation-delay: .06s; }.hero > :nth-child(3) { animation-delay: .12s; }.hero > :nth-child(4) { animation-delay: .18s; }.hero > :nth-child(5) { animation-delay: .24s; }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+  .about-page main > *, .access-page main > * { animation: rise .6s ease-out both; }
+  .about-page main > :nth-child(2), .access-page main > :nth-child(2) { animation-delay: .06s; }
+  .about-page main > :nth-child(3), .access-page main > :nth-child(3) { animation-delay: .12s; }
+  .about-page .hero > * { animation: none; }
 }
 
 @media (max-width: 900px) {
