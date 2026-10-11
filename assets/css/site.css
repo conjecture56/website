@@ -80,6 +80,8 @@ h1 em { color: var(--accent); font-style: italic; }
 .site-footer { margin-top: 2rem; border-top: 1px solid var(--line); }
 .footer-inner { height: 5.25rem; padding-block: 0; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 3rem; color: var(--ink-soft); font-size: .75rem; }
 html, body { overflow-x: clip; }
+body { min-height: 100dvh; display: flex; flex-direction: column; }
+main { flex: 1; }
 .footer-inner p { margin-bottom: 0; }
 
 /* API access */
