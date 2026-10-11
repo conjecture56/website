@@ -45,10 +45,7 @@ svg { display: block; }
 .brand-mark { width: 2rem; height: 2rem; }
 .site-nav { display: flex; align-items: center; gap: 2.1rem; font-size: .88rem; font-weight: 550; }
 .site-nav a { text-decoration: none; }
-.site-nav a:not(.nav-cta):hover { color: var(--accent); }
-.site-nav a[aria-current="page"]:not(.nav-cta) { color: var(--ink-soft); }
-.nav-cta { padding: .55rem 1.1rem; border: 1px solid var(--ink); border-radius: .15rem; transition: background .2s, color .2s; }
-.nav-cta:hover { background: var(--ink); color: var(--white); }
+.site-nav a:hover { color: var(--accent); }
 
 .hero { width: var(--shell); margin-inline: auto; padding-block: 5rem 4.5rem; }
 h1, h2, h3, p { margin-top: 0; }
@@ -181,7 +178,7 @@ main { flex: 1; }
   :root { --shell: min(100% - 2rem, 1180px); }
   .header-inner { min-height: 4.5rem; }
   .site-nav { gap: 1rem; }
-  .site-nav > a:not(.nav-cta) { font-size: .82rem; }
+  .site-nav > a { font-size: .82rem; }
   h1 { white-space: normal; text-wrap: balance; }
   .hero { padding-block: 4rem 5rem; }
   .keywords { line-height: 1.9; }
