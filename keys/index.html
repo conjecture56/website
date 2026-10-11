@@ -36,37 +36,34 @@
         <p>Check the current limits attached to your key, then connect the Conjecture 56 API to OpenCode.</p>
       </section>
 
-      <section class="quota-section shell" aria-labelledby="quota-title">
-        <div class="quota-panel">
-          <div class="panel-heading">
-            <div>
-              <p class="step-label">01 / Inspect</p>
-              <h2 id="quota-title">Check your quota</h2>
-            </div>
+      <section class="section" aria-labelledby="quota-title">
+        <div class="setup-intro">
+          <div>
+            <p class="step-label">01 / Inspect</p>
+            <h2 id="quota-title">Check your quota</h2>
             <span class="privacy-badge"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5.5 9V6.5a4.5 4.5 0 0 1 9 0V9m-10 0h11v8h-11z"></path></svg> Memory only</span>
           </div>
-
-          <p class="panel-description">Your key is sent directly to the API over HTTPS. It is never stored by this site or included in the page URL.</p>
-
-          <form id="quota-form" class="key-form" novalidate>
-            <label for="api-key">Virtual API key</label>
-            <div class="key-field">
-              <input id="api-key" name="api-key" type="password" placeholder="sk-••••••••••••••••" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="key-help">
-              <button id="toggle-key" class="field-action" type="button" aria-label="Show API key" aria-pressed="false">Show</button>
-            </div>
-            <p id="key-help" class="field-help">The key remains in this tab only until you clear it or leave the page.</p>
-            <div class="form-actions">
-              <button class="button button-primary" type="submit">Inspect quota <span aria-hidden="true">→</span></button>
-              <button id="clear-key" class="button button-ghost" type="button">Clear data</button>
-            </div>
-          </form>
-
-          <div id="quota-status" class="quota-status" role="status" aria-live="polite"></div>
-          <div id="quota-results" class="quota-results" aria-live="polite" hidden></div>
+          <p>Your key is sent directly to the API over HTTPS. It is never stored by this site or included in the page URL.</p>
         </div>
+
+        <form id="quota-form" class="key-form" novalidate>
+          <label for="api-key">Virtual API key</label>
+          <div class="key-field">
+            <input id="api-key" name="api-key" type="password" placeholder="sk-••••••••••••••••" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="key-help">
+            <button id="toggle-key" class="field-action" type="button" aria-label="Show API key" aria-pressed="false">Show</button>
+          </div>
+          <p id="key-help" class="field-help">The key remains in this tab only until you clear it or leave the page.</p>
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Inspect quota <span aria-hidden="true">→</span></button>
+            <button id="clear-key" class="button button-ghost" type="button">Clear data</button>
+          </div>
+        </form>
+
+        <div id="quota-status" class="quota-status" role="status" aria-live="polite"></div>
+        <div id="quota-results" class="quota-results" aria-live="polite" hidden></div>
       </section>
 
-      <section class="setup-section shell" id="setup-section" aria-labelledby="setup-title" hidden>
+      <section class="section" aria-labelledby="setup-title" id="setup-section" hidden>
         <div class="setup-intro">
           <div>
             <p class="step-label">02 / Connect</p>
