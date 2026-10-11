@@ -9,8 +9,8 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://conjecture56.org/keys/">
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/site.css?v=20261017">
-    <script src="/assets/js/quota.js?v=20261017" type="module"></script>
+    <link rel="stylesheet" href="/assets/css/site.css?v=20261018">
+    <script src="/assets/js/quota.js?v=20261018" type="module"></script>
   </head>
   <body class="access-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -36,14 +36,9 @@
       </section>
 
       <section class="section" aria-labelledby="quota-title">
-        <div class="setup-intro">
-          <div>
-            <p class="step-label">01 / Inspect</p>
-            <h2 id="quota-title">Check your quota</h2>
-            <span class="privacy-badge"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5.5 9V6.5a4.5 4.5 0 0 1 9 0V9m-10 0h11v8h-11z"></path></svg> Memory only</span>
-          </div>
-          <p>Your key is sent directly to the API over HTTPS. It is never stored by this site or included in the page URL.</p>
-        </div>
+        <p class="step-label">01 / Inspect</p>
+        <h2 id="quota-title">Check your quota</h2>
+        <span class="privacy-badge"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5.5 9V6.5a4.5 4.5 0 0 1 9 0V9m-10 0h11v8h-11z"></path></svg> Memory only</span>
 
         <form id="quota-form" class="key-form" novalidate>
           <label for="api-key">Virtual API key</label>
@@ -63,18 +58,13 @@
       </section>
 
       <section class="section" aria-labelledby="setup-title" id="setup-section" hidden>
-        <div class="setup-intro">
-          <div>
-            <p class="step-label">02 / Connect</p>
-            <h2 id="setup-title">Configure OpenCode</h2>
-          </div>
-          <p>After a successful inspection, run the installer: it adds Conjecture 56 to your OpenCode setup with every model available to your key.</p>
-        </div>
+        <p class="step-label">02 / Connect</p>
+        <h2 id="setup-title">Configure OpenCode</h2>
+        <p class="section-lead">The installer stores your API key inside the chosen OpenCode configuration file on this machine.</p>
 
         <ol class="setup-steps">
           <li>
             <div class="step-copy">
-              <span>1</span>
               <div><h3>Run the installer</h3><p>Paste your key when prompted (input is hidden). The installer detects your OpenCode version (V1 or V2) and configuration file, adds the provider with every model available to your key, and backs up the file first. It needs <code>python3</code>, <code>node</code>, <code>bun</code>, or <code>jq</code>.</p></div>
             </div>
             <div>
@@ -82,16 +72,10 @@
                 <div class="code-toolbar"><span>Terminal</span><button id="copy-config" class="copy-button" type="button" data-copy="config-example">Copy</button></div>
                 <pre><code id="config-example">curl -fsSL https://conjecture56.org/install.sh | sh</code></pre>
               </div>
-              <p class="field-help">The installer stores your API key inside the chosen OpenCode configuration file on this machine.</p>
             </div>
           </li>
         </ol>
       </section>
-
-      <aside class="security-note shell" id="security-note" hidden>
-        <div class="security-icon" aria-hidden="true">i</div>
-        <div><h2>A note on credentials</h2><p>The generated configuration contains your API key for fast setup. Treat that file like a password: never commit it to Git, share it in support messages, or expose it in screenshots. If you believe a key has leaked, ask its issuer to rotate it.</p></div>
-      </aside>
     </main>
 
     <footer class="site-footer">

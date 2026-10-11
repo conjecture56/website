@@ -12,7 +12,6 @@ const clearButton = document.querySelector("#clear-key");
 const statusRegion = document.querySelector("#quota-status");
 const resultsRegion = document.querySelector("#quota-results");
 const setupSection = document.querySelector("#setup-section");
-const securityNote = document.querySelector("#security-note");
 
 let activeRequest;
 
@@ -37,7 +36,6 @@ function setStatus(message = "", tone = "") {
 
 function resetConfigOutput() {
   setupSection.hidden = true;
-  securityNote.hidden = true;
 }
 
 function resetSensitiveState() {
@@ -233,7 +231,6 @@ function renderQuota(data, merged, fallbackUsed) {
 
 function renderConfig() {
   setupSection.hidden = false;
-  securityNote.hidden = false;
 }
 
 async function fetchJson(endpoint, key, signal) {
