@@ -47,15 +47,34 @@
           <p id="board-status" class="board-status" role="status" aria-live="polite">Loading collaborations…</p>
         </div>
 
+        <form id="collaboration-search" class="collaboration-search" role="search">
+          <label for="collaboration-query">Search collaborations</label>
+          <div class="collaboration-search-field">
+            <input id="collaboration-query" name="query" type="search" autocomplete="off" placeholder="Organization, domain, skill…">
+            <button id="clear-collaboration-search" type="button" hidden>Clear</button>
+          </div>
+        </form>
+
         <div class="board-scroll" tabindex="0" aria-label="Collaboration board. Scroll horizontally to view every status column.">
           <div id="collaborations-board" class="collaborations-board" aria-busy="true"></div>
         </div>
+        <p id="board-empty" class="shell board-message" hidden>No collaborations match this search.</p>
 
         <noscript>
           <p class="shell board-message">JavaScript is required to load the editorial collaboration data.</p>
         </noscript>
       </section>
     </main>
+
+    <dialog id="collaboration-dialog" class="collaboration-dialog" aria-labelledby="collaboration-dialog-title">
+      <div class="dialog-header">
+        <p class="step-label">Collaboration details</p>
+        <form method="dialog">
+          <button class="dialog-close" type="submit" aria-label="Close collaboration details">Close</button>
+        </form>
+      </div>
+      <div id="collaboration-details"></div>
+    </dialog>
 
     <footer class="site-footer">
       <div class="shell footer-inner">
