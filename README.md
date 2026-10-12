@@ -21,6 +21,8 @@ Build a small, fast website that:
 | Route | Purpose |
 |---|---|
 | `/` | Project presentation, value proposition, capabilities, and link to API access instructions |
+| `/about/` | Background and origin of Conjecture 56 |
+| `/collaborations/` | Read-only board of researched collaboration opportunities |
 | `/keys/` | Self-service quota lookup and OpenCode setup tutorial |
 
 Use `/keys/` rather than `/api/` to avoid confusing the website with the real
@@ -40,6 +42,27 @@ GitHub repository ── deploy ── Cloudflare Pages ── conjecture56.org
 The first version should be a static site built with semantic HTML, CSS, and a
 small JavaScript module. Do not add React, Next.js, a database, or a server-side
 application unless a future requirement needs them.
+
+## Collaboration board
+
+`/collaborations/` loads its editorial content from
+`assets/data/collaborations.json`. The browser renders the five workflow stages,
+searches the local dataset, and opens keyboard-accessible details without a
+framework or backend.
+
+Maintain collaboration records through repository changes:
+
+1. Revalidate the contribution path and primary source.
+2. Update the record and its `lastVerified` date.
+3. Keep new records in `backlog` until selection is intentional.
+4. Validate the dataset against `assets/data/collaborations.schema.json`.
+5. Check every external URL before publishing.
+
+Stable IDs support direct links such as:
+
+```text
+https://conjecture56.org/collaborations/?item=hot-fair
+```
 
 ## Quota lookup
 
@@ -139,10 +162,16 @@ Do not use inline scripts or inline styles; the CSP intentionally rejects them.
 ├── index.html
 ├── keys/
 │   └── index.html
+├── collaborations/
+│   └── index.html
 ├── assets/
 │   ├── css/
 │   │   └── site.css
+│   ├── data/
+│   │   ├── collaborations.json
+│   │   └── collaborations.schema.json
 │   ├── js/
+│   │   ├── collaborations.js
 │   │   └── quota.js
 │   └── images/
 ├── _headers
