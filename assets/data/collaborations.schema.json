@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://conjecture56.org/assets/data/collaborations.schema.json",
+  "title": "Conjecture 56 collaborations",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "title",
+      "organization",
+      "status",
+      "domains",
+      "collaborationType",
+      "summary",
+      "workAvailable",
+      "skills",
+      "entryPoint",
+      "sourceUrl",
+      "lastVerified",
+      "caveats"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "organization": {
+        "type": "string",
+        "minLength": 1
+      },
+      "status": {
+        "enum": ["backlog", "todo", "in-progress", "in-review", "done"]
+      },
+      "domains": {
+        "$ref": "#/$defs/nonEmptyStrings"
+      },
+      "collaborationType": {
+        "type": "string",
+        "minLength": 1
+      },
+      "summary": {
+        "type": "string",
+        "minLength": 1
+      },
+      "workAvailable": {
+        "$ref": "#/$defs/nonEmptyStrings"
+      },
+      "skills": {
+        "$ref": "#/$defs/nonEmptyStrings"
+      },
+      "entryPoint": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      },
+      "sourceUrl": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      },
+      "lastVerified": {
+        "type": "string",
+        "format": "date"
+      },
+      "caveats": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

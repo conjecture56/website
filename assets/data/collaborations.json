@@ -1,0 +1,186 @@
+[
+  {
+    "id": "dbnomics-indec",
+    "title": "Refresh the INDEC provider",
+    "organization": "DBnomics",
+    "status": "backlog",
+    "domains": ["economic-statistics", "data-engineering", "open-data"],
+    "collaborationType": "open-source",
+    "summary": "Extend the existing DBnomics INDEC provider with a current official statistical series from API-INDEC.",
+    "workAvailable": [
+      "Confirm the update path with DBnomics maintainers",
+      "Add one bounded API-INDEC dataset such as the basic food and total basket series",
+      "Preserve source metadata and validate the converted time series"
+    ],
+    "skills": ["Python", "REST APIs", "time-series data", "statistical metadata"],
+    "entryPoint": "https://docs.db.nomics.world/contributing/",
+    "sourceUrl": "https://db.nomics.world/INDEC",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Coordinate before implementation because the source-data pipeline is newer than the published provider data.",
+      "API-INDEC is a beta service that requires an account and attribution to INDEC.",
+      "Do not create a duplicate INDEC provider."
+    ]
+  },
+  {
+    "id": "hot-fair",
+    "title": "Strengthen humanitarian GeoAI",
+    "organization": "Humanitarian OpenStreetMap Team",
+    "status": "backlog",
+    "domains": ["geospatial", "humanitarian", "computer-vision"],
+    "collaborationType": "open-source",
+    "summary": "Improve fAIr, HOT's open platform for AI-assisted humanitarian mapping with human validation.",
+    "workAvailable": [
+      "Agree on one uncovered backend area from the open testing initiative",
+      "Add focused Django API or model tests",
+      "Document local execution and coverage results"
+    ],
+    "skills": ["Python", "Django", "pytest", "geospatial data"],
+    "entryPoint": "https://github.com/hotosm/fAIr/blob/develop/CONTRIBUTING.md",
+    "sourceUrl": "https://github.com/hotosm/fAIr/issues/229",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Agree on the exact test slice with maintainers because the issue supports multiple contributors.",
+      "Imagery and OpenStreetMap-derived labels have separate licensing requirements.",
+      "The contribution guide prohibits AI tools on issues labeled good first issue."
+    ]
+  },
+  {
+    "id": "trufi-emissions",
+    "title": "Estimate public transport emissions",
+    "organization": "Trufi Association",
+    "status": "backlog",
+    "domains": ["mobility", "public-transport", "climate"],
+    "collaborationType": "volunteering",
+    "summary": "Build a reproducible analysis of public-transport emissions from an agreed GTFS feed.",
+    "workAvailable": [
+      "Select one GTFS feed with Trufi",
+      "Produce route and trip emissions tables with gtfs2emis",
+      "Document fleet assumptions, validation results, and methodology"
+    ],
+    "skills": ["R", "GTFS", "geospatial data", "emissions modeling"],
+    "entryPoint": "https://www.trufi-association.org/volunteering/task-list/r-stats-developer/",
+    "sourceUrl": "https://www.trufi-association.org/volunteering/",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Confirm the feed, repository, and acceptance criteria before starting.",
+      "OpenStreetMap-derived data requires ODbL attribution and share-alike compliance.",
+      "Volunteers must accept the Trufi code of conduct."
+    ]
+  },
+  {
+    "id": "openaq-measurement-revisions",
+    "title": "Detect revised air-quality measurements",
+    "organization": "OpenAQ",
+    "status": "backlog",
+    "domains": ["air-quality", "data-engineering", "data-quality"],
+    "collaborationType": "open-source",
+    "summary": "Help detect measurements that change after ingestion without silently overwriting canonical observations.",
+    "workAvailable": [
+      "Agree on revision semantics with maintainers",
+      "Create a focused design and test spike",
+      "Implement approved detection, diagnostics, and integration tests"
+    ],
+    "skills": ["Python", "PostgreSQL", "ETL", "pytest"],
+    "entryPoint": "https://github.com/openaq/openaq-ingestor/issues/18",
+    "sourceUrl": "https://openaq.org/contact/",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Maintainers have not finalized storage semantics, so approval is required before implementation.",
+      "The openaq-ingestor repository does not currently expose a license file; clarify contribution terms first.",
+      "OpenAQ data carries attribution and provider-specific terms."
+    ]
+  },
+  {
+    "id": "robotoff-inference-notebook",
+    "title": "Document nutrition-table inference",
+    "organization": "Open Food Facts",
+    "status": "backlog",
+    "domains": ["food-data", "computer-vision", "machine-learning"],
+    "collaborationType": "open-source",
+    "summary": "Create a reproducible Robotoff notebook and focused guide for nutrition-table detection workflows.",
+    "workAvailable": [
+      "Agree on a narrow nutrition-table scope for issue 1367",
+      "Cover single-image and directory inference workflows",
+      "Add validation instructions and focused documentation"
+    ],
+    "skills": ["Python", "Jupyter", "computer vision", "technical writing"],
+    "entryPoint": "https://github.com/openfoodfacts/robotoff/issues/1367",
+    "sourceUrl": "https://openfoodfacts.github.io/robotoff/introduction/contributing/",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Confirm the narrowed scope because the full issue covers too many components for one work unit.",
+      "Local development requires Git LFS and a Docker-backed database environment.",
+      "Robotoff is licensed under AGPL-3.0-only."
+    ]
+  },
+  {
+    "id": "fink-alert-density",
+    "title": "Map astronomical alert density",
+    "organization": "Fink",
+    "status": "backlog",
+    "domains": ["astronomy", "stream-processing", "geospatial"],
+    "collaborationType": "open-science",
+    "summary": "Build and test bounded HEALPix aggregates that show recent astronomical alert density.",
+    "workAvailable": [
+      "Confirm the target repository and output schema for issue 1143",
+      "Compute static alert-density aggregates for 24, 48, and 96 hour windows",
+      "Add focused tests and document required sample data"
+    ],
+    "skills": ["Python", "HEALPix", "time-series aggregation", "Apache Spark"],
+    "entryPoint": "https://github.com/astrolabsoftware/fink-broker/issues/1143",
+    "sourceUrl": "https://doc.lsst.fink-broker.org/contributing/",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Confirm ownership because the issue may span broker, statistics, and portal repositories.",
+      "The complete development environment includes Spark, Kafka, HBase, and large container images.",
+      "Astronomy expertise may be needed to validate scientific semantics."
+    ]
+  },
+  {
+    "id": "open-climate-fix-weather-units",
+    "title": "Correct weather input units",
+    "organization": "Open Climate Fix",
+    "status": "backlog",
+    "domains": ["climate", "solar-energy", "forecasting"],
+    "collaborationType": "open-source",
+    "summary": "Improve Quartz solar forecasts by making Open-Meteo variable mapping and units explicit and testable.",
+    "workAvailable": [
+      "Request assignment and confirm the scope of issue 375",
+      "Correct temperature, wind, and precipitation units",
+      "Replace positional mapping with name-based mapping and add regression tests"
+    ],
+    "skills": ["Python", "NumPy", "pandas", "pytest", "meteorological data"],
+    "entryPoint": "https://github.com/openclimatefix/open-source-quartz-solar-forecast/issues/375",
+    "sourceUrl": "https://www.openclimatefix.org/community",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The issue is not labeled contributions-welcome, so obtain assignment before coding.",
+      "Longwave-radiation handling remains a maintainer decision.",
+      "Contributors remain responsible for understanding and reviewing any AI-assisted work."
+    ]
+  },
+  {
+    "id": "data-commons-indec-pilot",
+    "title": "Pilot an INDEC data import",
+    "organization": "Data Commons",
+    "status": "backlog",
+    "domains": ["economic-statistics", "knowledge-graphs", "open-data"],
+    "collaborationType": "data-contribution",
+    "summary": "Propose and implement one missing INDEC table as a provenance-rich Data Commons pilot import.",
+    "workAvailable": [
+      "Check existing coverage and submit an official data request",
+      "Map one accepted table to entities and statistical variables",
+      "Add a reproducible transformation, fixtures, tests, provenance, and license metadata"
+    ],
+    "skills": ["Python", "data modeling", "knowledge graphs", "statistical metadata"],
+    "entryPoint": "https://docs.datacommons.org/contributing/",
+    "sourceUrl": "https://github.com/datacommonsorg/data",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Do not build the import until the official data request is accepted.",
+      "A Google Contributor License Agreement is required.",
+      "The source dataset must satisfy the Data Commons licensing policy."
+    ]
+  }
+]
