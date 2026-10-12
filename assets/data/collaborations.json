@@ -1,11 +1,102 @@
 [
   {
+    "id": "collaboration-catalog",
+    "title": "Build a catalog of data collaborations",
+    "organization": "Conjecture 56",
+    "status": "in-progress",
+    "domains": ["collaboration-infrastructure", "data-for-good", "open-science"],
+    "collaborationType": "public-interest-infrastructure",
+    "conjecture56Role": "lead",
+    "summary": "Develop a trusted catalog where people can discover concrete data projects and organizations can eventually propose work for review.",
+    "workAvailable": [
+      "Classify opportunities by domain, skills, participation model, and readiness",
+      "Identify missing, overlapping, and potentially redundant initiatives",
+      "Design a reviewed submission path for teams, labs, and organizations"
+    ],
+    "skills": ["research", "data curation", "taxonomy design", "product design"],
+    "entryPoint": "https://conjecture56.org/collaborations/",
+    "sourceUrl": "https://github.com/conjecture56/website/blob/main/docs/collaboration-research-guide.md",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Direct submissions are not available yet.",
+      "Every published opportunity still requires editorial verification and clear attribution."
+    ]
+  },
+  {
+    "id": "payroll-concept-mapping",
+    "title": "Map payroll concepts across organizations",
+    "organization": "IES N.º 7",
+    "status": "in-progress",
+    "domains": ["semantic-interoperability", "payroll-data", "education"],
+    "collaborationType": "student-project",
+    "conjecture56Role": "curator",
+    "attribution": "This student project began at IES N.º 7 before Conjecture 56 was created. That experience helped shape Conjecture 56's approach to educational and institutional collaboration.",
+    "summary": "Create a reproducible, human-reviewed crosswalk between payroll concepts used by different public organizations.",
+    "workAvailable": [
+      "Define the canonical data contract and semantic relationship vocabulary",
+      "Normalize source spreadsheets through organization-specific adapters",
+      "Build and evaluate an explainable candidate-ranking baseline"
+    ],
+    "skills": ["Python", "data analysis", "semantic mapping", "information retrieval"],
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The current repository and proposal are not public contribution entry points.",
+      "Students propose and evaluate mappings; domain specialists retain final authority.",
+      "Payroll records require strict privacy controls and authorized data access."
+    ]
+  },
+  {
+    "id": "governed-ai-api-access",
+    "title": "Govern shared AI API access",
+    "organization": "Conjecture 56",
+    "status": "done",
+    "domains": ["ai-infrastructure", "access-control", "usage-governance"],
+    "collaborationType": "infrastructure",
+    "conjecture56Role": "lead",
+    "summary": "Provide teams with individually governed model access while keeping upstream credentials protected.",
+    "workAvailable": [
+      "Deployed Bifrost virtual keys with per-key and per-model quotas",
+      "Added self-service usage and limit inspection",
+      "Kept provider credentials server-side and documented secure client onboarding"
+    ],
+    "skills": ["API gateways", "access control", "quota management", "operations"],
+    "entryPoint": "https://conjecture56.org/keys/",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Access is provisioned deliberately rather than through public self-registration.",
+      "Provider limits remain authoritative when they are stricter than local quotas."
+    ]
+  },
+  {
+    "id": "student-ai-access-program",
+    "title": "Student AI Access Program",
+    "organization": "Conjecture 56",
+    "status": "done",
+    "domains": ["ai-access", "education", "student-collaboration"],
+    "collaborationType": "student-program",
+    "conjecture56Role": "lead",
+    "summary": "Give students managed access to language models when they actively contribute to a project listed by Conjecture 56.",
+    "workAvailable": [
+      "Provisioned an individual virtual key for each participating student",
+      "Applied bounded model, daily, monthly, and request-rate limits",
+      "Enabled students to inspect their own usage without exposing other keys"
+    ],
+    "skills": ["LLM APIs", "responsible AI use", "project collaboration"],
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The program currently serves participating students from Prácticas Profesionalizantes III at IES N.º 7 and Inteligencia Artificial at UCSE.",
+      "Course enrollment alone does not grant access; students must contribute to a project listed by Conjecture 56.",
+      "Keys are individual, scoped, monitored, and revocable."
+    ]
+  },
+  {
     "id": "dbnomics-indec",
     "title": "Refresh the INDEC provider",
     "organization": "DBnomics",
     "status": "backlog",
     "domains": ["economic-statistics", "data-engineering", "open-data"],
     "collaborationType": "open-source",
+    "conjecture56Role": "curator",
     "summary": "Extend the existing DBnomics INDEC provider with a current official statistical series from API-INDEC.",
     "workAvailable": [
       "Confirm the update path with DBnomics maintainers",
@@ -29,6 +120,7 @@
     "status": "backlog",
     "domains": ["geospatial", "humanitarian", "computer-vision"],
     "collaborationType": "open-source",
+    "conjecture56Role": "curator",
     "summary": "Improve fAIr, HOT's open platform for AI-assisted humanitarian mapping with human validation.",
     "workAvailable": [
       "Agree on one uncovered backend area from the open testing initiative",
@@ -52,6 +144,7 @@
     "status": "backlog",
     "domains": ["mobility", "public-transport", "climate"],
     "collaborationType": "volunteering",
+    "conjecture56Role": "curator",
     "summary": "Build a reproducible analysis of public-transport emissions from an agreed GTFS feed.",
     "workAvailable": [
       "Select one GTFS feed with Trufi",
@@ -75,6 +168,7 @@
     "status": "backlog",
     "domains": ["air-quality", "data-engineering", "data-quality"],
     "collaborationType": "open-source",
+    "conjecture56Role": "curator",
     "summary": "Help detect measurements that change after ingestion without silently overwriting canonical observations.",
     "workAvailable": [
       "Agree on revision semantics with maintainers",
@@ -98,6 +192,7 @@
     "status": "backlog",
     "domains": ["food-data", "computer-vision", "machine-learning"],
     "collaborationType": "open-source",
+    "conjecture56Role": "curator",
     "summary": "Create a reproducible Robotoff notebook and focused guide for nutrition-table detection workflows.",
     "workAvailable": [
       "Agree on a narrow nutrition-table scope for issue 1367",
@@ -121,6 +216,7 @@
     "status": "backlog",
     "domains": ["astronomy", "stream-processing", "geospatial"],
     "collaborationType": "open-science",
+    "conjecture56Role": "curator",
     "summary": "Build and test bounded HEALPix aggregates that show recent astronomical alert density.",
     "workAvailable": [
       "Confirm the target repository and output schema for issue 1143",
@@ -144,6 +240,7 @@
     "status": "backlog",
     "domains": ["climate", "solar-energy", "forecasting"],
     "collaborationType": "open-source",
+    "conjecture56Role": "curator",
     "summary": "Improve Quartz solar forecasts by making Open-Meteo variable mapping and units explicit and testable.",
     "workAvailable": [
       "Request assignment and confirm the scope of issue 375",
@@ -167,6 +264,7 @@
     "status": "backlog",
     "domains": ["economic-statistics", "knowledge-graphs", "open-data"],
     "collaborationType": "data-contribution",
+    "conjecture56Role": "curator",
     "summary": "Propose and implement one missing INDEC table as a provenance-rich Data Commons pilot import.",
     "workAvailable": [
       "Check existing coverage and submit an official data request",

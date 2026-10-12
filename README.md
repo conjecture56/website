@@ -22,7 +22,7 @@ Build a small, fast website that:
 |---|---|
 | `/` | Project presentation, value proposition, capabilities, and link to API access instructions |
 | `/about/` | Background and origin of Conjecture 56 |
-| `/collaborations/` | Read-only board of researched collaboration opportunities |
+| `/collaborations/` | Read-only board of Conjecture 56 initiatives, contributions, and researched opportunities |
 | `/keys/` | Self-service quota lookup and OpenCode setup tutorial |
 
 Use `/keys/` rather than `/api/` to avoid confusing the website with the real
@@ -59,6 +59,10 @@ Maintain collaboration records through repository changes:
 5. Check every external URL before publishing.
 
 Use `docs/collaboration-research-guide.md` to find and qualify new candidates.
+`conjecture56Role` records whether Conjecture 56 leads the work, contributes to
+it, or only curates the opportunity. Institutional, educational, and technical
+contexts belong in `collaborationType` or `domains`, not in the role field.
+Use `attribution` when a project's origin or ownership needs explicit credit.
 
 Stable IDs support direct links such as:
 

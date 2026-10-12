@@ -8,6 +8,12 @@ const STATUSES = [
   { id: "done", label: "Done" },
 ];
 
+const CONJECTURE_56_ROLES = {
+  lead: "Lead",
+  contributor: "Contributor",
+  curator: "Curator",
+};
+
 const board = document.querySelector("#collaborations-board");
 const statusRegion = document.querySelector("#board-status");
 const searchForm = document.querySelector("#collaboration-search");
@@ -34,6 +40,10 @@ function statusLabel(value) {
   return STATUSES.find((status) => status.id === value)?.label ?? value;
 }
 
+function roleLabel(value) {
+  return CONJECTURE_56_ROLES[value] ?? value;
+}
+
 function renderCard(item) {
   const card = element("article", "collaboration-card");
   const title = element("h4", "collaboration-title");
@@ -52,6 +62,7 @@ function renderCard(item) {
   card.append(
     element("p", "collaboration-organization", item.organization),
     title,
+    element("p", "collaboration-role", `Conjecture 56 · ${roleLabel(item.conjecture56Role)}`),
     element("p", "collaboration-summary", item.summary),
     domains,
   );
@@ -97,6 +108,8 @@ function searchableText(item) {
     item.organization,
     item.summary,
     item.collaborationType,
+    item.conjecture56Role,
+    item.attribution ?? "",
     ...item.domains,
     ...item.skills,
   ].join(" ").toLocaleLowerCase();
@@ -167,25 +180,27 @@ function renderDetails(item) {
     element("dd", "", statusLabel(item.status)),
     element("dt", "", "Collaboration type"),
     element("dd", "", item.collaborationType.replaceAll("-", " ")),
+    element("dt", "", "Conjecture 56 role"),
+    element("dd", "", roleLabel(item.conjecture56Role)),
     element("dt", "", "Last verified"),
     element("dd", "", item.lastVerified),
   );
 
   const links = element("div", "dialog-links");
-  links.append(
-    externalLink("Open contribution entry point", item.entryPoint),
-    externalLink("View primary source", item.sourceUrl),
-  );
+  if (item.entryPoint) links.append(externalLink("View participation information", item.entryPoint));
+  if (item.sourceUrl) links.append(externalLink("View primary source", item.sourceUrl));
 
-  detailsRegion.replaceChildren(
+  const sections = [
     heading,
     facts,
-    detailSection("Available work", item.workAvailable),
+    ...(item.attribution ? [detailSection("Attribution", [item.attribution])] : []),
+    detailSection(item.status === "done" ? "Delivered work" : "Available work", item.workAvailable),
     detailSection("Skills", item.skills),
     detailSection("Domains", item.domains.map((domain) => domain.replaceAll("-", " "))),
     detailSection("Before starting", item.caveats.length ? item.caveats : ["No additional caveats recorded."]),
-    links,
-  );
+  ];
+  if (links.childElementCount) sections.push(links);
+  detailsRegion.replaceChildren(...sections);
 }
 
 function openDetails(item, trigger, historyMode = "push") {
@@ -220,7 +235,7 @@ function closeDetails() {
 }
 
 function validCollaboration(item) {
-  const strings = ["id", "title", "organization", "status", "collaborationType", "summary", "entryPoint", "sourceUrl", "lastVerified"];
+  const strings = ["id", "title", "organization", "status", "collaborationType", "conjecture56Role", "summary", "lastVerified"];
   const requiredArrays = ["domains", "workAvailable", "skills"];
   const validUrl = (value) => {
     try {
@@ -245,10 +260,12 @@ function validCollaboration(item) {
   return item && strings.every((key) => typeof item[key] === "string" && item[key].trim())
     && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.id)
     && STATUSES.some((status) => status.id === item.status)
+    && Object.hasOwn(CONJECTURE_56_ROLES, item.conjecture56Role)
     && requiredArrays.every((key) => validArray(item[key]))
     && validArray(item.caveats, true)
-    && validUrl(item.entryPoint)
-    && validUrl(item.sourceUrl)
+    && (item.attribution === undefined || (typeof item.attribution === "string" && item.attribution.trim()))
+    && (item.entryPoint === undefined || validUrl(item.entryPoint))
+    && (item.sourceUrl === undefined || validUrl(item.sourceUrl))
     && validDate(item.lastVerified);
 }
 

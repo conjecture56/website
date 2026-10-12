@@ -13,11 +13,10 @@
       "status",
       "domains",
       "collaborationType",
+      "conjecture56Role",
       "summary",
       "workAvailable",
       "skills",
-      "entryPoint",
-      "sourceUrl",
       "lastVerified",
       "caveats"
     ],
@@ -41,6 +40,13 @@
         "$ref": "#/$defs/nonEmptyStrings"
       },
       "collaborationType": {
+        "type": "string",
+        "minLength": 1
+      },
+      "conjecture56Role": {
+        "enum": ["lead", "contributor", "curator"]
+      },
+      "attribution": {
         "type": "string",
         "minLength": 1
       },

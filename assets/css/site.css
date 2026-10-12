@@ -184,6 +184,7 @@ main { flex: 1; }
 .collaboration-trigger:focus-visible { border-radius: .1rem; outline-offset: 3px; }
 .collaboration-organization { margin-bottom: .35rem; color: var(--accent-text); font: .68rem var(--mono); }
 .collaboration-title { margin-bottom: .65rem; font-size: 1.02rem; line-height: 1.3; }
+.collaboration-role { margin: -.25rem 0 .65rem; color: var(--ink-soft); font: 600 .62rem var(--mono); text-transform: uppercase; letter-spacing: .04em; }
 .collaboration-summary { margin-bottom: .9rem; color: var(--ink-soft); font-size: .78rem; line-height: 1.5; }
 .collaboration-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0; padding: 0; list-style: none; }
 .collaboration-tags li { padding: .15rem .4rem; border: 1px solid var(--line); border-radius: 1rem; font: .6rem var(--mono); }
