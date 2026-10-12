@@ -280,5 +280,221 @@
       "A Google Contributor License Agreement is required.",
       "The source dataset must satisfy the Data Commons licensing policy."
     ]
+  },
+  {
+    "id": "mapyourgrid-argentina",
+    "title": "Map Argentina's transmission grid",
+    "organization": "MapYourGrid",
+    "status": "backlog",
+    "domains": ["energy", "geospatial", "openstreetmap"],
+    "collaborationType": "volunteering",
+    "conjecture56Role": "curator",
+    "summary": "Improve open power-grid coverage through a coordinated Argentina mapping and quality-assurance sprint.",
+    "workAvailable": [
+      "Agree on one province or transmission corridor with the MapYourGrid community",
+      "Inventory incomplete lines and quality findings using verifiable sources",
+      "Publish reviewed OpenStreetMap changesets and a before-and-after quality note"
+    ],
+    "skills": ["GIS", "JOSM", "OpenStreetMap tagging", "satellite imagery"],
+    "entryPoint": "https://mapyourgrid.org/starter-kit/",
+    "sourceUrl": "https://github.com/open-energy-transition/MapYourGrid",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Register the proposed regional scope through the project community before editing.",
+      "Do not copy incompatible maps or restricted infrastructure data.",
+      "OpenStreetMap data is governed by the ODbL and local mapping conventions."
+    ]
+  },
+  {
+    "id": "pypsa-earth-country-filter",
+    "title": "Filter custom power plants by country",
+    "organization": "PyPSA-Earth",
+    "status": "backlog",
+    "domains": ["energy-systems", "data-engineering", "geospatial"],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Implement country-aware filtering for custom power-plant inputs in reproducible energy-system models.",
+    "workAvailable": [
+      "Confirm country-key semantics on issue 1352 or a developer call",
+      "Add filtering to the power-plant build workflow",
+      "Add single-country and multi-country regression fixtures and documentation"
+    ],
+    "skills": ["Python", "pandas", "pytest", "Snakemake", "energy data"],
+    "entryPoint": "https://github.com/pypsa-meets-earth/pypsa-earth#how-to-get-involved",
+    "sourceUrl": "https://github.com/pypsa-meets-earth/pypsa-earth/issues/1352",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The issue remains unassigned and help-wanted but is older than the current development cycle; reconfirm it before coding.",
+      "Code is AGPL-3.0-or-later and pull requests require explicit licensing consent.",
+      "Use the project's Snakemake workflow and testing conventions."
+    ]
+  },
+  {
+    "id": "open-terms-trackers",
+    "title": "Restore broken terms trackers",
+    "organization": "Open Terms Archive",
+    "status": "backlog",
+    "domains": ["web-archiving", "data-quality", "digital-rights"],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Repair a bounded batch of declarations that no longer track terms or policy documents correctly.",
+    "workAvailable": [
+      "Self-assign three to five selector or structure-change issues",
+      "Update URLs and selection rules while preserving prior declarations",
+      "Run repeat-fetch validation and submit small reviewable pull requests"
+    ],
+    "skills": ["JSON", "CSS selectors", "browser inspection", "data provenance"],
+    "entryPoint": "https://github.com/OpenTermsArchive/contrib-declarations/blob/main/CONTRIBUTING.md",
+    "sourceUrl": "https://github.com/OpenTermsArchive/contrib-declarations/issues/4078",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Avoid access-blocked or timeout cases unless maintainers confirm a contributor-fixable approach.",
+      "Declarations use EUPL-1.2 and generated versions use ODC-BY 1.0.",
+      "Historical declarations must be preserved with correct validity metadata."
+    ]
+  },
+  {
+    "id": "opensanctions-tag-taxonomy",
+    "title": "Refine dataset tag taxonomy",
+    "organization": "OpenSanctions",
+    "status": "backlog",
+    "domains": ["sanctions-data", "metadata", "data-quality"],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Migrate one agreed dataset-tag family and improve consistency checks and metadata documentation.",
+    "workAvailable": [
+      "Discuss issue 5908 and agree on one migration slice",
+      "Update tags across a bounded set of datasets",
+      "Add consistency checks and validate generated metadata"
+    ],
+    "skills": ["Python", "YAML", "taxonomy design", "data-quality testing"],
+    "entryPoint": "https://www.opensanctions.org/docs/opensource/contributing/",
+    "sourceUrl": "https://github.com/opensanctions/opensanctions/issues/5908",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The issue is explicitly marked for discussion; do not perform a blind bulk edit.",
+      "Contributors must confirm they have the right to submit all included material.",
+      "Code is MIT, while published data and vendored sources have separate licensing terms."
+    ]
+  },
+  {
+    "id": "common-voice-argentine-spanish",
+    "title": "Improve Argentine Spanish speech data",
+    "organization": "Mozilla Common Voice",
+    "status": "backlog",
+    "domains": ["speech-data", "language-data", "data-quality"],
+    "collaborationType": "community-data",
+    "conjecture56Role": "curator",
+    "summary": "Run a coordinated sentence, recording, and validation sprint for Argentine Spanish speech data.",
+    "workAvailable": [
+      "Confirm the locale and release window with the Common Voice community",
+      "Contribute and review an agreed number of original or public-domain sentences and clips",
+      "Publish contribution counts, provenance, and quality-review methodology"
+    ],
+    "skills": ["Argentine Spanish", "speech-data QA", "community facilitation", "data provenance"],
+    "entryPoint": "https://commonvoice.mozilla.org/en/write",
+    "sourceUrl": "https://common-voice.github.io/community-playbook/",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Coordinate the exact locale and dataset release cutoff before starting.",
+      "Submitted text must be original or demonstrably public domain.",
+      "Age, consent, and supervision requirements apply to participants."
+    ]
+  },
+  {
+    "id": "loculus-ingest-regressions",
+    "title": "Add Loculus ingest regression tests",
+    "organization": "Loculus",
+    "status": "backlog",
+    "domains": ["pathogen-genomics", "data-ingestion", "testing"],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Add a narrow regression-test slice for pathogen-sequence ingestion after an upstream tool upgrade escaped existing coverage.",
+    "workAvailable": [
+      "Confirm the narrow test slice with the maintainer on issue 7531",
+      "Cover empty input and one repeat-ingest happy path without revisions",
+      "Document fixtures and run the relevant integration checks"
+    ],
+    "skills": ["Python", "Snakemake", "integration testing", "genomic data"],
+    "entryPoint": "https://github.com/loculus-project/loculus/blob/main/CONTRIBUTING.md",
+    "sourceUrl": "https://github.com/loculus-project/loculus/issues/7531",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The complete issue exceeds a four-week work unit; proceed only with an approved test slice.",
+      "The repository is AGPL-3.0 and requires tests for non-trivial code.",
+      "Full end-to-end coverage may require heavier Kubernetes infrastructure."
+    ]
+  },
+  {
+    "id": "satnogs-decoder-schema-validation",
+    "title": "Validate telemetry decoder schemas",
+    "organization": "SatNOGS",
+    "status": "backlog",
+    "domains": ["satellite-data", "telemetry", "data-quality"],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Prevent incompatible array-valued telemetry fields from reaching SatNOGS ingestion by validating decoder schemas in CI.",
+    "workAvailable": [
+      "Agree on allowed field shapes with maintainers on issue 85",
+      "Implement a focused schema validator with valid and invalid fixtures",
+      "Run validation in CI and document local contributor usage"
+    ],
+    "skills": ["Python", "Kaitai Struct", "schema validation", "GitLab CI"],
+    "entryPoint": "https://gitlab.com/librespacefoundation/satnogs/satnogs-decoders/-/blob/master/CONTRIBUTING.md",
+    "sourceUrl": "https://gitlab.com/librespacefoundation/satnogs/satnogs-decoders/-/work_items/85",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The validation contract is not specified yet; obtain design agreement before implementation.",
+      "Contributions require a Developer Certificate of Origin Signed-off-by line.",
+      "Contributors must understand and take responsibility for all submitted work."
+    ]
+  },
+  {
+    "id": "gtfs-validator-unused-station",
+    "title": "Correct unused-station notice severity",
+    "organization": "MobilityData",
+    "status": "backlog",
+    "domains": ["public-transport", "gtfs", "data-quality"],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Correct the severity of the GTFS Validator unused-station notice and update its tests and generated documentation.",
+    "workAvailable": [
+      "Claim issue 1348 in GitHub and the contributor Slack",
+      "Confirm and implement the target notice severity",
+      "Update tests, fixtures, and generated rule documentation"
+    ],
+    "skills": ["Java", "JUnit", "Gradle", "GTFS"],
+    "entryPoint": "https://github.com/MobilityData/gtfs-validator/blob/master/docs/CONTRIBUTING.md",
+    "sourceUrl": "https://github.com/MobilityData/gtfs-validator/issues/1348",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "Announce intent before coding and keep the pull request to one functionality.",
+      "The project uses Apache-2.0 and Google Java Style.",
+      "Do not substitute nearby issues that already have contributor work in progress."
+    ]
+  },
+  {
+    "id": "policyengine-chip-evidence",
+    "title": "Review CHIP benefit valuation evidence",
+    "organization": "PolicyEngine",
+    "status": "backlog",
+    "domains": ["public-policy", "microsimulation", "health-data"],
+    "collaborationType": "open-source-research",
+    "conjecture56Role": "curator",
+    "summary": "Reconcile California CHIP populations, services, enrollment denominators, and fiscal periods before model values are changed.",
+    "workAvailable": [
+      "Build a source and evidence matrix from official program documents",
+      "Test the valuation alternatives described in issue 10155",
+      "Publish reproducible calculations, limitations, and a recommended decision rule"
+    ],
+    "skills": ["public-policy research", "Python", "pandas", "reproducible analysis"],
+    "entryPoint": "https://github.com/PolicyEngine/policyengine-us/blob/main/CONTRIBUTING.md",
+    "sourceUrl": "https://github.com/PolicyEngine/policyengine-us/issues/10155",
+    "lastVerified": "2026-10-12",
+    "caveats": [
+      "The bounded contribution is evidence and recommendation, not a unilateral model change.",
+      "Official citations and consistent annual units are essential.",
+      "The repository is AGPL-3.0 and subsequent model changes require tests and changelog updates."
+    ]
   }
 ]
