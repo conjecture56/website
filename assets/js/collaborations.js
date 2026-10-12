@@ -58,15 +58,17 @@ function renderCard(item) {
   return card;
 }
 
-function renderBoard(items = [], occupiedStatuses = new Set(items.map((item) => item.status))) {
+function renderBoard(items = []) {
   const fragment = document.createDocumentFragment();
 
   for (const status of STATUSES) {
     const matches = items.filter((item) => item.status === status.id);
     const column = element("section", "board-column");
     column.setAttribute("aria-labelledby", `column-${status.id}`);
-    const isUnoccupied = !occupiedStatuses.has(status.id);
-    if (isUnoccupied) column.classList.add("board-column-unoccupied");
+
+    const frame = element("div", "board-column-frame");
+    frame.setAttribute("aria-hidden", "true");
+    column.append(frame);
 
     const heading = element("div", "board-column-heading");
     heading.append(
@@ -76,15 +78,13 @@ function renderBoard(items = [], occupiedStatuses = new Set(items.map((item) => 
     heading.querySelector("h3").id = `column-${status.id}`;
     column.append(heading);
 
-    if (!isUnoccupied) {
-      const cards = element("div", "board-cards");
-      if (matches.length) {
-        for (const item of matches) cards.append(renderCard(item));
-      } else {
-        cards.append(element("p", "board-column-empty", "No collaborations in this stage."));
-      }
-      column.append(cards);
+    const cards = element("div", "board-cards");
+    if (matches.length) {
+      for (const item of matches) cards.append(renderCard(item));
+    } else {
+      cards.append(element("p", "board-column-empty", "No collaborations in this stage."));
     }
+    column.append(cards);
     fragment.append(column);
   }
 
@@ -108,7 +108,7 @@ function applySearch() {
     ? collaborations.filter((item) => searchableText(item).includes(query))
     : collaborations;
 
-  renderBoard(filtered, new Set(collaborations.map((item) => item.status)));
+  renderBoard(filtered);
   clearSearchButton.hidden = !query;
   emptyMessage.hidden = filtered.length !== 0;
   emptyMessage.textContent = query
