@@ -181,14 +181,24 @@ Do not use inline scripts or inline styles; the CSP intentionally rejects them.
 
 ## Deployment
 
-1. Connect this repository to a Cloudflare Pages project.
-2. Use the repository root as the static output directory; no build command is
-   required for the initial version.
-3. Attach `conjecture56.org` as the production custom domain.
-4. Redirect `www.conjecture56.org` and the generated `*.pages.dev` hostname to
-   the apex domain.
-5. Verify HTTPS, security headers, both routes, quota lookup, and the copy
-   controls after deployment.
+The production site is a Cloudflare Pages Direct Upload project named
+`conjecture56`. Deploy the repository root from this directory:
+
+```bash
+wrangler pages deploy . --project-name conjecture56 --branch main
+```
+
+The `.assetsignore` file keeps repository-only files outside the published
+asset set. No build command is required.
+
+After deployment, inspect the production release:
+
+```bash
+wrangler pages deployment list --project-name conjecture56
+```
+
+Then verify HTTPS, security headers, `/`, `/about/`, `/collaborations/`, and
+`/keys/` on `https://conjecture56.org`.
 
 The existing MX and TXT records at the domain apex belong to Zoho mail and must
 not be removed when the web DNS record is created.
