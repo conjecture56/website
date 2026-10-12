@@ -182,14 +182,15 @@ Do not use inline scripts or inline styles; the CSP intentionally rejects them.
 ## Deployment
 
 The production site is a Cloudflare Pages Direct Upload project named
-`conjecture56`. Deploy the repository root from this directory:
+`conjecture56`. The deployment script assembles the committed public files and
+publishes them with Wrangler:
 
 ```bash
-wrangler pages deploy . --project-name conjecture56 --branch main
+./deploy.sh
 ```
 
-The `.assetsignore` file keeps repository-only files outside the published
-asset set. No build command is required.
+Keep the public file and directory list in `deploy.sh` current when adding a new
+route or top-level asset. No build command or runtime dependency is required.
 
 After deployment, inspect the production release:
 
