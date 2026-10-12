@@ -58,6 +58,8 @@ Maintain collaboration records through repository changes:
 4. Validate the dataset against `assets/data/collaborations.schema.json`.
 5. Check every external URL before publishing.
 
+Use `docs/collaboration-research-guide.md` to find and qualify new candidates.
+
 Stable IDs support direct links such as:
 
 ```text

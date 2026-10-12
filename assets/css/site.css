@@ -207,6 +207,12 @@ main { flex: 1; }
 .dialog-list li + li { margin-top: .35rem; }
 .dialog-links { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; margin-top: 1.75rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .dialog-link { margin: 0; font-size: .8rem; font-weight: 700; text-underline-offset: .2rem; }
+.selection-criteria { border-top: 1px solid var(--line); }
+.selection-criteria h2 { margin-bottom: 1rem; }
+.selection-criteria-list { max-width: 52rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem 2rem; margin: 0; padding-left: 1.2rem; }
+.selection-criteria-list li { padding-left: .25rem; color: var(--ink-soft); font-size: .88rem; }
+.selection-criteria-list strong { color: var(--ink); }
+.selection-exclusions { max-width: 52rem; margin: 1.5rem 0 0; color: var(--ink-soft); font-size: .82rem; }
 
 /* Error page */
 
@@ -249,4 +255,5 @@ main { flex: 1; }
   .collaborations-intro { padding-block: 3.5rem 2.5rem; }
   .collaborations-heading { align-items: start; flex-direction: column; gap: .75rem; }
   .board-scroll { padding-inline: 1rem; }
+  .selection-criteria-list { grid-template-columns: 1fr; }
 }
