@@ -323,6 +323,16 @@ dialog.addEventListener("close", () => {
   lastTrigger = undefined;
 });
 
+dialog.addEventListener("click", (event) => {
+  if (event.target !== dialog) return;
+  const bounds = dialog.getBoundingClientRect();
+  const outside = event.clientX < bounds.left
+    || event.clientX > bounds.right
+    || event.clientY < bounds.top
+    || event.clientY > bounds.bottom;
+  if (outside) closeDetails();
+});
+
 dialog.querySelector(".dialog-close").addEventListener("click", (event) => {
   if (typeof dialog.close !== "function") {
     event.preventDefault();
