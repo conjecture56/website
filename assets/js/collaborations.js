@@ -20,6 +20,8 @@ const detailsRegion = document.querySelector("#collaboration-details");
 let collaborations = [];
 let invalidItemCount = 0;
 let lastTrigger;
+let closeFollowsHistory = false;
+let currentItemWasPushed = false;
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -34,15 +36,12 @@ function statusLabel(value) {
 
 function renderCard(item) {
   const card = element("article", "collaboration-card");
-  const trigger = element("button", "collaboration-trigger");
+  const title = element("h4", "collaboration-title");
+  const trigger = element("button", "collaboration-trigger", item.title);
   trigger.type = "button";
   trigger.dataset.itemId = item.id;
   trigger.setAttribute("aria-label", `View details for ${item.title} by ${item.organization}`);
-  trigger.append(
-    element("span", "collaboration-organization", item.organization),
-    element("span", "collaboration-title", item.title),
-    element("span", "collaboration-summary", item.summary),
-  );
+  title.append(trigger);
 
   const domains = element("ul", "collaboration-tags");
   domains.setAttribute("aria-label", "Domains");
@@ -50,8 +49,12 @@ function renderCard(item) {
     const tag = element("li", "", domain.replaceAll("-", " "));
     domains.append(tag);
   }
-  trigger.append(domains);
-  card.append(trigger);
+  card.append(
+    element("p", "collaboration-organization", item.organization),
+    title,
+    element("p", "collaboration-summary", item.summary),
+    domains,
+  );
   return card;
 }
 
@@ -65,10 +68,10 @@ function renderBoard(items = []) {
 
     const heading = element("div", "board-column-heading");
     heading.append(
-      element("h2", "", status.label),
+      element("h3", "", status.label),
       element("span", "board-count", String(matches.length)),
     );
-    heading.querySelector("h2").id = `column-${status.id}`;
+    heading.querySelector("h3").id = `column-${status.id}`;
     column.append(heading);
 
     const cards = element("div", "board-cards");
@@ -104,6 +107,9 @@ function applySearch() {
   renderBoard(filtered);
   clearSearchButton.hidden = !query;
   emptyMessage.hidden = filtered.length !== 0;
+  emptyMessage.textContent = query
+    ? "No collaborations match this search."
+    : "No valid collaborations are currently available.";
 
   const invalidNote = invalidItemCount ? ` ${invalidItemCount} invalid item${invalidItemCount === 1 ? " was" : "s were"} omitted.` : "";
   statusRegion.textContent = query
@@ -135,11 +141,11 @@ function externalLink(label, value) {
   return paragraph;
 }
 
-function updateItemUrl(itemId) {
+function itemUrl(itemId) {
   const url = new URL(window.location.href);
   if (itemId) url.searchParams.set("item", itemId);
   else url.searchParams.delete("item");
-  window.history.replaceState({}, "", url);
+  return url;
 }
 
 function renderDetails(item) {
@@ -178,13 +184,21 @@ function renderDetails(item) {
   );
 }
 
-function openDetails(item, trigger) {
+function openDetails(item, trigger, historyMode = "push") {
   lastTrigger = trigger;
   renderDetails(item);
-  updateItemUrl(item.id);
+  if (historyMode === "push") {
+    window.history.pushState({ collaboration: item.id }, "", itemUrl(item.id));
+    currentItemWasPushed = true;
+  } else if (historyMode === "direct") {
+    currentItemWasPushed = false;
+  }
   if (!dialog.open) {
     if (typeof dialog.showModal === "function") dialog.showModal();
-    else dialog.setAttribute("open", "");
+    else {
+      dialog.setAttribute("open", "");
+      dialog.querySelector(".dialog-close").focus();
+    }
   }
 }
 
@@ -192,7 +206,10 @@ function closeDetails() {
   if (dialog.open && typeof dialog.close === "function") dialog.close();
   else {
     dialog.removeAttribute("open");
-    updateItemUrl();
+    if (closeFollowsHistory) closeFollowsHistory = false;
+    else if (currentItemWasPushed) window.history.back();
+    else window.history.replaceState({}, "", itemUrl());
+    currentItemWasPushed = false;
     lastTrigger?.focus();
     lastTrigger = undefined;
   }
@@ -200,10 +217,35 @@ function closeDetails() {
 
 function validCollaboration(item) {
   const strings = ["id", "title", "organization", "status", "collaborationType", "summary", "entryPoint", "sourceUrl", "lastVerified"];
-  const arrays = ["domains", "workAvailable", "skills", "caveats"];
-  return item && strings.every((key) => typeof item[key] === "string" && item[key])
-    && arrays.every((key) => Array.isArray(item[key]) && item[key].every((value) => typeof value === "string"))
-    && STATUSES.some((status) => status.id === item.status);
+  const requiredArrays = ["domains", "workAvailable", "skills"];
+  const validUrl = (value) => {
+    try {
+      return new URL(value).protocol === "https:";
+    } catch {
+      return false;
+    }
+  };
+  const validDate = (value) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    try {
+      return new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value;
+    } catch {
+      return false;
+    }
+  };
+  const validArray = (value, allowEmpty = false) => Array.isArray(value)
+    && (allowEmpty || value.length > 0)
+    && value.every((entry) => typeof entry === "string" && entry.trim())
+    && new Set(value).size === value.length;
+
+  return item && strings.every((key) => typeof item[key] === "string" && item[key].trim())
+    && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.id)
+    && STATUSES.some((status) => status.id === item.status)
+    && requiredArrays.every((key) => validArray(item[key]))
+    && validArray(item.caveats, true)
+    && validUrl(item.entryPoint)
+    && validUrl(item.sourceUrl)
+    && validDate(item.lastVerified);
 }
 
 function openRequestedItem() {
@@ -212,7 +254,7 @@ function openRequestedItem() {
   const item = collaborations.find((candidate) => candidate.id === itemId);
   if (item) {
     const trigger = board.querySelector(`[data-item-id="${CSS.escape(item.id)}"]`);
-    openDetails(item, trigger);
+    openDetails(item, trigger, "direct");
   } else {
     statusRegion.textContent = `No collaboration has the ID “${itemId}”. ${collaborations.length} collaborations remain available.`;
   }
@@ -232,7 +274,12 @@ async function loadCollaborations() {
     const items = await response.json();
     if (!Array.isArray(items)) throw new TypeError("Expected an array of collaborations");
 
-    collaborations = items.filter(validCollaboration);
+    const seenIds = new Set();
+    collaborations = items.filter((item) => {
+      if (!validCollaboration(item) || seenIds.has(item.id)) return false;
+      seenIds.add(item.id);
+      return true;
+    });
     invalidItemCount = items.length - collaborations.length;
     applySearch();
     openRequestedItem();
@@ -260,7 +307,14 @@ clearSearchButton.addEventListener("click", () => {
 });
 
 dialog.addEventListener("close", () => {
-  updateItemUrl();
+  if (closeFollowsHistory) {
+    closeFollowsHistory = false;
+  } else if (currentItemWasPushed) {
+    window.history.back();
+  } else {
+    window.history.replaceState({}, "", itemUrl());
+  }
+  currentItemWasPushed = false;
   lastTrigger?.focus();
   lastTrigger = undefined;
 });
@@ -275,8 +329,17 @@ dialog.querySelector(".dialog-close").addEventListener("click", (event) => {
 window.addEventListener("popstate", () => {
   const itemId = new URL(window.location.href).searchParams.get("item");
   const item = collaborations.find((candidate) => candidate.id === itemId);
-  if (item) openDetails(item, board.querySelector(`[data-item-id="${CSS.escape(item.id)}"]`));
-  else if (dialog.open) closeDetails();
+  if (item) {
+    currentItemWasPushed = true;
+    openDetails(item, board.querySelector(`[data-item-id="${CSS.escape(item.id)}"]`), "history");
+  } else if (dialog.open) {
+    closeFollowsHistory = true;
+    closeDetails();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && dialog.open && typeof dialog.close !== "function") closeDetails();
 });
 
 loadCollaborations();
