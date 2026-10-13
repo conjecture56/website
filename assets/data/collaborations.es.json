@@ -90,7 +90,7 @@
     ],
     "skills": ["Python", "ingeniería de prompts", "inferencia de LLMs", "diseño experimental", "análisis estadístico"],
     "caveats": [
-      "Propuesto como proyecto de investigación aplicada en la Universidad Católica de Salta (UCSE); no requiere creación manual de datos porque cada dataset es un benchmark ya anotado.",
+      "Propuesto como proyecto de investigación aplicada en la Universidad Católica de Santiago del Estero (UCSE); no requiere creación manual de datos porque cada dataset es un benchmark ya anotado.",
       "Las etiquetas de test de las Core Tasks permanecen privadas en UNED; confirmar cómo se categorizan los sistemas con prompting antes de extenderse más allá de las Extended Tasks.",
       "Las variantes con fine-tuning pueden usar las GPU gratuitas de Kaggle o Colab; la inferencia zero-shot corre en el gateway de Conjecture 56."
     ]
