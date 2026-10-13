@@ -68,6 +68,43 @@
     ]
   },
   {
+    "id": "odesia-es-en-llm-gap",
+    "title": "Measure the Spanish–English LLM gap under prompting",
+    "organization": "Conjecture 56",
+    "status": "todo",
+    "domains": [
+      "llm-evaluation",
+      "natural-language-processing",
+      "benchmarking",
+      "spanish-nlp"
+    ],
+    "collaborationType": "applied-research",
+    "conjecture56Role": "lead",
+    "summary": "Measure the performance gap between Spanish and English in small open language models under zero-shot prompting, using the ODESIA Leaderboard (UNED) controlled bilingual benchmark. Planned as an applied research project to propose at UCSE.",
+    "workAvailable": [
+      "Register on the ODESIA Leaderboard and download the bilingual task datasets it distributes",
+      "Design zero-shot and few-shot prompts, starting with the four public Extended Tasks",
+      "Run small open models (<8B) through the Conjecture 56 gateway and record predictions",
+      "Submit EvALL-format predictions and read the calibrated Spanish–English gap per task",
+      "Publish the prompting-mode gap analysis as an open applied research report"
+    ],
+    "skills": [
+      "Python",
+      "prompt engineering",
+      "LLM inference",
+      "experimental design",
+      "statistical analysis"
+    ],
+    "entryPoint": "https://leaderboard.odesia.uned.es/",
+    "sourceUrl": "https://leaderboard.odesia.uned.es/leaderboard/faq",
+    "lastVerified": "2026-10-13",
+    "caveats": [
+      "Proposed as an applied research project at Universidad Católica de Salta (UCSE); no manual data creation is required because every dataset is an existing annotated benchmark.",
+      "Core Task test labels stay private at UNED; confirm how prompting-mode systems are categorized before extending beyond the Extended Tasks.",
+      "Fine-tuning variants can use free Kaggle or Colab GPU tiers; zero-shot inference runs on the Conjecture 56 gateway."
+    ]
+  },
+  {
     "id": "student-ai-access-program",
     "title": "Student AI Access Pilot Program",
     "organization": "Conjecture 56",

@@ -76,6 +76,25 @@
       "Los límites del proveedor prevalecen cuando son más estrictos que las cuotas locales."
     ]
   },
+  "odesia-es-en-llm-gap": {
+    "title": "Medir la brecha español–inglés de LLMs con prompting",
+    "domains": ["evaluación de LLMs", "procesamiento del lenguaje natural", "benchmarking", "PLN en español"],
+    "collaborationType": "investigación aplicada",
+    "summary": "Medir la brecha de rendimiento entre español e inglés en modelos de lenguaje abiertos y pequeños con prompting zero-shot, usando el benchmark bilingüe controlado del ODESIA Leaderboard (UNED). Planeado como proyecto de investigación aplicada para proponer en la UCSE.",
+    "workAvailable": [
+      "Registrarse en el ODESIA Leaderboard y descargar los datasets bilingües de tareas que distribuye",
+      "Diseñar prompts zero-shot y few-shot, empezando por las cuatro Extended Tasks públicas",
+      "Ejecutar modelos abiertos pequeños (<8B) mediante el gateway de Conjecture 56 y registrar las predicciones",
+      "Enviar predicciones en formato EvALL y leer la brecha español–inglés calibrada por tarea",
+      "Publicar el análisis de la brecha en modo prompting como un informe abierto de investigación aplicada"
+    ],
+    "skills": ["Python", "ingeniería de prompts", "inferencia de LLMs", "diseño experimental", "análisis estadístico"],
+    "caveats": [
+      "Propuesto como proyecto de investigación aplicada en la Universidad Católica de Salta (UCSE); no requiere creación manual de datos porque cada dataset es un benchmark ya anotado.",
+      "Las etiquetas de test de las Core Tasks permanecen privadas en UNED; confirmar cómo se categorizan los sistemas con prompting antes de extenderse más allá de las Extended Tasks.",
+      "Las variantes con fine-tuning pueden usar las GPU gratuitas de Kaggle o Colab; la inferencia zero-shot corre en el gateway de Conjecture 56."
+    ]
+  },
   "student-ai-access-program": {
     "title": "Student AI Access Pilot Program",
     "domains": [
