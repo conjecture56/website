@@ -1,0 +1,548 @@
+{
+  "collaboration-catalog": {
+    "title": "Construir un catálogo de colaboraciones de datos",
+    "domains": [
+      "infraestructura de colaboración",
+      "datos para el bien común",
+      "ciencia abierta"
+    ],
+    "collaborationType": "infraestructura de interés público",
+    "summary": "Desarrollar un catálogo confiable donde las personas puedan descubrir proyectos de datos concretos y las organizaciones puedan, en el futuro, proponer trabajo para revisión.",
+    "workAvailable": [
+      "Clasificar oportunidades por dominio, habilidades, modelo de participación y preparación",
+      "Identificar iniciativas faltantes, superpuestas y potencialmente redundantes",
+      "Diseñar una vía de presentación revisada para equipos, laboratorios y organizaciones"
+    ],
+    "skills": [
+      "investigación",
+      "curaduría de datos",
+      "diseño de taxonomías",
+      "diseño de producto"
+    ],
+    "caveats": [
+      "Las propuestas directas aún no están disponibles.",
+      "Cada oportunidad publicada todavía requiere verificación editorial y atribución clara."
+    ]
+  },
+  "payroll-concept-mapping": {
+    "title": "Mapear conceptos de liquidación entre organizaciones",
+    "domains": [
+      "interoperabilidad semántica",
+      "datos de liquidación",
+      "educación"
+    ],
+    "collaborationType": "proyecto estudiantil",
+    "attribution": "Este proyecto estudiantil comenzó en el IES N.º 7 antes de la creación de Conjecture 56. Esa experiencia ayudó a definir el enfoque de Conjecture 56 para la colaboración educativa e institucional.",
+    "summary": "Crear una correspondencia reproducible y revisada por personas entre conceptos de liquidación utilizados por distintas organizaciones públicas.",
+    "workAvailable": [
+      "Definir el contrato de datos canónico y el vocabulario de relaciones semánticas",
+      "Normalizar las planillas de origen mediante adaptadores específicos por organización",
+      "Construir y evaluar una línea base explicable para ordenar candidatos"
+    ],
+    "skills": [
+      "Python",
+      "análisis de datos",
+      "mapeo semántico",
+      "recuperación de información"
+    ],
+    "caveats": [
+      "El repositorio y la propuesta actuales no son puntos públicos de entrada para contribuir.",
+      "Los estudiantes proponen y evalúan correspondencias; los especialistas del dominio conservan la decisión final.",
+      "Los registros de liquidación requieren controles estrictos de privacidad y acceso autorizado a los datos."
+    ]
+  },
+  "governed-ai-api-access": {
+    "title": "Gobernar el acceso compartido a API de IA",
+    "domains": [
+      "infraestructura de IA",
+      "control de acceso",
+      "gobernanza de uso"
+    ],
+    "collaborationType": "infraestructura",
+    "summary": "Proporcionar a los equipos acceso individualmente gobernado a modelos mientras las credenciales de los proveedores permanecen protegidas.",
+    "workAvailable": [
+      "Se desplegaron claves virtuales de Bifrost con cuotas por clave y por modelo",
+      "Se agregó la consulta autónoma de uso y límites",
+      "Se mantuvieron las credenciales de proveedores en el servidor y se documentó la conexión segura de clientes"
+    ],
+    "skills": [
+      "puertas de enlace de API",
+      "control de acceso",
+      "gestión de cuotas",
+      "operaciones"
+    ],
+    "caveats": [
+      "El acceso se asigna deliberadamente, no mediante registro público automático.",
+      "Los límites del proveedor prevalecen cuando son más estrictos que las cuotas locales."
+    ]
+  },
+  "student-ai-access-program": {
+    "title": "Student AI Access Pilot Program",
+    "domains": [
+      "acceso a IA",
+      "educación",
+      "colaboración estudiantil"
+    ],
+    "collaborationType": "programa piloto estudiantil",
+    "summary": "Dar a estudiantes acceso administrado a modelos de lenguaje cuando contribuyen activamente a un proyecto listado por Conjecture 56.",
+    "workAvailable": [
+      "Se asignó una clave virtual individual a cada estudiante participante",
+      "Se aplicaron límites acotados por modelo, día, mes y tasa de solicitudes",
+      "Se permitió que cada estudiante consulte su propio uso sin exponer otras claves"
+    ],
+    "skills": [
+      "API de LLM",
+      "uso responsable de IA",
+      "colaboración en proyectos"
+    ],
+    "caveats": [
+      "El piloto actualmente incluye estudiantes participantes de Prácticas Profesionalizantes III del IES N.º 7 e Inteligencia Artificial de UCSE.",
+      "La inscripción a una materia no otorga acceso por sí sola; cada estudiante debe contribuir a un proyecto listado por Conjecture 56.",
+      "Las claves son individuales, acotadas, monitoreadas y revocables."
+    ]
+  },
+  "dbnomics-indec": {
+    "title": "Actualizar el proveedor de INDEC",
+    "domains": [
+      "estadísticas económicas",
+      "ingeniería de datos",
+      "datos abiertos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Ampliar el proveedor de INDEC existente en DBnomics con una serie estadística oficial actual de API-INDEC.",
+    "workAvailable": [
+      "Confirmar con quienes mantienen DBnomics la vía de actualización",
+      "Agregar un conjunto de datos acotado de API-INDEC, como las series de canasta básica alimentaria y total",
+      "Preservar los metadatos de origen y validar las series temporales convertidas"
+    ],
+    "skills": [
+      "Python",
+      "API REST",
+      "series temporales",
+      "metadatos estadísticos"
+    ],
+    "caveats": [
+      "Coordinar antes de implementar porque el flujo de datos de origen es más reciente que los datos publicados por el proveedor.",
+      "API-INDEC es un servicio beta que requiere una cuenta y atribución al INDEC.",
+      "No crear un proveedor de INDEC duplicado."
+    ]
+  },
+  "hot-fair": {
+    "title": "Fortalecer GeoAI humanitaria",
+    "domains": [
+      "geoespacial",
+      "acción humanitaria",
+      "visión por computadora"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Mejorar fAIr, la plataforma abierta de HOT para cartografía humanitaria asistida por IA con validación humana.",
+    "workAvailable": [
+      "Acordar un área de la lógica del servidor sin cobertura dentro de la iniciativa abierta de pruebas",
+      "Agregar pruebas específicas para la API o los modelos de Django",
+      "Documentar la ejecución local y los resultados de cobertura"
+    ],
+    "skills": [
+      "Python",
+      "Django",
+      "pytest",
+      "datos geoespaciales"
+    ],
+    "caveats": [
+      "Acordar el recorte exacto de pruebas con quienes mantienen el proyecto porque la incidencia admite varios contribuidores.",
+      "Las imágenes y etiquetas derivadas de OpenStreetMap tienen requisitos de licencia separados.",
+      "La guía de contribución prohíbe herramientas de IA en incidencias etiquetadas como good first issue."
+    ]
+  },
+  "trufi-emissions": {
+    "title": "Estimar emisiones del transporte público",
+    "domains": [
+      "movilidad",
+      "transporte público",
+      "clima"
+    ],
+    "collaborationType": "voluntariado",
+    "summary": "Construir un análisis reproducible de emisiones del transporte público a partir de una fuente GTFS acordada.",
+    "workAvailable": [
+      "Seleccionar una fuente GTFS junto con Trufi",
+      "Producir tablas de emisiones por ruta y viaje con gtfs2emis",
+      "Documentar supuestos de flota, resultados de validación y metodología"
+    ],
+    "skills": [
+      "R",
+      "GTFS",
+      "datos geoespaciales",
+      "modelado de emisiones"
+    ],
+    "caveats": [
+      "Confirmar la fuente, el repositorio y los criterios de aceptación antes de comenzar.",
+      "Los datos derivados de OpenStreetMap requieren atribución ODbL y cumplimiento de compartir igual.",
+      "Las personas voluntarias deben aceptar el código de conducta de Trufi."
+    ]
+  },
+  "openaq-measurement-revisions": {
+    "title": "Detectar mediciones revisadas de calidad del aire",
+    "domains": [
+      "calidad del aire",
+      "ingeniería de datos",
+      "calidad de datos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Ayudar a detectar mediciones que cambian después de la ingesta sin sobrescribir silenciosamente observaciones canónicas.",
+    "workAvailable": [
+      "Acordar la semántica de las revisiones con quienes mantienen el proyecto",
+      "Crear un diseño acotado y una prueba técnica",
+      "Implementar la detección, los diagnósticos y las pruebas de integración aprobados"
+    ],
+    "skills": [
+      "Python",
+      "PostgreSQL",
+      "ETL",
+      "pytest"
+    ],
+    "caveats": [
+      "Quienes mantienen el proyecto no definieron la semántica de almacenamiento; se necesita aprobación antes de implementar.",
+      "El repositorio openaq-ingestor no expone actualmente un archivo de licencia; primero hay que aclarar las condiciones de contribución.",
+      "Los datos de OpenAQ requieren atribución y están sujetos a condiciones específicas de cada proveedor."
+    ]
+  },
+  "robotoff-inference-notebook": {
+    "title": "Documentar la inferencia de tablas nutricionales",
+    "domains": [
+      "datos alimentarios",
+      "visión por computadora",
+      "aprendizaje automático"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Crear un cuaderno computacional reproducible de Robotoff y una guía específica para flujos de detección de tablas nutricionales.",
+    "workAvailable": [
+      "Acordar un alcance acotado de tablas nutricionales para la incidencia 1367",
+      "Cubrir flujos de inferencia para una imagen y para un directorio",
+      "Agregar instrucciones de validación y documentación específica"
+    ],
+    "skills": [
+      "Python",
+      "Jupyter",
+      "visión por computadora",
+      "redacción técnica"
+    ],
+    "caveats": [
+      "Confirmar el alcance reducido porque la incidencia completa abarca demasiados componentes para una sola unidad de trabajo.",
+      "El desarrollo local requiere Git LFS y una base de datos ejecutada con Docker.",
+      "Robotoff utiliza la licencia AGPL-3.0-only."
+    ]
+  },
+  "fink-alert-density": {
+    "title": "Mapear la densidad de alertas astronómicas",
+    "domains": [
+      "astronomía",
+      "procesamiento de flujos",
+      "geoespacial"
+    ],
+    "collaborationType": "ciencia abierta",
+    "summary": "Construir y probar agregados HEALPix acotados que muestren la densidad reciente de alertas astronómicas.",
+    "workAvailable": [
+      "Confirmar el repositorio objetivo y el esquema de salida para la incidencia 1143",
+      "Calcular agregados estáticos de densidad para ventanas de 24, 48 y 96 horas",
+      "Agregar pruebas específicas y documentar los datos de muestra necesarios"
+    ],
+    "skills": [
+      "Python",
+      "HEALPix",
+      "agregación de series temporales",
+      "Apache Spark"
+    ],
+    "caveats": [
+      "Confirmar la responsabilidad porque la incidencia puede abarcar los repositorios de Fink Broker, estadísticas y portal.",
+      "El entorno de desarrollo completo incluye Spark, Kafka, HBase e imágenes de contenedores grandes.",
+      "Puede necesitarse experiencia en astronomía para validar la semántica científica."
+    ]
+  },
+  "open-climate-fix-weather-units": {
+    "title": "Corregir unidades de datos meteorológicos",
+    "domains": [
+      "clima",
+      "energía solar",
+      "pronóstico"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Mejorar los pronósticos solares de Quartz haciendo explícitos y comprobables el mapeo y las unidades de variables de Open-Meteo.",
+    "workAvailable": [
+      "Solicitar asignación y confirmar el alcance de la incidencia 375",
+      "Corregir las unidades de temperatura, viento y precipitación",
+      "Reemplazar el mapeo posicional por uno basado en nombres y agregar pruebas de regresión"
+    ],
+    "skills": [
+      "Python",
+      "NumPy",
+      "pandas",
+      "pytest",
+      "datos meteorológicos"
+    ],
+    "caveats": [
+      "La incidencia no tiene la etiqueta contributions-welcome; hay que obtener asignación antes de programar.",
+      "El tratamiento de la radiación de onda larga sigue siendo una decisión de quienes mantienen el proyecto.",
+      "Cada contribuidor conserva la responsabilidad de comprender y revisar cualquier trabajo asistido por IA."
+    ]
+  },
+  "data-commons-indec-pilot": {
+    "title": "Probar una importación piloto de INDEC",
+    "domains": [
+      "estadísticas económicas",
+      "grafos de conocimiento",
+      "datos abiertos"
+    ],
+    "collaborationType": "contribución de datos",
+    "summary": "Proponer e implementar una tabla faltante de INDEC como importación piloto de Data Commons con procedencia detallada.",
+    "workAvailable": [
+      "Revisar la cobertura existente y presentar una solicitud oficial de datos",
+      "Mapear una tabla aceptada a entidades y variables estadísticas",
+      "Agregar una transformación reproducible, datos de prueba, pruebas, procedencia y metadatos de licencia"
+    ],
+    "skills": [
+      "Python",
+      "modelado de datos",
+      "grafos de conocimiento",
+      "metadatos estadísticos"
+    ],
+    "caveats": [
+      "No construir la importación hasta que se acepte la solicitud oficial de datos.",
+      "Se requiere un Contributor License Agreement de Google.",
+      "El conjunto de datos de origen debe cumplir la política de licencias de Data Commons."
+    ]
+  },
+  "mapyourgrid-argentina": {
+    "title": "Mapear la red de transmisión de Argentina",
+    "domains": [
+      "energía",
+      "geoespacial",
+      "OpenStreetMap"
+    ],
+    "collaborationType": "voluntariado",
+    "summary": "Mejorar la cobertura abierta de la red eléctrica mediante una campaña coordinada de mapeo y control de calidad en Argentina.",
+    "workAvailable": [
+      "Acordar una provincia o corredor de transmisión con la comunidad MapYourGrid",
+      "Relevar líneas incompletas y hallazgos de calidad mediante fuentes verificables",
+      "Publicar conjuntos de cambios revisados en OpenStreetMap y una nota comparativa de calidad"
+    ],
+    "skills": [
+      "GIS",
+      "JOSM",
+      "etiquetado de OpenStreetMap",
+      "imágenes satelitales"
+    ],
+    "caveats": [
+      "Registrar el alcance regional propuesto con la comunidad del proyecto antes de editar.",
+      "No copiar mapas incompatibles ni datos restringidos de infraestructura.",
+      "Los datos de OpenStreetMap se rigen por ODbL y las convenciones locales de mapeo."
+    ]
+  },
+  "pypsa-earth-country-filter": {
+    "title": "Filtrar centrales eléctricas personalizadas por país",
+    "domains": [
+      "sistemas energéticos",
+      "ingeniería de datos",
+      "geoespacial"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Implementar filtrado por país para entradas personalizadas de centrales eléctricas en modelos reproducibles de sistemas energéticos.",
+    "workAvailable": [
+      "Confirmar la semántica de las claves de país en la incidencia 1352 o en una llamada de desarrollo",
+      "Agregar el filtrado al flujo de construcción de centrales",
+      "Agregar datos de prueba de regresión para uno y varios países y su documentación"
+    ],
+    "skills": [
+      "Python",
+      "pandas",
+      "pytest",
+      "Snakemake",
+      "datos energéticos"
+    ],
+    "caveats": [
+      "La incidencia sigue sin asignar y solicita ayuda, pero es anterior al ciclo actual; hay que reconfirmarla antes de programar.",
+      "El código es AGPL-3.0-or-later y las solicitudes de cambios requieren consentimiento explícito sobre la licencia.",
+      "Hay que utilizar el flujo de Snakemake y las convenciones de prueba del proyecto."
+    ]
+  },
+  "open-terms-trackers": {
+    "title": "Restaurar rastreadores de términos rotos",
+    "domains": [
+      "archivo web",
+      "calidad de datos",
+      "derechos digitales"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Reparar un lote acotado de declaraciones que ya no rastrean correctamente documentos de términos o políticas.",
+    "workAvailable": [
+      "Autoasignarse entre tres y cinco incidencias de selectores o cambios de estructura",
+      "Actualizar URL y reglas de selección preservando las declaraciones anteriores",
+      "Ejecutar validaciones de capturas repetidas y presentar solicitudes de cambios pequeñas y revisables"
+    ],
+    "skills": [
+      "JSON",
+      "selectores CSS",
+      "inspección en navegador",
+      "procedencia de datos"
+    ],
+    "caveats": [
+      "Evitar casos bloqueados por acceso o tiempo de espera salvo que quienes mantienen el proyecto confirmen una solución abordable.",
+      "Las declaraciones usan EUPL-1.2 y las versiones generadas ODC-BY 1.0.",
+      "Las declaraciones históricas deben preservarse con metadatos de vigencia correctos."
+    ]
+  },
+  "opensanctions-tag-taxonomy": {
+    "title": "Refinar la taxonomía de etiquetas de conjuntos de datos",
+    "domains": [
+      "datos de sanciones",
+      "metadatos",
+      "calidad de datos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Migrar una familia acordada de etiquetas de conjuntos de datos y mejorar las comprobaciones de consistencia y la documentación de metadatos.",
+    "workAvailable": [
+      "Discutir la incidencia 5908 y acordar un recorte de migración",
+      "Actualizar etiquetas en un conjunto acotado de conjuntos de datos",
+      "Agregar comprobaciones de consistencia y validar los metadatos generados"
+    ],
+    "skills": [
+      "Python",
+      "YAML",
+      "diseño de taxonomías",
+      "pruebas de calidad de datos"
+    ],
+    "caveats": [
+      "La incidencia está marcada explícitamente para discusión; no realizar una edición masiva sin coordinación.",
+      "Cada contribuidor debe confirmar que tiene derecho a presentar todo el material incluido.",
+      "El código es MIT, mientras que los datos publicados y las fuentes incorporadas tienen licencias separadas."
+    ]
+  },
+  "common-voice-argentine-spanish": {
+    "title": "Mejorar datos de voz en español argentino",
+    "domains": [
+      "datos de voz",
+      "datos lingüísticos",
+      "calidad de datos"
+    ],
+    "collaborationType": "datos comunitarios",
+    "summary": "Realizar una campaña coordinada de frases, grabación y validación para datos de voz en español argentino.",
+    "workAvailable": [
+      "Confirmar la variante y la ventana de publicación con la comunidad Common Voice",
+      "Aportar y revisar una cantidad acordada de frases y grabaciones originales o de dominio público",
+      "Publicar cantidades de contribuciones, procedencia y metodología de revisión de calidad"
+    ],
+    "skills": [
+      "español argentino",
+      "control de calidad de voz",
+      "facilitación comunitaria",
+      "procedencia de datos"
+    ],
+    "caveats": [
+      "Coordinar la variante exacta y el cierre de la versión del conjunto de datos antes de comenzar.",
+      "El texto presentado debe ser original o demostrablemente de dominio público.",
+      "Se aplican requisitos de edad, consentimiento y supervisión a los participantes."
+    ]
+  },
+  "loculus-ingest-regressions": {
+    "title": "Agregar pruebas de regresión para la ingesta de Loculus",
+    "domains": [
+      "genómica de patógenos",
+      "ingesta de datos",
+      "pruebas"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Agregar un recorte acotado de pruebas de regresión para la ingesta de secuencias de patógenos después de que una actualización externa escapara a la cobertura existente.",
+    "workAvailable": [
+      "Confirmar el recorte de pruebas con quien mantiene la incidencia 7531",
+      "Cubrir una entrada vacía y un caso exitoso de ingesta repetida sin revisiones",
+      "Documentar los datos de prueba y ejecutar las comprobaciones de integración relevantes"
+    ],
+    "skills": [
+      "Python",
+      "Snakemake",
+      "pruebas de integración",
+      "datos genómicos"
+    ],
+    "caveats": [
+      "La incidencia completa supera una unidad de cuatro semanas; proceder solo con un recorte aprobado.",
+      "El repositorio es AGPL-3.0 y exige pruebas para código no trivial.",
+      "La cobertura de extremo a extremo completa puede requerir infraestructura Kubernetes más pesada."
+    ]
+  },
+  "satnogs-decoder-schema-validation": {
+    "title": "Validar esquemas de decodificadores de telemetría",
+    "domains": [
+      "datos satelitales",
+      "telemetría",
+      "calidad de datos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Impedir que campos de telemetría incompatibles con valores de tipo arreglo lleguen a la ingesta de SatNOGS mediante validación de esquemas en CI.",
+    "workAvailable": [
+      "Acordar las formas de campo permitidas con quienes mantienen la incidencia 85",
+      "Implementar un validador específico con datos de prueba válidos e inválidos",
+      "Ejecutar la validación en CI y documentar su uso local por contribuidores"
+    ],
+    "skills": [
+      "Python",
+      "Kaitai Struct",
+      "validación de esquemas",
+      "GitLab CI"
+    ],
+    "caveats": [
+      "El contrato de validación todavía no está especificado; se necesita acuerdo de diseño antes de implementar.",
+      "Las contribuciones requieren una línea Signed-off-by del Developer Certificate of Origin.",
+      "Cada contribuidor debe comprender y responsabilizarse por todo el trabajo presentado."
+    ]
+  },
+  "gtfs-validator-unused-station": {
+    "title": "Corregir la severidad del aviso de estación sin uso",
+    "domains": [
+      "transporte público",
+      "GTFS",
+      "calidad de datos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Corregir la severidad del aviso de estación sin uso de GTFS Validator y actualizar sus pruebas y documentación generada.",
+    "workAvailable": [
+      "Reclamar la incidencia 1348 en GitHub y en el Slack de contribuidores",
+      "Confirmar e implementar la severidad objetivo del aviso",
+      "Actualizar pruebas, datos de prueba y documentación generada de la regla"
+    ],
+    "skills": [
+      "Java",
+      "JUnit",
+      "Gradle",
+      "GTFS"
+    ],
+    "caveats": [
+      "Anunciar la intención antes de programar y mantener la solicitud de cambios limitada a una funcionalidad.",
+      "El proyecto utiliza Apache-2.0 y Google Java Style.",
+      "No sustituirla por incidencias cercanas que ya tengan trabajo en curso de otros contribuidores."
+    ]
+  },
+  "policyengine-chip-evidence": {
+    "title": "Revisar evidencia sobre la valoración de beneficios CHIP",
+    "domains": [
+      "políticas públicas",
+      "microsimulación",
+      "datos de salud"
+    ],
+    "collaborationType": "investigación de código abierto",
+    "summary": "Conciliar poblaciones, servicios, denominadores de inscripción y períodos fiscales de CHIP en California antes de modificar valores del modelo.",
+    "workAvailable": [
+      "Construir una matriz de fuentes y evidencia a partir de documentos oficiales del programa",
+      "Probar las alternativas de valoración descritas en la incidencia 10155",
+      "Publicar cálculos reproducibles, limitaciones y una regla de decisión recomendada"
+    ],
+    "skills": [
+      "investigación de políticas públicas",
+      "Python",
+      "pandas",
+      "análisis reproducible"
+    ],
+    "caveats": [
+      "La contribución acotada consiste en evidencia y una recomendación, no en un cambio unilateral del modelo.",
+      "Las citas oficiales y unidades anuales consistentes son esenciales.",
+      "El repositorio es AGPL-3.0 y los cambios posteriores del modelo requieren pruebas y actualización del registro de cambios."
+    ]
+  }
+}

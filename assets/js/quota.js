@@ -1,3 +1,5 @@
+import { getLanguage, numberFormatter, t } from "/assets/js/i18n.js?v=20261012";
+
 const API_BASE = "https://api.conjecture56.org";
 const QUOTA_ENDPOINT = `${API_BASE}/api/governance/virtual-keys/quota`;
 const MODELS_ENDPOINT = `${API_BASE}/v1/models`;
@@ -15,8 +17,8 @@ const setupSection = document.querySelector("#setup-section");
 
 let activeRequest;
 
-const formatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
-const formatMoney = new Intl.NumberFormat("en-US", {
+const formatNumber = numberFormatter({ maximumFractionDigits: 1 });
+const formatMoney = numberFormatter({
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 2,
@@ -43,8 +45,8 @@ function resetSensitiveState() {
   activeRequest = undefined;
   keyInput.value = "";
   keyInput.type = "password";
-  toggleButton.textContent = "Show";
-  toggleButton.setAttribute("aria-label", "Show API key");
+  toggleButton.textContent = t("keys.show");
+  toggleButton.setAttribute("aria-label", t("keys.showAria"));
   toggleButton.setAttribute("aria-pressed", "false");
   resultsRegion.replaceChildren();
   resultsRegion.hidden = true;
@@ -53,13 +55,13 @@ function resetSensitiveState() {
 }
 
 function durationLabel(value) {
-  if (!value) return "current cycle";
+  if (!value) return t("quota.currentCycle");
   const units = { s: "second", m: "minute", h: "hour", d: "day", w: "week", M: "month" };
   const match = String(value).match(/^(\d+)([smhdwM])$/);
   if (!match) return String(value);
   const count = Number(match[1]);
   const unit = units[match[2]];
-  return `${count} ${unit}${count === 1 ? "" : "s"}`;
+  return `${formatNumber.format(count)} ${t(`quota.${unit}${count === 1 ? "" : "Plural"}`)}`;
 }
 
 function cleanProvider(value) {
@@ -75,35 +77,35 @@ function metricCard(label, current, maximum, resetDuration, formatter = formatNu
 
   const value = element("p", "metric-value");
   value.append(document.createTextNode(formatter.format(current ?? 0)));
-  value.append(element("span", "metric-maximum", maximum == null ? " No fixed limit" : ` / ${formatter.format(maximum)}`));
+  value.append(element("span", "metric-maximum", maximum == null ? t("quota.noFixedLimit") : ` / ${formatter.format(maximum)}`));
   card.append(value);
 
   if (maximum != null && maximum > 0) {
     const progress = element("progress", "quota-progress");
     progress.max = maximum;
     progress.value = Math.min(current ?? 0, maximum);
-    progress.setAttribute("aria-label", `${label}: ${formatNumber.format(progress.value)} of ${formatNumber.format(maximum)}`);
+    progress.setAttribute("aria-label", `${label}: ${t("quota.of", { current: formatNumber.format(progress.value), maximum: formatNumber.format(maximum) })}`);
     card.append(progress);
   }
 
-  card.append(element("p", "metric-reset", `Resets every ${durationLabel(resetDuration)}`));
+  card.append(element("p", "metric-reset", t("quota.resets", { duration: durationLabel(resetDuration) })));
   return card;
 }
 
-function budgetCard(budget, label = "Budget usage") {
+function budgetCard(budget, label = t("quota.budgetUsage")) {
   const limit = Number(budget.max_limit ?? 0) + Number(budget.override_amount ?? 0);
   return metricCard(label, Number(budget.current_usage ?? 0), limit || null, budget.reset_duration, formatMoney);
 }
 
 function renderRateLimit(rateLimit, container) {
   if (!rateLimit) {
-    container.append(element("p", "empty-note", "No request or token rate limit is attached to this key."));
+    container.append(element("p", "empty-note", t("quota.noRateLimit")));
     return;
   }
 
   container.append(
-    metricCard("Requests", rateLimit.request_current_usage, rateLimit.request_max_limit, rateLimit.request_reset_duration),
-    metricCard("Tokens", rateLimit.token_current_usage, rateLimit.token_max_limit, rateLimit.token_reset_duration),
+    metricCard(t("quota.requests"), rateLimit.request_current_usage, rateLimit.request_max_limit, rateLimit.request_reset_duration),
+    metricCard(t("quota.tokens"), rateLimit.token_current_usage, rateLimit.token_max_limit, rateLimit.token_reset_duration),
   );
 }
 
@@ -148,7 +150,7 @@ function renderModel(model) {
   const card = element("article", "model-card");
   const heading = element("div", "model-heading");
   heading.append(element("h4", "", model.id));
-  const badgeText = model.keyLevel ? "key-level limits" : model.fallback ? "default" : model.config ? "key config" : "available";
+  const badgeText = model.keyLevel ? t("quota.keyLevelLimits") : model.fallback ? t("quota.default") : model.config ? t("quota.keyConfig") : t("quota.available");
   heading.append(element("span", "model-provider", badgeText));
   card.append(heading);
 
@@ -157,25 +159,25 @@ function renderModel(model) {
     facts.append(element("dt", "", term), element("dd", "", value));
   };
 
-  if (model.provider) addFact("Provider", model.provider);
+  if (model.provider) addFact(t("quota.provider"), model.provider);
 
   const config = model.config;
   if (config) {
     const rate = config.rate_limit;
     if (rate?.request_max_limit != null) {
-      addFact("Requests", `${formatNumber.format(rate.request_current_usage ?? 0)} / ${formatNumber.format(rate.request_max_limit)} per ${durationLabel(rate.request_reset_duration)}`);
+      addFact(t("quota.requests"), `${formatNumber.format(rate.request_current_usage ?? 0)} / ${formatNumber.format(rate.request_max_limit)} ${t("quota.per", { duration: durationLabel(rate.request_reset_duration) })}`);
     }
     if (rate?.token_max_limit != null) {
-      addFact("Tokens", `${formatNumber.format(rate.token_current_usage ?? 0)} / ${formatNumber.format(rate.token_max_limit)} per ${durationLabel(rate.token_reset_duration)}`);
+      addFact(t("quota.tokens"), `${formatNumber.format(rate.token_current_usage ?? 0)} / ${formatNumber.format(rate.token_max_limit)} ${t("quota.per", { duration: durationLabel(rate.token_reset_duration) })}`);
     }
 
     const budget = (Array.isArray(config.budgets) ? config.budgets : [])[0];
     if (budget) {
-      addFact("Spend", `${formatMoney.format(budget.current_usage ?? 0)} / ${formatMoney.format((budget.max_limit ?? 0) + (budget.override_amount ?? 0))} per ${durationLabel(budget.reset_duration)}`);
+      addFact(t("quota.spend"), `${formatMoney.format(budget.current_usage ?? 0)} / ${formatMoney.format((budget.max_limit ?? 0) + (budget.override_amount ?? 0))} ${t("quota.per", { duration: durationLabel(budget.reset_duration) })}`);
     }
   }
 
-  if (!facts.children.length) addFact("Limits", "Uses the key-level allowance");
+  if (!facts.children.length) addFact(t("quota.limits"), t("quota.usesKeyAllowance"));
   card.append(facts);
   return card;
 }
@@ -184,44 +186,44 @@ function renderQuota(data, merged, fallbackUsed) {
   const fragment = document.createDocumentFragment();
   const summary = element("section", "result-summary");
   const identity = element("div", "result-identity");
-  identity.append(element("p", "eyebrow", "Authenticated key"));
-  identity.append(element("h3", "", data.virtual_key_name || "Conjecture 56 key"));
+  identity.append(element("p", "eyebrow", t("quota.authenticatedKey")));
+  identity.append(element("h3", "", data.virtual_key_name || t("quota.defaultKeyName")));
   summary.append(identity);
-  summary.append(element("span", data.is_active ? "key-state state-active" : "key-state state-inactive", data.is_active ? "Active" : "Inactive"));
+  summary.append(element("span", data.is_active ? "key-state state-active" : "key-state state-inactive", t(data.is_active ? "quota.active" : "quota.inactive")));
   fragment.append(summary);
 
   if (!data.is_active) {
-    fragment.append(element("p", "result-warning", "This key is recognized but currently disabled. Contact its issuer before making API requests."));
+    fragment.append(element("p", "result-warning", t("quota.disabledWarning")));
   }
 
   const limitsSection = element("section", "result-section");
-  limitsSection.append(element("h3", "result-title", "Current allowance"));
+  limitsSection.append(element("h3", "result-title", t("quota.currentAllowance")));
   const metrics = element("div", "metrics-grid");
   renderRateLimit(data.rate_limit, metrics);
   const budgets = Array.isArray(data.budgets) ? data.budgets : [];
-  budgets.forEach((budget, index) => metrics.append(budgetCard(budget, budgets.length > 1 ? `Budget ${index + 1}` : "Budget usage")));
+  budgets.forEach((budget, index) => metrics.append(budgetCard(budget, budgets.length > 1 ? t("quota.budget", { number: index + 1 }) : t("quota.budgetUsage"))));
   limitsSection.append(metrics);
   fragment.append(limitsSection);
 
   if (merged.models.length || merged.wildcard) {
     const modelsSection = element("section", "result-section");
     const title = merged.wildcard && !merged.models.length
-      ? "Model limits"
-      : `Models (${merged.models.length})`;
+      ? t("quota.modelLimits")
+      : t("quota.models", { count: merged.models.length });
     modelsSection.append(element("h3", "result-title", title));
     if (fallbackUsed) {
-      modelsSection.append(element("p", "result-warning", "This key does not advertise specific models, so the gateway default is shown and used in the configuration below. If requests with it fail, contact the key issuer."));
+      modelsSection.append(element("p", "result-warning", t("quota.fallbackWarning")));
     }
     const modelGrid = element("div", "model-grid");
     merged.models.forEach((model) => modelGrid.append(renderModel(model)));
     if (merged.wildcard) {
-      modelGrid.append(renderModel({ id: "All models", config: merged.wildcard, keyLevel: true }));
+      modelGrid.append(renderModel({ id: t("quota.allModels"), config: merged.wildcard, keyLevel: true }));
     }
     modelsSection.append(modelGrid);
     fragment.append(modelsSection);
   } else {
     const emptySection = element("section", "result-section");
-    emptySection.append(element("p", "result-warning", "No models are currently available to this key. Contact its issuer to enable model access."));
+    emptySection.append(element("p", "result-warning", t("quota.noModels")));
     fragment.append(emptySection);
   }
 
@@ -248,13 +250,13 @@ async function fetchJson(endpoint, key, signal) {
 }
 
 function errorMessage(response, body) {
-  if (response.status === 401) return "We couldn't recognize that key. Check it and try again.";
-  if (response.status === 403) return "This key is disabled or has expired. Contact its issuer for access.";
-  if (response.status === 429) return "This key has reached its current rate limit. Wait for the next reset and try again.";
-  if (response.status >= 500) return "The quota service is temporarily unavailable. Try again in a few minutes.";
+  if (response.status === 401) return t("quota.invalidKey");
+  if (response.status === 403) return t("quota.expiredKey");
+  if (response.status === 429) return t("quota.rateLimit");
+  if (response.status >= 500) return t("quota.serviceUnavailable");
 
   const apiMessage = typeof body?.error === "string" ? body.error : body?.error?.message;
-  return apiMessage || "The data could not be loaded. Please try again.";
+  return getLanguage() === "en" && apiMessage ? apiMessage : t("quota.loadError");
 }
 
 form?.addEventListener("submit", async (event) => {
@@ -262,7 +264,7 @@ form?.addEventListener("submit", async (event) => {
   const key = keyInput.value.trim();
 
   if (!key) {
-    setStatus("Enter your virtual API key first.", "error");
+    setStatus(t("quota.enterKey"), "error");
     keyInput.focus();
     return;
   }
@@ -273,7 +275,7 @@ form?.addEventListener("submit", async (event) => {
   resultsRegion.hidden = true;
   resultsRegion.replaceChildren();
   resetConfigOutput();
-  setStatus("Checking your key, quota, and available models…", "loading");
+  setStatus(t("quota.checking"), "loading");
   form.setAttribute("aria-busy", "true");
 
   try {
@@ -298,15 +300,15 @@ form?.addEventListener("submit", async (event) => {
       renderConfig();
       setStatus(
         fallbackUsed
-          ? "Quota loaded. No advertised models, so the installer below will configure the gateway default. Your key has not been stored."
-          : "Quota loaded. Run the installer below to configure OpenCode. Your key has not been stored.",
+          ? t("quota.loadedFallback")
+          : t("quota.loaded"),
         "success",
       );
     } else {
-      setStatus("Quota loaded, but no named models are advertised for this key.", "success");
+      setStatus(t("quota.loadedNoModels"), "success");
     }
   } catch (error) {
-    if (error.name !== "AbortError") setStatus(error.message || "The data could not be loaded.", "error");
+    if (error.name !== "AbortError") setStatus(error.message || t("quota.loadError"), "error");
   } finally {
     form.removeAttribute("aria-busy");
     if (activeRequest === controller) activeRequest = undefined;
@@ -316,8 +318,8 @@ form?.addEventListener("submit", async (event) => {
 toggleButton?.addEventListener("click", () => {
   const isVisible = keyInput.type === "text";
   keyInput.type = isVisible ? "password" : "text";
-  toggleButton.textContent = isVisible ? "Show" : "Hide";
-  toggleButton.setAttribute("aria-label", `${isVisible ? "Show" : "Hide"} API key`);
+  toggleButton.textContent = t(isVisible ? "keys.show" : "quota.hide");
+  toggleButton.setAttribute("aria-label", t(isVisible ? "keys.showAria" : "quota.hideAria"));
   toggleButton.setAttribute("aria-pressed", String(!isVisible));
   keyInput.focus();
 });
@@ -335,10 +337,10 @@ document.querySelectorAll(".copy-button").forEach((button) => {
     try {
       await navigator.clipboard.writeText(source.textContent);
       const previous = button.textContent;
-      button.textContent = "Copied";
+      button.textContent = t("quota.copied");
       window.setTimeout(() => { button.textContent = previous; }, 1800);
     } catch {
-      setStatus("Copy was blocked by the browser. Select the text and copy it manually.", "error");
+      setStatus(t("quota.copyBlocked"), "error");
     }
   });
 });

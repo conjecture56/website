@@ -69,7 +69,7 @@
   },
   {
     "id": "student-ai-access-program",
-    "title": "Student AI Access Program",
+    "title": "Student AI Access Pilot Program",
     "organization": "Conjecture 56",
     "status": "done",
     "domains": ["ai-access", "education", "student-collaboration"],

@@ -63,6 +63,9 @@ Use `docs/collaboration-research-guide.md` to find and qualify new candidates.
 it, or only curates the opportunity. Institutional, educational, and technical
 contexts belong in `collaborationType` or `domains`, not in the role field.
 Use `attribution` when a project's origin or ownership needs explicit credit.
+Keep `assets/data/collaborations.es.json` synchronized by record ID when adding
+or editing content. Organization and project names remain unchanged; descriptive
+content is localized, while the five board column headings stay in English.
 
 Stable IDs support direct links such as:
 
@@ -90,6 +93,15 @@ Present the response as readable cards or tables rather than raw JSON:
 - Daily and monthly token usage.
 - Per-model token or request limits.
 - Clear states for invalid, disabled, or rate-limited keys.
+
+## Localization
+
+The site supports English and Spanish without separate routes or a build step.
+`assets/js/i18n.js` translates static and generated interface text and persists
+the selected language in `localStorage`, with a first-party cookie fallback.
+Every public HTML document includes the same language selector. Proper names,
+technical identifiers, commands, and the collaboration board's five workflow
+headings are not translated.
 
 ## OpenCode tutorial
 
@@ -175,9 +187,11 @@ Do not use inline scripts or inline styles; the CSP intentionally rejects them.
 │   │   └── site.css
 │   ├── data/
 │   │   ├── collaborations.json
+│   │   ├── collaborations.es.json
 │   │   └── collaborations.schema.json
 │   ├── js/
 │   │   ├── collaborations.js
+│   │   ├── i18n.js
 │   │   └── quota.js
 │   └── images/
 ├── _headers
