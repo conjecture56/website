@@ -63,6 +63,8 @@ Use `docs/collaboration-research-guide.md` to find and qualify new candidates.
 it, or only curates the opportunity. Institutional, educational, and technical
 contexts belong in `collaborationType` or `domains`, not in the role field.
 Use `attribution` when a project's origin or ownership needs explicit credit.
+Use the optional `calls` array to record public meeting availability; it is
+shown in the detail dialog and must also be translated in the Spanish mirror.
 Keep `assets/data/collaborations.es.json` synchronized by record ID when adding
 or editing content. Organization and project names remain unchanged; descriptive
 content is localized, while the five board column headings stay in English.

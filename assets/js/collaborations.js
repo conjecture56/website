@@ -202,6 +202,7 @@ function renderDetails(item) {
     facts,
     ...(item.attribution ? [detailSection(t("details.attribution"), [item.attribution])] : []),
     detailSection(t(item.status === "done" ? "details.deliveredWork" : "details.availableWork"), item.workAvailable),
+    ...(item.calls?.length ? [detailSection(t("details.calls"), item.calls)] : []),
     detailSection(t("details.skills"), item.skills),
     detailSection(t("details.domains"), item.domains.map((domain) => domain.replaceAll("-", " "))),
     detailSection(t("details.beforeStarting"), item.caveats.length ? item.caveats : [t("details.noCaveats")]),
@@ -270,6 +271,7 @@ function validCollaboration(item) {
     && CONJECTURE_56_ROLES.has(item.conjecture56Role)
     && requiredArrays.every((key) => validArray(item[key]))
     && validArray(item.caveats, true)
+    && (item.calls === undefined || validArray(item.calls))
     && (item.attribution === undefined || (typeof item.attribution === "string" && item.attribution.trim()))
     && (item.entryPoint === undefined || validUrl(item.entryPoint))
     && (item.sourceUrl === undefined || validUrl(item.sourceUrl))
@@ -298,6 +300,7 @@ function validTranslation(item, translation) {
 
   return strings.every((key) => typeof translation[key] === "string" && translation[key].trim())
     && arrays.every((key) => validArray(translation[key], key === "caveats"))
+    && (translation.calls === undefined || validArray(translation.calls))
     && (item.attribution === undefined || (typeof translation.attribution === "string" && translation.attribution.trim()));
 }
 
