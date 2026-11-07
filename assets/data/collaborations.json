@@ -4,7 +4,11 @@
     "title": "Build a catalog of data collaborations",
     "organization": "Conjecture 56",
     "status": "in-progress",
-    "domains": ["collaboration-infrastructure", "data-for-good", "open-science"],
+    "domains": [
+      "collaboration-infrastructure",
+      "data-for-good",
+      "open-science"
+    ],
     "collaborationType": "public-interest-infrastructure",
     "conjecture56Role": "lead",
     "summary": "Develop a trusted catalog where people can discover concrete data projects and organizations can eventually propose work for review.",
@@ -13,7 +17,12 @@
       "Identify missing, overlapping, and potentially redundant initiatives",
       "Design a reviewed submission path for teams, labs, and organizations"
     ],
-    "skills": ["research", "data curation", "taxonomy design", "product design"],
+    "skills": [
+      "research",
+      "data curation",
+      "taxonomy design",
+      "product design"
+    ],
     "entryPoint": "https://conjecture56.org/collaborations/",
     "sourceUrl": "https://github.com/conjecture56/website/blob/main/docs/collaboration-research-guide.md",
     "lastVerified": "2026-10-12",
@@ -27,7 +36,11 @@
     "title": "Map payroll concepts across organizations",
     "organization": "IES N.º 7",
     "status": "in-progress",
-    "domains": ["semantic-interoperability", "payroll-data", "education"],
+    "domains": [
+      "semantic-interoperability",
+      "payroll-data",
+      "education"
+    ],
     "collaborationType": "student-project",
     "conjecture56Role": "curator",
     "attribution": "This student project began at IES N.º 7 before Conjecture 56 was created. That experience helped shape Conjecture 56's approach to educational and institutional collaboration.",
@@ -37,7 +50,12 @@
       "Normalize source spreadsheets through organization-specific adapters",
       "Build and evaluate an explainable candidate-ranking baseline"
     ],
-    "skills": ["Python", "data analysis", "semantic mapping", "information retrieval"],
+    "skills": [
+      "Python",
+      "data analysis",
+      "semantic mapping",
+      "information retrieval"
+    ],
     "lastVerified": "2026-10-12",
     "caveats": [
       "The current repository and proposal are not public contribution entry points.",
@@ -50,7 +68,11 @@
     "title": "Govern shared AI API access",
     "organization": "Conjecture 56",
     "status": "done",
-    "domains": ["ai-infrastructure", "access-control", "usage-governance"],
+    "domains": [
+      "ai-infrastructure",
+      "access-control",
+      "usage-governance"
+    ],
     "collaborationType": "infrastructure",
     "conjecture56Role": "lead",
     "summary": "Provide teams with individually governed model access while keeping upstream credentials protected.",
@@ -59,7 +81,12 @@
       "Added self-service usage and limit inspection",
       "Kept provider credentials server-side and documented secure client onboarding"
     ],
-    "skills": ["API gateways", "access control", "quota management", "operations"],
+    "skills": [
+      "API gateways",
+      "access control",
+      "quota management",
+      "operations"
+    ],
     "entryPoint": "https://conjecture56.org/keys/",
     "lastVerified": "2026-10-12",
     "caveats": [
@@ -109,7 +136,11 @@
     "title": "Student AI Access Pilot Program",
     "organization": "Conjecture 56",
     "status": "done",
-    "domains": ["ai-access", "education", "student-collaboration"],
+    "domains": [
+      "ai-access",
+      "education",
+      "student-collaboration"
+    ],
     "collaborationType": "student-program",
     "conjecture56Role": "lead",
     "summary": "Give students managed access to language models when they actively contribute to a project listed by Conjecture 56.",
@@ -118,7 +149,11 @@
       "Applied bounded model, daily, monthly, and request-rate limits",
       "Enabled students to inspect their own usage without exposing other keys"
     ],
-    "skills": ["LLM APIs", "responsible AI use", "project collaboration"],
+    "skills": [
+      "LLM APIs",
+      "responsible AI use",
+      "project collaboration"
+    ],
     "lastVerified": "2026-10-12",
     "caveats": [
       "The program currently serves participating students from Prácticas Profesionalizantes III at IES N.º 7 and Inteligencia Artificial at UCSE.",
@@ -127,411 +162,1085 @@
     ]
   },
   {
-    "id": "dbnomics-indec",
-    "title": "Refresh the INDEC provider",
-    "organization": "DBnomics",
+    "id": "openhands",
+    "title": "OpenHands",
+    "organization": "OpenHands",
     "status": "backlog",
-    "domains": ["economic-statistics", "data-engineering", "open-data"],
+    "domains": [
+      "software-automation",
+      "ai-agents",
+      "developer-tools"
+    ],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Extend the existing DBnomics INDEC provider with a current official statistical series from API-INDEC.",
+    "summary": "Open-source platform for AI software agents, with documented enterprise use in engineering and automation workflows.",
     "workAvailable": [
-      "Confirm the update path with DBnomics maintainers",
-      "Add one bounded API-INDEC dataset such as the basic food and total basket series",
-      "Preserve source metadata and validate the converted time series"
+      "Agent SDK and automation workflows",
+      "Agent profiles and local execution",
+      "Observability and ACP integration",
+      "End-to-end tests"
     ],
-    "skills": ["Python", "REST APIs", "time-series data", "statistical metadata"],
-    "entryPoint": "https://docs.db.nomics.world/contributing/",
-    "sourceUrl": "https://db.nomics.world/INDEC",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Python",
+      "TypeScript",
+      "AI agents",
+      "testing",
+      "observability"
+    ],
+    "calls": [
+      "Registration required: Community Call on 2026-12-03; all are welcome, but no recurring cadence is confirmed."
+    ],
+    "entryPoint": "https://github.com/OpenHands/OpenHands",
+    "sourceUrl": "https://www.openhands.dev/community",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Coordinate before implementation because the source-data pipeline is newer than the published provider data.",
-      "API-INDEC is a beta service that requires an account and attribution to INDEC.",
-      "Do not create a duplicate INDEC provider."
+      "The C3 AI case is vendor-produced; no independent deployment audit was found.",
+      "Confirm current priorities with maintainers before starting."
     ]
   },
   {
-    "id": "hot-fair",
-    "title": "Strengthen humanitarian GeoAI",
-    "organization": "Humanitarian OpenStreetMap Team",
+    "id": "argo-workflows",
+    "title": "Argo Workflows",
+    "organization": "Argo Project",
     "status": "backlog",
-    "domains": ["geospatial", "humanitarian", "computer-vision"],
+    "domains": [
+      "software-automation",
+      "workflow-orchestration",
+      "kubernetes"
+    ],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Improve fAIr, HOT's open platform for AI-assisted humanitarian mapping with human validation.",
+    "summary": "Kubernetes-native workflow engine used in production by major organizations and by Kubeflow Pipelines and Metaflow.",
     "workAvailable": [
-      "Agree on one uncovered backend area from the open testing initiative",
-      "Add focused Django API or model tests",
-      "Document local execution and coverage results"
+      "Persistence and artifact handling",
+      "Workflow security",
+      "Controller reliability",
+      "User interface improvements"
     ],
-    "skills": ["Python", "Django", "pytest", "geospatial data"],
-    "entryPoint": "https://github.com/hotosm/fAIr/blob/develop/CONTRIBUTING.md",
-    "sourceUrl": "https://github.com/hotosm/fAIr/issues/229",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "workflow engines",
+      "distributed systems"
+    ],
+    "calls": [
+      "Open and recurring: monthly community meeting with public notes and recordings."
+    ],
+    "entryPoint": "https://github.com/argoproj/argo-workflows",
+    "sourceUrl": "https://github.com/argoproj/argo-workflows#community-meetings",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Agree on the exact test slice with maintainers because the issue supports multiple contributors.",
-      "Imagery and OpenStreetMap-derived labels have separate licensing requirements.",
-      "The contribution guide prohibits AI tools on issues labeled good first issue."
+      "Large backlog; agree on scope with maintainers before coding."
     ]
   },
   {
-    "id": "trufi-emissions",
-    "title": "Estimate public transport emissions",
-    "organization": "Trufi Association",
+    "id": "kubeflow",
+    "title": "Kubeflow",
+    "organization": "Kubeflow",
     "status": "backlog",
-    "domains": ["mobility", "public-transport", "climate"],
-    "collaborationType": "volunteering",
-    "conjecture56Role": "curator",
-    "summary": "Build a reproducible analysis of public-transport emissions from an agreed GTFS feed.",
-    "workAvailable": [
-      "Select one GTFS feed with Trufi",
-      "Produce route and trip emissions tables with gtfs2emis",
-      "Document fleet assumptions, validation results, and methodology"
+    "domains": [
+      "software-automation",
+      "mlops",
+      "kubernetes",
+      "ai-agents"
     ],
-    "skills": ["R", "GTFS", "geospatial data", "emissions modeling"],
-    "entryPoint": "https://www.trufi-association.org/volunteering/task-list/r-stats-developer/",
-    "sourceUrl": "https://www.trufi-association.org/volunteering/",
-    "lastVerified": "2026-10-12",
-    "caveats": [
-      "Confirm the feed, repository, and acceptance criteria before starting.",
-      "OpenStreetMap-derived data requires ODbL attribution and share-alike compliance.",
-      "Volunteers must accept the Trufi code of conduct."
-    ]
-  },
-  {
-    "id": "openaq-measurement-revisions",
-    "title": "Detect revised air-quality measurements",
-    "organization": "OpenAQ",
-    "status": "backlog",
-    "domains": ["air-quality", "data-engineering", "data-quality"],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Help detect measurements that change after ingestion without silently overwriting canonical observations.",
+    "summary": "Machine learning platform for Kubernetes, adopted by research and enterprise teams for pipelines, training, and model operations.",
     "workAvailable": [
-      "Agree on revision semantics with maintainers",
-      "Create a focused design and test spike",
-      "Implement approved detection, diagnostics, and integration tests"
+      "Pipelines and Trainer",
+      "Katib and SDK",
+      "MCP Server",
+      "Agents Working Group"
     ],
-    "skills": ["Python", "PostgreSQL", "ETL", "pytest"],
-    "entryPoint": "https://github.com/openaq/openaq-ingestor/issues/18",
-    "sourceUrl": "https://openaq.org/contact/",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Python",
+      "Kubernetes",
+      "MLOps",
+      "Go",
+      "machine learning"
+    ],
+    "calls": [
+      "Open and recurring: multiple public meetings with LFX/Zoom registration, notes, and recordings."
+    ],
+    "entryPoint": "https://github.com/kubeflow",
+    "sourceUrl": "https://www.kubeflow.org/docs/about/community/#kubeflow-community-meetings",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Maintainers have not finalized storage semantics, so approval is required before implementation.",
-      "The openaq-ingestor repository does not currently expose a license file; clarify contribution terms first.",
-      "OpenAQ data carries attribution and provider-specific terms."
+      "Exact cadence lives in the LFX calendar, not the static community page."
     ]
   },
   {
-    "id": "robotoff-inference-notebook",
-    "title": "Document nutrition-table inference",
-    "organization": "Open Food Facts",
+    "id": "tekton-pipelines",
+    "title": "Tekton Pipelines",
+    "organization": "Tekton",
     "status": "backlog",
-    "domains": ["food-data", "computer-vision", "machine-learning"],
+    "domains": [
+      "software-automation",
+      "ci-cd",
+      "kubernetes"
+    ],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Create a reproducible Robotoff notebook and focused guide for nutrition-table detection workflows.",
+    "summary": "Cloud-native CI/CD framework used at scale and as the foundation of OpenShift Pipelines and Konflux.",
     "workAvailable": [
-      "Agree on a narrow nutrition-table scope for issue 1367",
-      "Cover single-image and directory inference workflows",
-      "Add validation instructions and focused documentation"
+      "Remote artifact transfer",
+      "Scalability",
+      "Multi-tenant security",
+      "Kubernetes compatibility"
     ],
-    "skills": ["Python", "Jupyter", "computer vision", "technical writing"],
-    "entryPoint": "https://github.com/openfoodfacts/robotoff/issues/1367",
-    "sourceUrl": "https://openfoodfacts.github.io/robotoff/introduction/contributing/",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "CI/CD",
+      "security"
+    ],
+    "calls": [
+      "Open and recurring: weekly community meeting alternating regional times."
+    ],
+    "entryPoint": "https://github.com/tektoncd/pipeline",
+    "sourceUrl": "https://github.com/tektoncd/community/blob/main/working-groups.md",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Confirm the narrowed scope because the full issue covers too many components for one work unit.",
-      "Local development requires Git LFS and a Docker-backed database environment.",
-      "Robotoff is licensed under AGPL-3.0-only."
+      "Some documentation uses legacy timezone labels; confirm local time in the calendar."
     ]
   },
   {
-    "id": "fink-alert-density",
-    "title": "Map astronomical alert density",
-    "organization": "Fink",
+    "id": "apache-beam",
+    "title": "Apache Beam",
+    "organization": "Apache Software Foundation",
     "status": "backlog",
-    "domains": ["astronomy", "stream-processing", "geospatial"],
+    "domains": [
+      "software-automation",
+      "data-pipelines",
+      "stream-processing"
+    ],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Unified batch and streaming pipeline model used by large-scale data platforms and MLOps teams.",
+    "workAvailable": [
+      "Change data capture",
+      "Connectors and SQL",
+      "Portability and SchemaTransform",
+      "Python and Go SDKs"
+    ],
+    "skills": [
+      "Java",
+      "Python",
+      "Go",
+      "data pipelines",
+      "distributed processing"
+    ],
+    "calls": [
+      "No verified recurring call: public calendar and events exist, but no general recurring meeting is clearly documented."
+    ],
+    "entryPoint": "https://github.com/apache/beam",
+    "sourceUrl": "https://beam.apache.org/community/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Coordination is mainly through the mailing list; confirm priorities there."
+    ]
+  },
+  {
+    "id": "backstage",
+    "title": "Backstage",
+    "organization": "Backstage",
+    "status": "backlog",
+    "domains": [
+      "software-automation",
+      "developer-portal",
+      "platform-engineering"
+    ],
+    "collaborationType": "open-source",
+    "conjecture56Role": "curator",
+    "summary": "Developer portal and platform-engineering framework used to catalog services, infrastructure, and automation.",
+    "workAvailable": [
+      "MCP SDK integration",
+      "Agent Skills",
+      "Software catalog and authentication",
+      "UI and accessibility"
+    ],
+    "skills": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "platform engineering"
+    ],
+    "calls": [
+      "Open and recurring: monthly community session with a public agenda and recordings."
+    ],
+    "entryPoint": "https://github.com/backstage/backstage",
+    "sourceUrl": "https://github.com/backstage/community/tree/main/backstage-community-sessions",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "The static roadmap is out of date; use the pinned 2026 issue and active issues."
+    ]
+  },
+  {
+    "id": "lm-evaluation-harness",
+    "title": "LM Evaluation Harness",
+    "organization": "EleutherAI",
+    "status": "backlog",
+    "domains": [
+      "data-ml",
+      "llm-evaluation",
+      "benchmarking",
+      "reproducibility"
+    ],
     "collaborationType": "open-science",
     "conjecture56Role": "curator",
-    "summary": "Build and test bounded HEALPix aggregates that show recent astronomical alert density.",
+    "summary": "Standard open harness for reproducible language-model evaluation, including multilingual benchmarks and backend integrations.",
     "workAvailable": [
-      "Confirm the target repository and output schema for issue 1143",
-      "Compute static alert-density aggregates for 24, 48, and 96 hour windows",
-      "Add focused tests and document required sample data"
+      "Multilingual evaluations",
+      "Reasoning-model support",
+      "Backend integrations",
+      "Metrics and regression tests",
+      "Reproducibility"
     ],
-    "skills": ["Python", "HEALPix", "time-series aggregation", "Apache Spark"],
-    "entryPoint": "https://github.com/astrolabsoftware/fink-broker/issues/1143",
-    "sourceUrl": "https://doc.lsst.fink-broker.org/contributing/",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Python",
+      "LLM evaluation",
+      "benchmarking",
+      "statistics"
+    ],
+    "calls": [
+      "No verified recurring project call: coordination happens through GitHub and Discord."
+    ],
+    "entryPoint": "https://github.com/EleutherAI/lm-evaluation-harness",
+    "sourceUrl": "https://github.com/EleutherAI/lm-evaluation-harness",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Confirm ownership because the issue may span broker, statistics, and portal repositories.",
-      "The complete development environment includes Spark, Kafka, HBase, and large container images.",
-      "Astronomy expertise may be needed to validate scientific semantics."
+      "Prompt and backend choices can change scores and rankings; reproducibility does not guarantee validity."
     ]
   },
   {
-    "id": "open-climate-fix-weather-units",
-    "title": "Correct weather input units",
-    "organization": "Open Climate Fix",
+    "id": "mlcommons-croissant",
+    "title": "MLCommons Croissant",
+    "organization": "MLCommons",
     "status": "backlog",
-    "domains": ["climate", "solar-energy", "forecasting"],
+    "domains": [
+      "data-ml",
+      "dataset-metadata",
+      "interoperability",
+      "open-data"
+    ],
+    "collaborationType": "open-standard",
+    "conjecture56Role": "curator",
+    "summary": "Metadata standard that makes machine-learning datasets discoverable and loadable across major catalogs and frameworks.",
+    "workAvailable": [
+      "Specification 1.1",
+      "Security fixes",
+      "Loaders and validators",
+      "GeoCroissant and BioCroissant",
+      "RAI metadata and MCP"
+    ],
+    "skills": [
+      "Python",
+      "JSON-LD",
+      "metadata",
+      "data validation"
+    ],
+    "calls": [
+      "Registration required: weekly Wednesday working-group meeting; registration and Google authentication are required."
+    ],
+    "entryPoint": "https://github.com/mlcommons/croissant",
+    "sourceUrl": "https://mlcommons.org/working-groups/data/croissant/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Access is authenticated; silent participation is not explicitly guaranteed for ordinary registrants."
+    ]
+  },
+  {
+    "id": "xarray",
+    "title": "Xarray",
+    "organization": "Xarray",
+    "status": "backlog",
+    "domains": [
+      "data-ml",
+      "scientific-computing",
+      "geospatial",
+      "climate-data"
+    ],
+    "collaborationType": "open-science",
+    "conjecture56Role": "curator",
+    "summary": "Core library for labeled multidimensional arrays, widely used in climate, geoscience, and scientific data workflows.",
+    "workAvailable": [
+      "Indexing and alignment",
+      "Zarr interoperability",
+      "DataTree",
+      "Performance and typing",
+      "Documentation and pandas/Dask compatibility"
+    ],
+    "skills": [
+      "Python",
+      "NumPy",
+      "pandas",
+      "Dask",
+      "scientific computing"
+    ],
+    "calls": [
+      "Open and recurring: biweekly developer meeting. Listeners are explicitly welcome."
+    ],
+    "entryPoint": "https://github.com/pydata/xarray",
+    "sourceUrl": "https://docs.xarray.dev/en/stable/contribute/developers-meeting.html",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "The base roadmap is dated 2021; use current issues to choose work."
+    ]
+  },
+  {
+    "id": "zarr-python",
+    "title": "Zarr and Zarr-Python",
+    "organization": "Zarr",
+    "status": "backlog",
+    "domains": [
+      "data-ml",
+      "scientific-computing",
+      "cloud-storage",
+      "climate-data"
+    ],
+    "collaborationType": "open-science",
+    "conjecture56Role": "curator",
+    "summary": "Open storage format and Python implementation for large, chunked scientific arrays in cloud and high-performance environments.",
+    "workAvailable": [
+      "Specification and ZEPs",
+      "Cloud storage and authentication",
+      "Performance",
+      "Interoperability",
+      "Python implementation"
+    ],
+    "skills": [
+      "Python",
+      "cloud storage",
+      "chunked arrays",
+      "scientific computing"
+    ],
+    "calls": [
+      "Open and recurring: biweekly community and Zarr-Python meetings, open to all."
+    ],
+    "entryPoint": "https://github.com/zarr-developers/zarr-python",
+    "sourceUrl": "https://zarr.dev/community-calls/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "No explicit silent-listener policy; visible meeting notes lag the current calendar."
+    ]
+  },
+  {
+    "id": "openlineage",
+    "title": "OpenLineage",
+    "organization": "OpenLineage",
+    "status": "backlog",
+    "domains": [
+      "data-ml",
+      "data-lineage",
+      "metadata",
+      "data-engineering"
+    ],
+    "collaborationType": "open-standard",
+    "conjecture56Role": "curator",
+    "summary": "Open standard for collecting data lineage and operational metadata across pipelines and analytics tools.",
+    "workAvailable": [
+      "Integrations with Airflow, Spark, dbt, and Flink",
+      "Event specification",
+      "Compatibility",
+      "Metadata consumers"
+    ],
+    "skills": [
+      "Python",
+      "Java",
+      "data lineage",
+      "event schemas"
+    ],
+    "calls": [
+      "Open and recurring: monthly meeting on the third Wednesday, with RSVP, notes, and recordings."
+    ],
+    "entryPoint": "https://github.com/OpenLineage/OpenLineage",
+    "sourceUrl": "https://openlineage.io/meetings",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Impact is mainly enabling infrastructure rather than a final application."
+    ]
+  },
+  {
+    "id": "openmetadata",
+    "title": "OpenMetadata",
+    "organization": "OpenMetadata",
+    "status": "backlog",
+    "domains": [
+      "data-ml",
+      "data-catalog",
+      "data-governance",
+      "metadata"
+    ],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Improve Quartz solar forecasts by making Open-Meteo variable mapping and units explicit and testable.",
+    "summary": "Open platform for data catalog, quality, lineage, and governance across organizational data assets.",
     "workAvailable": [
-      "Request assignment and confirm the scope of issue 375",
-      "Correct temperature, wind, and precipitation units",
-      "Replace positional mapping with name-based mapping and add regression tests"
+      "Catalog and quality",
+      "Governance and lineage",
+      "Connectors",
+      "Search"
     ],
-    "skills": ["Python", "NumPy", "pandas", "pytest", "meteorological data"],
-    "entryPoint": "https://github.com/openclimatefix/open-source-quartz-solar-forecast/issues/375",
-    "sourceUrl": "https://www.openclimatefix.org/community",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Python",
+      "Java",
+      "TypeScript",
+      "data governance",
+      "metadata"
+    ],
+    "calls": [
+      "Open and recurring: biweekly meeting with public recordings."
+    ],
+    "entryPoint": "https://github.com/open-metadata/OpenMetadata",
+    "sourceUrl": "https://docs.open-metadata.org/latest/developers/open-source-community",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "The issue is not labeled contributions-welcome, so obtain assignment before coding.",
-      "Longwave-radiation handling remains a maintainer decision.",
-      "Contributors remain responsible for understanding and reviewing any AI-assisted work."
+      "Adoption figures and case studies are project- or vendor-reported."
     ]
   },
   {
-    "id": "data-commons-indec-pilot",
-    "title": "Pilot an INDEC data import",
-    "organization": "Data Commons",
+    "id": "openml",
+    "title": "OpenML",
+    "organization": "OpenML",
     "status": "backlog",
-    "domains": ["economic-statistics", "knowledge-graphs", "open-data"],
-    "collaborationType": "data-contribution",
+    "domains": [
+      "data-ml",
+      "machine-learning",
+      "benchmarking",
+      "open-data"
+    ],
+    "collaborationType": "open-science",
     "conjecture56Role": "curator",
-    "summary": "Propose and implement one missing INDEC table as a provenance-rich Data Commons pilot import.",
+    "summary": "Open platform for sharing datasets, tasks, and reproducible machine-learning experiments.",
     "workAvailable": [
-      "Check existing coverage and submit an official data request",
-      "Map one accepted table to entities and statistical variables",
-      "Add a reproducible transformation, fixtures, tests, provenance, and license metadata"
+      "Backend and frontend",
+      "Client libraries and APIs",
+      "User experience",
+      "Datasets and integrations"
     ],
-    "skills": ["Python", "data modeling", "knowledge graphs", "statistical metadata"],
-    "entryPoint": "https://docs.datacommons.org/contributing/",
-    "sourceUrl": "https://github.com/datacommonsorg/data",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Python",
+      "R",
+      "Java",
+      "machine learning",
+      "web development"
+    ],
+    "calls": [
+      "No verified recurring call: the project organizes occasional hackathons."
+    ],
+    "entryPoint": "https://github.com/openml",
+    "sourceUrl": "https://www.openml.org/meet",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Do not build the import until the official data request is accepted.",
-      "A Google Contributor License Agreement is required.",
-      "The source dataset must satisfy the Data Commons licensing policy."
+      "Coordinate large changes in an issue before implementing them."
     ]
   },
   {
-    "id": "mapyourgrid-argentina",
-    "title": "Map Argentina's transmission grid",
-    "organization": "MapYourGrid",
+    "id": "scipy",
+    "title": "SciPy",
+    "organization": "SciPy",
     "status": "backlog",
-    "domains": ["energy", "geospatial", "openstreetmap"],
-    "collaborationType": "volunteering",
+    "domains": [
+      "data-ml",
+      "scientific-computing",
+      "numerical-analysis",
+      "open-source"
+    ],
+    "collaborationType": "open-science",
     "conjecture56Role": "curator",
-    "summary": "Improve open power-grid coverage through a coordinated Argentina mapping and quality-assurance sprint.",
+    "summary": "Foundational scientific Python library used across numerical computing, signal processing, optimization, and machine learning.",
     "workAvailable": [
-      "Agree on one province or transmission corridor with the MapYourGrid community",
-      "Inventory incomplete lines and quality findings using verifiable sources",
-      "Publish reviewed OpenStreetMap changesets and a before-and-after quality note"
+      "Statistics and optimization",
+      "Signal processing",
+      "Linear algebra",
+      "Performance",
+      "Numerical compatibility"
     ],
-    "skills": ["GIS", "JOSM", "OpenStreetMap tagging", "satellite imagery"],
-    "entryPoint": "https://mapyourgrid.org/starter-kit/",
-    "sourceUrl": "https://github.com/open-energy-transition/MapYourGrid",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Python",
+      "NumPy",
+      "numerical methods",
+      "scientific computing"
+    ],
+    "calls": [
+      "No recurring call: community meetings were cancelled in August 2025."
+    ],
+    "entryPoint": "https://github.com/scipy/scipy",
+    "sourceUrl": "https://scipy.org/community/",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Register the proposed regional scope through the project community before editing.",
-      "Do not copy incompatible maps or restricted infrastructure data.",
-      "OpenStreetMap data is governed by the ODbL and local mapping conventions."
+      "Do not rely on older pages that still announce the cancelled meetings."
     ]
   },
   {
-    "id": "pypsa-earth-country-filter",
-    "title": "Filter custom power plants by country",
-    "organization": "PyPSA-Earth",
+    "id": "opentelemetry",
+    "title": "OpenTelemetry",
+    "organization": "OpenTelemetry",
     "status": "backlog",
-    "domains": ["energy-systems", "data-engineering", "geospatial"],
+    "domains": [
+      "sysadmin-infrastructure",
+      "observability",
+      "ai-agents",
+      "telemetry"
+    ],
+    "collaborationType": "open-standard",
+    "conjecture56Role": "curator",
+    "summary": "Vendor-neutral observability standard and tooling for traces, metrics, logs, and AI-agent instrumentation.",
+    "workAvailable": [
+      "Collector and SDKs",
+      "Profiling and logs",
+      "Control plane",
+      "Semantic conventions for AI and agents"
+    ],
+    "skills": [
+      "Go",
+      "Java",
+      "Python",
+      "observability",
+      "distributed tracing"
+    ],
+    "calls": [
+      "Open and recurring: multiple SIG calls. The GenAI SIG meets weekly and accepts listeners."
+    ],
+    "entryPoint": "https://github.com/open-telemetry",
+    "sourceUrl": "https://github.com/open-telemetry/community#special-interest-groups",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "The ecosystem is fragmented; choose one SIG before proposing work."
+    ]
+  },
+  {
+    "id": "kserve",
+    "title": "KServe",
+    "organization": "KServe",
+    "status": "backlog",
+    "domains": [
+      "sysadmin-infrastructure",
+      "model-serving",
+      "kubernetes",
+      "ai-infrastructure"
+    ],
+    "collaborationType": "open-infrastructure",
+    "conjecture56Role": "curator",
+    "summary": "Kubernetes-native model-serving platform used in production for predictive and generative AI workloads.",
+    "workAvailable": [
+      "Generative serving",
+      "Runtimes",
+      "Canary releases",
+      "KV-cache offloading",
+      "Observability",
+      "Confidential execution"
+    ],
+    "skills": [
+      "Go",
+      "Python",
+      "Kubernetes",
+      "model serving",
+      "Knative"
+    ],
+    "calls": [
+      "Open and recurring: biweekly public working group."
+    ],
+    "entryPoint": "https://github.com/kserve/kserve",
+    "sourceUrl": "https://kserve.github.io/website/docs/community/get-involved",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Requires Kubernetes and usually Go or Python; there is no single roadmap as clear as Flux's."
+    ]
+  },
+  {
+    "id": "vllm",
+    "title": "vLLM",
+    "organization": "vLLM",
+    "status": "backlog",
+    "domains": [
+      "sysadmin-infrastructure",
+      "llm-inference",
+      "gpu-infrastructure",
+      "model-serving"
+    ],
+    "collaborationType": "open-infrastructure",
+    "conjecture56Role": "curator",
+    "summary": "High-throughput inference engine for large language models, used in production services and open-model deployments.",
+    "workAvailable": [
+      "Distributed serving",
+      "Routing",
+      "KV cache",
+      "Quantization",
+      "Multimodality",
+      "Kernels and hardware support"
+    ],
+    "skills": [
+      "Python",
+      "CUDA",
+      "distributed systems",
+      "LLM inference",
+      "performance engineering"
+    ],
+    "calls": [
+      "Open and recurring: office hours every two weeks, open and recorded."
+    ],
+    "entryPoint": "https://github.com/vllm-project/vllm",
+    "sourceUrl": "https://vllm.ai/office-hours",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Full development usually requires GPUs and expensive CI; AI-assisted contributions must be disclosed under project policy."
+    ]
+  },
+  {
+    "id": "opencost",
+    "title": "OpenCost",
+    "organization": "OpenCost",
+    "status": "backlog",
+    "domains": [
+      "sysadmin-infrastructure",
+      "finops",
+      "kubernetes",
+      "ai-infrastructure"
+    ],
+    "collaborationType": "open-infrastructure",
+    "conjecture56Role": "curator",
+    "summary": "Open cost-monitoring platform for Kubernetes and AI infrastructure, with emerging inference-cost coverage.",
+    "workAvailable": [
+      "AI and inference costing",
+      "Data Model 2.0",
+      "Exporters and plugins",
+      "Security",
+      "MCP integration"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "FinOps",
+      "Prometheus",
+      "cloud cost management"
+    ],
+    "calls": [
+      "Open and recurring: every two weeks, alternating regions."
+    ],
+    "entryPoint": "https://github.com/opencost/opencost",
+    "sourceUrl": "https://opencost.io/blog/opencost-community-meeting-schedule",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Adopter list is relatively short and self-reported; AI costing is still maturing."
+    ]
+  },
+  {
+    "id": "flux",
+    "title": "Flux",
+    "organization": "Flux",
+    "status": "backlog",
+    "domains": [
+      "sysadmin-infrastructure",
+      "gitops",
+      "kubernetes",
+      "supply-chain"
+    ],
+    "collaborationType": "open-infrastructure",
+    "conjecture56Role": "curator",
+    "summary": "GitOps toolkit for continuous delivery and reproducible Kubernetes infrastructure.",
+    "workAvailable": [
+      "GitOps workflows",
+      "Workload identity",
+      "OCI and OIDC",
+      "OpenTelemetry tracing",
+      "Advanced dependencies"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "GitOps",
+      "continuous delivery"
+    ],
+    "calls": [
+      "Open and recurring: weekly meeting and bug scrubs, public and recorded."
+    ],
+    "entryPoint": "https://github.com/fluxcd",
+    "sourceUrl": "https://fluxcd.io/community/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Large changes require RFCs and API compatibility review."
+    ]
+  },
+  {
+    "id": "kyverno",
+    "title": "Kyverno",
+    "organization": "Kyverno",
+    "status": "backlog",
+    "domains": [
+      "sysadmin-infrastructure",
+      "policy-as-code",
+      "security",
+      "kubernetes"
+    ],
+    "collaborationType": "open-infrastructure",
+    "conjecture56Role": "curator",
+    "summary": "Policy-as-code engine for Kubernetes security, compliance, and supply-chain controls.",
+    "workAvailable": [
+      "Policy-as-code",
+      "CEL policies",
+      "Image verification",
+      "Supply-chain security",
+      "API migration"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "policy-as-code",
+      "security"
+    ],
+    "calls": [
+      "Open and recurring: weekly community meeting; joining the Google Group is required."
+    ],
+    "entryPoint": "https://github.com/kyverno/kyverno",
+    "sourceUrl": "https://kyverno.io/community/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Joining the Google Group is required for meeting invitations."
+    ]
+  },
+  {
+    "id": "falco",
+    "title": "Falco",
+    "organization": "Falco",
+    "status": "backlog",
+    "domains": [
+      "sysadmin-infrastructure",
+      "runtime-security",
+      "ebpf",
+      "kubernetes"
+    ],
+    "collaborationType": "open-infrastructure",
+    "conjecture56Role": "curator",
+    "summary": "Runtime security project for detecting anomalous behavior in containers, Kubernetes, and Linux hosts.",
+    "workAvailable": [
+      "eBPF",
+      "Rules",
+      "Plugins",
+      "Distroless images",
+      "Metrics",
+      "Supply-chain security"
+    ],
+    "skills": [
+      "C++",
+      "eBPF",
+      "Linux",
+      "Kubernetes",
+      "runtime security"
+    ],
+    "calls": [
+      "Open and recurring: biweekly meeting with a public calendar."
+    ],
+    "entryPoint": "https://github.com/falcosecurity/falco",
+    "sourceUrl": "https://falco.org/community/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Engine work requires Linux, eBPF, and C++; rules and documentation are easier entry points. The visible roadmap was last updated in 2024."
+    ]
+  },
+  {
+    "id": "modelbench-ailuminate",
+    "title": "ModelBench and AILuminate",
+    "organization": "MLCommons",
+    "status": "backlog",
+    "domains": [
+      "applied-research",
+      "ai-safety",
+      "benchmarking",
+      "ai-governance"
+    ],
+    "collaborationType": "open-science",
+    "conjecture56Role": "curator",
+    "summary": "Open benchmarks and tooling for evaluating AI safety, jailbreaks, and reliability.",
+    "workAvailable": [
+      "Safety 1.2.1",
+      "Jailbreak benchmarks",
+      "Reports",
+      "Annotations",
+      "Agent benchmarks"
+    ],
+    "skills": [
+      "Python",
+      "AI safety",
+      "benchmarking",
+      "statistics"
+    ],
+    "calls": [
+      "Registration required: weekly AI Risk and Reliability meeting; registration and approval are required."
+    ],
+    "entryPoint": "https://github.com/mlcommons/modelbench",
+    "sourceUrl": "https://mlcommons.org/working-groups/ai-risk-reliability/ai-risk-reliability/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "AILuminate does not certify that a system is safe; it measures specific risks."
+    ]
+  },
+  {
+    "id": "medperf",
+    "title": "MedPerf",
+    "organization": "MLCommons",
+    "status": "backlog",
+    "domains": [
+      "applied-research",
+      "federated-learning",
+      "healthcare",
+      "privacy"
+    ],
+    "collaborationType": "open-science",
+    "conjecture56Role": "curator",
+    "summary": "Open platform for federated evaluation of medical AI models without centralizing clinical data.",
+    "workAvailable": [
+      "Federated evaluation",
+      "Audit-safe metadata",
+      "Installation",
+      "Benchmarks",
+      "User experience"
+    ],
+    "skills": [
+      "Python",
+      "federated learning",
+      "healthcare data",
+      "privacy"
+    ],
+    "calls": [
+      "No verified recurring call: the Medical group accepts registrations but has no upcoming recurring meeting published."
+    ],
+    "entryPoint": "https://github.com/mlcommons/medperf",
+    "sourceUrl": "https://mlcommons.org/working-groups/data/medical/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Clinical use is research-stage; no patient-outcome improvement is demonstrated."
+    ]
+  },
+  {
+    "id": "openmrs",
+    "title": "OpenMRS",
+    "organization": "OpenMRS",
+    "status": "backlog",
+    "domains": [
+      "applied-research",
+      "global-health",
+      "electronic-health-records",
+      "interoperability"
+    ],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Implement country-aware filtering for custom power-plant inputs in reproducible energy-system models.",
+    "summary": "Open electronic medical record platform deployed in low-resource health systems and national programs.",
     "workAvailable": [
-      "Confirm country-key semantics on issue 1352 or a developer call",
-      "Add filtering to the power-plant build workflow",
-      "Add single-country and multi-country regression fixtures and documentation"
+      "Medical records",
+      "Interoperability",
+      "QA",
+      "Modules",
+      "Documentation",
+      "National deployments"
     ],
-    "skills": ["Python", "pandas", "pytest", "Snakemake", "energy data"],
-    "entryPoint": "https://github.com/pypsa-meets-earth/pypsa-earth#how-to-get-involved",
-    "sourceUrl": "https://github.com/pypsa-meets-earth/pypsa-earth/issues/1352",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Java",
+      "JavaScript",
+      "health informatics",
+      "interoperability"
+    ],
+    "calls": [
+      "Open and recurring: weekly Squads Call. Listeners are explicitly welcome."
+    ],
+    "entryPoint": "https://github.com/openmrs",
+    "sourceUrl": "https://openmrs.org/get-involved/",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "The issue remains unassigned and help-wanted but is older than the current development cycle; reconfirm it before coding.",
-      "Code is AGPL-3.0-or-later and pull requests require explicit licensing consent.",
-      "Use the project's Snakemake workflow and testing conventions."
+      "National deployments require domain and health-informatics context."
     ]
   },
   {
-    "id": "open-terms-trackers",
-    "title": "Restore broken terms trackers",
-    "organization": "Open Terms Archive",
+    "id": "ohdsi-atlas",
+    "title": "OHDSI ATLAS",
+    "organization": "OHDSI",
     "status": "backlog",
-    "domains": ["web-archiving", "data-quality", "digital-rights"],
+    "domains": [
+      "applied-research",
+      "health-data",
+      "observational-research",
+      "omop"
+    ],
+    "collaborationType": "open-science",
+    "conjecture56Role": "curator",
+    "summary": "Open application for observational health research over federated OMOP data.",
+    "workAvailable": [
+      "ATLAS 3",
+      "Cohorts",
+      "Analysis",
+      "User experience",
+      "Vocabularies",
+      "OMOP interoperability"
+    ],
+    "skills": [
+      "Java",
+      "SQL",
+      "R",
+      "OMOP",
+      "observational research"
+    ],
+    "calls": [
+      "Open and recurring: weekly community call, open and recorded; ATLAS also has its own workgroup."
+    ],
+    "entryPoint": "https://github.com/OHDSI/Atlas",
+    "sourceUrl": "https://www.ohdsi.org/ohdsi-community-calls/",
+    "lastVerified": "2026-11-07",
+    "caveats": [
+      "Observational evidence does not establish causality."
+    ]
+  },
+  {
+    "id": "opentripplanner",
+    "title": "OpenTripPlanner",
+    "organization": "OpenTripPlanner",
+    "status": "backlog",
+    "domains": [
+      "applied-research",
+      "public-transport",
+      "routing",
+      "gtfs"
+    ],
     "collaborationType": "open-source",
     "conjecture56Role": "curator",
-    "summary": "Repair a bounded batch of declarations that no longer track terms or policy documents correctly.",
+    "summary": "Open multimodal journey-planning platform used by public transport agencies.",
     "workAvailable": [
-      "Self-assign three to five selector or structure-change issues",
-      "Update URLs and selection rules while preserving prior declarations",
-      "Run repeat-fetch validation and submit small reviewable pull requests"
+      "Multimodal routing",
+      "GTFS",
+      "Accessibility",
+      "Real-time data",
+      "Performance",
+      "Roadmap governance"
     ],
-    "skills": ["JSON", "CSS selectors", "browser inspection", "data provenance"],
-    "entryPoint": "https://github.com/OpenTermsArchive/contrib-declarations/blob/main/CONTRIBUTING.md",
-    "sourceUrl": "https://github.com/OpenTermsArchive/contrib-declarations/issues/4078",
-    "lastVerified": "2026-10-12",
+    "skills": [
+      "Java",
+      "GTFS",
+      "routing",
+      "public transport",
+      "geospatial data"
+    ],
+    "calls": [
+      "Open and recurring: development meetings twice a week and a monthly product meeting; access is documented in governance."
+    ],
+    "entryPoint": "https://github.com/opentripplanner/OpenTripPlanner",
+    "sourceUrl": "https://docs.opentripplanner.org/en/latest/Governance/",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Avoid access-blocked or timeout cases unless maintainers confirm a contributor-fixable approach.",
-      "Declarations use EUPL-1.2 and generated versions use ODC-BY 1.0.",
-      "Historical declarations must be preserved with correct validity metadata."
+      "Contributions require two approvals from different organizations; agree on scope first."
     ]
   },
   {
-    "id": "opensanctions-tag-taxonomy",
-    "title": "Refine dataset tag taxonomy",
-    "organization": "OpenSanctions",
+    "id": "open-food-facts-robotoff",
+    "title": "Open Food Facts Robotoff",
+    "organization": "Open Food Facts",
     "status": "backlog",
-    "domains": ["sanctions-data", "metadata", "data-quality"],
-    "collaborationType": "open-source",
-    "conjecture56Role": "curator",
-    "summary": "Migrate one agreed dataset-tag family and improve consistency checks and metadata documentation.",
-    "workAvailable": [
-      "Discuss issue 5908 and agree on one migration slice",
-      "Update tags across a bounded set of datasets",
-      "Add consistency checks and validate generated metadata"
+    "domains": [
+      "applied-research",
+      "food-data",
+      "computer-vision",
+      "open-data"
     ],
-    "skills": ["Python", "YAML", "taxonomy design", "data-quality testing"],
-    "entryPoint": "https://www.opensanctions.org/docs/opensource/contributing/",
-    "sourceUrl": "https://github.com/opensanctions/opensanctions/issues/5908",
-    "lastVerified": "2026-10-12",
+    "collaborationType": "open-data",
+    "conjecture56Role": "curator",
+    "summary": "Open Food Facts service that extracts and validates food-product information for public health and consumer apps.",
+    "workAvailable": [
+      "OCR",
+      "Information extraction",
+      "Classification",
+      "Data quality",
+      "API",
+      "Human review"
+    ],
+    "skills": [
+      "Python",
+      "computer vision",
+      "OCR",
+      "NLP",
+      "data quality"
+    ],
+    "calls": [
+      "Open and recurring: first Tuesday of each month via public Google Meet."
+    ],
+    "entryPoint": "https://github.com/openfoodfacts/robotoff",
+    "sourceUrl": "https://openfoodfacts.github.io/robotoff/",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "The issue is explicitly marked for discussion; do not perform a blind bulk edit.",
-      "Contributors must confirm they have the right to submit all included material.",
-      "Code is MIT, while published data and vendored sources have separate licensing terms."
+      "The page calls the meeting weekly, but the published rule is monthly."
     ]
   },
   {
-    "id": "common-voice-argentine-spanish",
-    "title": "Improve Argentine Spanish speech data",
-    "organization": "Mozilla Common Voice",
+    "id": "hot-tasking-manager",
+    "title": "HOT Tasking Manager",
+    "organization": "Humanitarian OpenStreetMap Team",
     "status": "backlog",
-    "domains": ["speech-data", "language-data", "data-quality"],
-    "collaborationType": "community-data",
-    "conjecture56Role": "curator",
-    "summary": "Run a coordinated sentence, recording, and validation sprint for Argentine Spanish speech data.",
-    "workAvailable": [
-      "Confirm the locale and release window with the Common Voice community",
-      "Contribute and review an agreed number of original or public-domain sentences and clips",
-      "Publish contribution counts, provenance, and quality-review methodology"
+    "domains": [
+      "applied-research",
+      "humanitarian",
+      "geospatial",
+      "openstreetmap"
     ],
-    "skills": ["Argentine Spanish", "speech-data QA", "community facilitation", "data provenance"],
-    "entryPoint": "https://commonvoice.mozilla.org/en/write",
-    "sourceUrl": "https://common-voice.github.io/community-playbook/",
-    "lastVerified": "2026-10-12",
+    "collaborationType": "open-data",
+    "conjecture56Role": "curator",
+    "summary": "Humanitarian mapping coordination platform used by relief organizations and open mapping communities.",
+    "workAvailable": [
+      "Mapping coordination",
+      "Validation",
+      "User experience",
+      "Performance",
+      "Sandbox"
+    ],
+    "skills": [
+      "Python",
+      "JavaScript",
+      "geospatial",
+      "humanitarian mapping",
+      "UX"
+    ],
+    "calls": [
+      "Confirmation required: monthly open meetings existed, but the available source is old; confirm the current calendar."
+    ],
+    "entryPoint": "https://github.com/hotosm/tasking-manager",
+    "sourceUrl": "https://docs.hotosm.org/become-a-contributor",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "Coordinate the exact locale and dataset release cutoff before starting.",
-      "Submitted text must be original or demonstrably public domain.",
-      "Age, consent, and supervision requirements apply to participants."
+      "The available meeting source is from 2023; confirm it is still active."
     ]
   },
   {
-    "id": "loculus-ingest-regressions",
-    "title": "Add Loculus ingest regression tests",
-    "organization": "Loculus",
+    "id": "pypsa",
+    "title": "PyPSA",
+    "organization": "PyPSA",
     "status": "backlog",
-    "domains": ["pathogen-genomics", "data-ingestion", "testing"],
-    "collaborationType": "open-source",
-    "conjecture56Role": "curator",
-    "summary": "Add a narrow regression-test slice for pathogen-sequence ingestion after an upstream tool upgrade escaped existing coverage.",
-    "workAvailable": [
-      "Confirm the narrow test slice with the maintainer on issue 7531",
-      "Cover empty input and one repeat-ingest happy path without revisions",
-      "Document fixtures and run the relevant integration checks"
+    "domains": [
+      "applied-research",
+      "energy-systems",
+      "optimization",
+      "climate"
     ],
-    "skills": ["Python", "Snakemake", "integration testing", "genomic data"],
-    "entryPoint": "https://github.com/loculus-project/loculus/blob/main/CONTRIBUTING.md",
-    "sourceUrl": "https://github.com/loculus-project/loculus/issues/7531",
-    "lastVerified": "2026-10-12",
-    "caveats": [
-      "The complete issue exceeds a four-week work unit; proceed only with an approved test slice.",
-      "The repository is AGPL-3.0 and requires tests for non-trivial code.",
-      "Full end-to-end coverage may require heavier Kubernetes infrastructure."
-    ]
-  },
-  {
-    "id": "satnogs-decoder-schema-validation",
-    "title": "Validate telemetry decoder schemas",
-    "organization": "SatNOGS",
-    "status": "backlog",
-    "domains": ["satellite-data", "telemetry", "data-quality"],
-    "collaborationType": "open-source",
+    "collaborationType": "open-science",
     "conjecture56Role": "curator",
-    "summary": "Prevent incompatible array-valued telemetry fields from reaching SatNOGS ingestion by validating decoder schemas in CI.",
+    "summary": "Open energy-system modelling framework used for capacity expansion and planning analysis.",
     "workAvailable": [
-      "Agree on allowed field shapes with maintainers on issue 85",
-      "Implement a focused schema validator with valid and invalid fixtures",
-      "Run validation in CI and document local contributor usage"
+      "Network models",
+      "Optimization",
+      "Scenarios",
+      "Energy data",
+      "Documentation"
     ],
-    "skills": ["Python", "Kaitai Struct", "schema validation", "GitLab CI"],
-    "entryPoint": "https://gitlab.com/librespacefoundation/satnogs/satnogs-decoders/-/blob/master/CONTRIBUTING.md",
-    "sourceUrl": "https://gitlab.com/librespacefoundation/satnogs/satnogs-decoders/-/work_items/85",
-    "lastVerified": "2026-10-12",
-    "caveats": [
-      "The validation contract is not specified yet; obtain design agreement before implementation.",
-      "Contributions require a Developer Certificate of Origin Signed-off-by line.",
-      "Contributors must understand and take responsibility for all submitted work."
-    ]
-  },
-  {
-    "id": "gtfs-validator-unused-station",
-    "title": "Correct unused-station notice severity",
-    "organization": "MobilityData",
-    "status": "backlog",
-    "domains": ["public-transport", "gtfs", "data-quality"],
-    "collaborationType": "open-source",
-    "conjecture56Role": "curator",
-    "summary": "Correct the severity of the GTFS Validator unused-station notice and update its tests and generated documentation.",
-    "workAvailable": [
-      "Claim issue 1348 in GitHub and the contributor Slack",
-      "Confirm and implement the target notice severity",
-      "Update tests, fixtures, and generated rule documentation"
+    "skills": [
+      "Python",
+      "optimization",
+      "energy systems",
+      "pandas",
+      "network modelling"
     ],
-    "skills": ["Java", "JUnit", "Gradle", "GTFS"],
-    "entryPoint": "https://github.com/MobilityData/gtfs-validator/blob/master/docs/CONTRIBUTING.md",
-    "sourceUrl": "https://github.com/MobilityData/gtfs-validator/issues/1348",
-    "lastVerified": "2026-10-12",
-    "caveats": [
-      "Announce intent before coding and keep the pull request to one functionality.",
-      "The project uses Apache-2.0 and Google Java Style.",
-      "Do not substitute nearby issues that already have contributor work in progress."
-    ]
-  },
-  {
-    "id": "policyengine-chip-evidence",
-    "title": "Review CHIP benefit valuation evidence",
-    "organization": "PolicyEngine",
-    "status": "backlog",
-    "domains": ["public-policy", "microsimulation", "health-data"],
-    "collaborationType": "open-source-research",
-    "conjecture56Role": "curator",
-    "summary": "Reconcile California CHIP populations, services, enrollment denominators, and fiscal periods before model values are changed.",
-    "workAvailable": [
-      "Build a source and evidence matrix from official program documents",
-      "Test the valuation alternatives described in issue 10155",
-      "Publish reproducible calculations, limitations, and a recommended decision rule"
+    "calls": [
+      "No verified fixed recurring call: user meetings and recordings exist, but no fixed public cadence is documented."
     ],
-    "skills": ["public-policy research", "Python", "pandas", "reproducible analysis"],
-    "entryPoint": "https://github.com/PolicyEngine/policyengine-us/blob/main/CONTRIBUTING.md",
-    "sourceUrl": "https://github.com/PolicyEngine/policyengine-us/issues/10155",
-    "lastVerified": "2026-10-12",
+    "entryPoint": "https://github.com/PyPSA/PyPSA",
+    "sourceUrl": "https://pypsa.org/",
+    "lastVerified": "2026-11-07",
     "caveats": [
-      "The bounded contribution is evidence and recommendation, not a unilateral model change.",
-      "Official citations and consistent annual units are essential.",
-      "The repository is AGPL-3.0 and subsequent model changes require tests and changelog updates."
+      "User meetings are not a fixed recurring public call."
     ]
   }
 ]

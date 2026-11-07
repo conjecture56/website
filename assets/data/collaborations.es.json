@@ -78,7 +78,12 @@
   },
   "odesia-es-en-llm-gap": {
     "title": "Medir la brecha español–inglés de LLMs con prompting",
-    "domains": ["evaluación de LLMs", "procesamiento del lenguaje natural", "benchmarking", "PLN en español"],
+    "domains": [
+      "evaluación de LLMs",
+      "procesamiento del lenguaje natural",
+      "benchmarking",
+      "PLN en español"
+    ],
     "collaborationType": "investigación aplicada",
     "summary": "Medir la brecha de rendimiento entre español e inglés en modelos de lenguaje abiertos y pequeños con prompting zero-shot, usando el benchmark bilingüe controlado del ODESIA Leaderboard (UNED). Planeado como proyecto de investigación aplicada para proponer en la UCSE.",
     "workAvailable": [
@@ -88,7 +93,13 @@
       "Enviar predicciones en formato EvALL y leer la brecha español–inglés calibrada por tarea",
       "Publicar el análisis de la brecha en modo prompting como un informe abierto de investigación aplicada"
     ],
-    "skills": ["Python", "ingeniería de prompts", "inferencia de LLMs", "diseño experimental", "análisis estadístico"],
+    "skills": [
+      "Python",
+      "ingeniería de prompts",
+      "inferencia de LLMs",
+      "diseño experimental",
+      "análisis estadístico"
+    ],
     "caveats": [
       "Propuesto como proyecto de investigación aplicada en la Universidad Católica de Santiago del Estero (UCSE); no requiere creación manual de datos porque cada dataset es un benchmark ya anotado.",
       "Las etiquetas de test de las Core Tasks permanecen privadas en UNED; confirmar cómo se categorizan los sistemas con prompting antes de extenderse más allá de las Extended Tasks.",
@@ -120,448 +131,883 @@
       "Las claves son individuales, acotadas, monitoreadas y revocables."
     ]
   },
-  "dbnomics-indec": {
-    "title": "Actualizar el proveedor de INDEC",
+  "openhands": {
+    "title": "OpenHands",
     "domains": [
-      "estadísticas económicas",
-      "ingeniería de datos",
-      "datos abiertos"
+      "automatización de software",
+      "agentes de IA",
+      "herramientas para desarrolladores"
     ],
     "collaborationType": "código abierto",
-    "summary": "Ampliar el proveedor de INDEC existente en DBnomics con una serie estadística oficial actual de API-INDEC.",
+    "summary": "Plataforma de código abierto para agentes de software con IA, con uso empresarial documentado en flujos de ingeniería y automatización.",
     "workAvailable": [
-      "Confirmar con quienes mantienen DBnomics la vía de actualización",
-      "Agregar un conjunto de datos acotado de API-INDEC, como las series de canasta básica alimentaria y total",
-      "Preservar los metadatos de origen y validar las series temporales convertidas"
+      "SDK de agentes y flujos de automatización",
+      "Perfiles de agentes y ejecución local",
+      "Observabilidad e integración con ACP",
+      "Pruebas de extremo a extremo"
     ],
     "skills": [
       "Python",
-      "API REST",
-      "series temporales",
-      "metadatos estadísticos"
+      "TypeScript",
+      "agentes de IA",
+      "pruebas",
+      "observabilidad"
+    ],
+    "calls": [
+      "Requiere registro: Community Call el 3/12/2026; todos son bienvenidos, pero no se confirma una cadencia recurrente."
     ],
     "caveats": [
-      "Coordinar antes de implementar porque el flujo de datos de origen es más reciente que los datos publicados por el proveedor.",
-      "API-INDEC es un servicio beta que requiere una cuenta y atribución al INDEC.",
-      "No crear un proveedor de INDEC duplicado."
+      "El caso de C3 AI fue producido por el proveedor; no se encontró una auditoría independiente del despliegue.",
+      "Confirmá las prioridades actuales con los mantenedores antes de comenzar."
     ]
   },
-  "hot-fair": {
-    "title": "Fortalecer GeoAI humanitaria",
+  "argo-workflows": {
+    "title": "Argo Workflows",
     "domains": [
-      "geoespacial",
-      "acción humanitaria",
-      "visión por computadora"
+      "automatización de software",
+      "orquestación de flujos",
+      "Kubernetes"
     ],
     "collaborationType": "código abierto",
-    "summary": "Mejorar fAIr, la plataforma abierta de HOT para cartografía humanitaria asistida por IA con validación humana.",
+    "summary": "Motor de flujos nativo de Kubernetes, utilizado en producción por grandes organizaciones y por Kubeflow Pipelines y Metaflow.",
     "workAvailable": [
-      "Acordar un área de la lógica del servidor sin cobertura dentro de la iniciativa abierta de pruebas",
-      "Agregar pruebas específicas para la API o los modelos de Django",
-      "Documentar la ejecución local y los resultados de cobertura"
+      "Persistencia y manejo de artefactos",
+      "Seguridad de flujos",
+      "Confiabilidad del controlador",
+      "Mejoras de interfaz"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "motores de flujos",
+      "sistemas distribuidos"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión comunitaria mensual con actas y grabaciones públicas."
+    ],
+    "caveats": [
+      "Backlog extenso; acordá el alcance con los mantenedores antes de programar."
+    ]
+  },
+  "kubeflow": {
+    "title": "Kubeflow",
+    "domains": [
+      "automatización de software",
+      "MLOps",
+      "Kubernetes",
+      "agentes de IA"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Plataforma de aprendizaje automático para Kubernetes, adoptada por equipos de investigación y empresas para pipelines, entrenamiento y operaciones de modelos.",
+    "workAvailable": [
+      "Pipelines y Trainer",
+      "Katib y SDK",
+      "Servidor MCP",
+      "Grupo de trabajo de agentes"
     ],
     "skills": [
       "Python",
-      "Django",
-      "pytest",
-      "datos geoespaciales"
-    ],
-    "caveats": [
-      "Acordar el recorte exacto de pruebas con quienes mantienen el proyecto porque la incidencia admite varios contribuidores.",
-      "Las imágenes y etiquetas derivadas de OpenStreetMap tienen requisitos de licencia separados.",
-      "La guía de contribución prohíbe herramientas de IA en incidencias etiquetadas como good first issue."
-    ]
-  },
-  "trufi-emissions": {
-    "title": "Estimar emisiones del transporte público",
-    "domains": [
-      "movilidad",
-      "transporte público",
-      "clima"
-    ],
-    "collaborationType": "voluntariado",
-    "summary": "Construir un análisis reproducible de emisiones del transporte público a partir de una fuente GTFS acordada.",
-    "workAvailable": [
-      "Seleccionar una fuente GTFS junto con Trufi",
-      "Producir tablas de emisiones por ruta y viaje con gtfs2emis",
-      "Documentar supuestos de flota, resultados de validación y metodología"
-    ],
-    "skills": [
-      "R",
-      "GTFS",
-      "datos geoespaciales",
-      "modelado de emisiones"
-    ],
-    "caveats": [
-      "Confirmar la fuente, el repositorio y los criterios de aceptación antes de comenzar.",
-      "Los datos derivados de OpenStreetMap requieren atribución ODbL y cumplimiento de compartir igual.",
-      "Las personas voluntarias deben aceptar el código de conducta de Trufi."
-    ]
-  },
-  "openaq-measurement-revisions": {
-    "title": "Detectar mediciones revisadas de calidad del aire",
-    "domains": [
-      "calidad del aire",
-      "ingeniería de datos",
-      "calidad de datos"
-    ],
-    "collaborationType": "código abierto",
-    "summary": "Ayudar a detectar mediciones que cambian después de la ingesta sin sobrescribir silenciosamente observaciones canónicas.",
-    "workAvailable": [
-      "Acordar la semántica de las revisiones con quienes mantienen el proyecto",
-      "Crear un diseño acotado y una prueba técnica",
-      "Implementar la detección, los diagnósticos y las pruebas de integración aprobados"
-    ],
-    "skills": [
-      "Python",
-      "PostgreSQL",
-      "ETL",
-      "pytest"
-    ],
-    "caveats": [
-      "Quienes mantienen el proyecto no definieron la semántica de almacenamiento; se necesita aprobación antes de implementar.",
-      "El repositorio openaq-ingestor no expone actualmente un archivo de licencia; primero hay que aclarar las condiciones de contribución.",
-      "Los datos de OpenAQ requieren atribución y están sujetos a condiciones específicas de cada proveedor."
-    ]
-  },
-  "robotoff-inference-notebook": {
-    "title": "Documentar la inferencia de tablas nutricionales",
-    "domains": [
-      "datos alimentarios",
-      "visión por computadora",
+      "Kubernetes",
+      "MLOps",
+      "Go",
       "aprendizaje automático"
     ],
-    "collaborationType": "código abierto",
-    "summary": "Crear un cuaderno computacional reproducible de Robotoff y una guía específica para flujos de detección de tablas nutricionales.",
-    "workAvailable": [
-      "Acordar un alcance acotado de tablas nutricionales para la incidencia 1367",
-      "Cubrir flujos de inferencia para una imagen y para un directorio",
-      "Agregar instrucciones de validación y documentación específica"
-    ],
-    "skills": [
-      "Python",
-      "Jupyter",
-      "visión por computadora",
-      "redacción técnica"
+    "calls": [
+      "Abierta y recurrente: varias reuniones públicas con registro LFX/Zoom, notas y grabaciones."
     ],
     "caveats": [
-      "Confirmar el alcance reducido porque la incidencia completa abarca demasiados componentes para una sola unidad de trabajo.",
-      "El desarrollo local requiere Git LFS y una base de datos ejecutada con Docker.",
-      "Robotoff utiliza la licencia AGPL-3.0-only."
+      "La cadencia exacta está en el calendario LFX, no en la página comunitaria estática."
     ]
   },
-  "fink-alert-density": {
-    "title": "Mapear la densidad de alertas astronómicas",
+  "tekton-pipelines": {
+    "title": "Tekton Pipelines",
     "domains": [
-      "astronomía",
-      "procesamiento de flujos",
-      "geoespacial"
+      "automatización de software",
+      "CI/CD",
+      "Kubernetes"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Framework de CI/CD nativo de la nube, utilizado a gran escala y como base de OpenShift Pipelines y Konflux.",
+    "workAvailable": [
+      "Transferencia remota de artefactos",
+      "Escalabilidad",
+      "Seguridad multiinquilino",
+      "Compatibilidad con Kubernetes"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "CI/CD",
+      "seguridad"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión comunitaria semanal que alterna horarios regionales."
+    ],
+    "caveats": [
+      "Parte de la documentación usa zonas horarias heredadas; confirmá la hora local en el calendario."
+    ]
+  },
+  "apache-beam": {
+    "title": "Apache Beam",
+    "domains": [
+      "automatización de software",
+      "pipelines de datos",
+      "procesamiento de flujos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Modelo unificado de pipelines batch y streaming, utilizado por plataformas de datos a gran escala y equipos de MLOps.",
+    "workAvailable": [
+      "Captura de cambios de datos",
+      "Conectores y SQL",
+      "Portabilidad y SchemaTransform",
+      "SDK de Python y Go"
+    ],
+    "skills": [
+      "Java",
+      "Python",
+      "Go",
+      "pipelines de datos",
+      "procesamiento distribuido"
+    ],
+    "calls": [
+      "Sin llamada recurrente verificada: existen calendario y eventos públicos, pero no se documenta claramente una reunión general recurrente."
+    ],
+    "caveats": [
+      "La coordinación se realiza principalmente por la lista de correo; confirmá allí las prioridades."
+    ]
+  },
+  "backstage": {
+    "title": "Backstage",
+    "domains": [
+      "automatización de software",
+      "portal para desarrolladores",
+      "ingeniería de plataformas"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Portal para desarrolladores y framework de ingeniería de plataformas, utilizado para catalogar servicios, infraestructura y automatización.",
+    "workAvailable": [
+      "Integración del SDK de MCP",
+      "Agent Skills",
+      "Catálogo de software y autenticación",
+      "Interfaz y accesibilidad"
+    ],
+    "skills": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "ingeniería de plataformas"
+    ],
+    "calls": [
+      "Abierta y recurrente: sesión comunitaria mensual con agenda y grabaciones públicas."
+    ],
+    "caveats": [
+      "La hoja de ruta estática está desactualizada; usá el issue fijado de 2026 y los issues activos."
+    ]
+  },
+  "lm-evaluation-harness": {
+    "title": "LM Evaluation Harness",
+    "domains": [
+      "datos y aprendizaje automático",
+      "evaluación de LLM",
+      "benchmarking",
+      "reproducibilidad"
     ],
     "collaborationType": "ciencia abierta",
-    "summary": "Construir y probar agregados HEALPix acotados que muestren la densidad reciente de alertas astronómicas.",
+    "summary": "Harness abierto estándar para evaluar modelos de lenguaje de forma reproducible, con benchmarks multilingües e integraciones de backends.",
     "workAvailable": [
-      "Confirmar el repositorio objetivo y el esquema de salida para la incidencia 1143",
-      "Calcular agregados estáticos de densidad para ventanas de 24, 48 y 96 horas",
-      "Agregar pruebas específicas y documentar los datos de muestra necesarios"
+      "Evaluaciones multilingües",
+      "Soporte para modelos de razonamiento",
+      "Integraciones de backends",
+      "Métricas y pruebas de regresión",
+      "Reproducibilidad"
     ],
     "skills": [
       "Python",
-      "HEALPix",
-      "agregación de series temporales",
-      "Apache Spark"
+      "evaluación de LLM",
+      "benchmarking",
+      "estadística"
+    ],
+    "calls": [
+      "Sin llamada recurrente verificada del proyecto: la coordinación se realiza por GitHub y Discord."
     ],
     "caveats": [
-      "Confirmar la responsabilidad porque la incidencia puede abarcar los repositorios de Fink Broker, estadísticas y portal.",
-      "El entorno de desarrollo completo incluye Spark, Kafka, HBase e imágenes de contenedores grandes.",
-      "Puede necesitarse experiencia en astronomía para validar la semántica científica."
+      "Las decisiones de prompting y backend pueden cambiar puntajes y rankings; la reproducibilidad no garantiza validez."
     ]
   },
-  "open-climate-fix-weather-units": {
-    "title": "Corregir unidades de datos meteorológicos",
+  "mlcommons-croissant": {
+    "title": "MLCommons Croissant",
     "domains": [
-      "clima",
-      "energía solar",
-      "pronóstico"
+      "datos y aprendizaje automático",
+      "metadatos de datasets",
+      "interoperabilidad",
+      "datos abiertos"
     ],
-    "collaborationType": "código abierto",
-    "summary": "Mejorar los pronósticos solares de Quartz haciendo explícitos y comprobables el mapeo y las unidades de variables de Open-Meteo.",
+    "collaborationType": "estándar abierto",
+    "summary": "Estándar de metadatos que permite descubrir y cargar datasets de aprendizaje automático en catálogos y frameworks importantes.",
     "workAvailable": [
-      "Solicitar asignación y confirmar el alcance de la incidencia 375",
-      "Corregir las unidades de temperatura, viento y precipitación",
-      "Reemplazar el mapeo posicional por uno basado en nombres y agregar pruebas de regresión"
+      "Especificación 1.1",
+      "Correcciones de seguridad",
+      "Loaders y validadores",
+      "GeoCroissant y BioCroissant",
+      "Metadatos RAI y MCP"
+    ],
+    "skills": [
+      "Python",
+      "JSON-LD",
+      "metadatos",
+      "validación de datos"
+    ],
+    "calls": [
+      "Requiere registro: reunión semanal del grupo de trabajo los miércoles; se necesitan registro y autenticación de Google."
+    ],
+    "caveats": [
+      "El acceso es autenticado; no se garantiza explícitamente la participación silenciosa para registrantes comunes."
+    ]
+  },
+  "xarray": {
+    "title": "Xarray",
+    "domains": [
+      "datos y aprendizaje automático",
+      "computación científica",
+      "geoespacial",
+      "datos climáticos"
+    ],
+    "collaborationType": "ciencia abierta",
+    "summary": "Biblioteca central para arreglos multidimensionales etiquetados, ampliamente utilizada en clima, geociencias y flujos de datos científicos.",
+    "workAvailable": [
+      "Indexación y alineación",
+      "Interoperabilidad con Zarr",
+      "DataTree",
+      "Rendimiento y tipado",
+      "Documentación y compatibilidad con pandas/Dask"
     ],
     "skills": [
       "Python",
       "NumPy",
       "pandas",
-      "pytest",
-      "datos meteorológicos"
+      "Dask",
+      "computación científica"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión quincenal de desarrollo. Los oyentes son explícitamente bienvenidos."
     ],
     "caveats": [
-      "La incidencia no tiene la etiqueta contributions-welcome; hay que obtener asignación antes de programar.",
-      "El tratamiento de la radiación de onda larga sigue siendo una decisión de quienes mantienen el proyecto.",
-      "Cada contribuidor conserva la responsabilidad de comprender y revisar cualquier trabajo asistido por IA."
+      "La hoja de ruta base está fechada en 2021; usá los issues actuales para elegir trabajo."
     ]
   },
-  "data-commons-indec-pilot": {
-    "title": "Probar una importación piloto de INDEC",
+  "zarr-python": {
+    "title": "Zarr y Zarr-Python",
     "domains": [
-      "estadísticas económicas",
-      "grafos de conocimiento",
+      "datos y aprendizaje automático",
+      "computación científica",
+      "almacenamiento en la nube",
+      "datos climáticos"
+    ],
+    "collaborationType": "ciencia abierta",
+    "summary": "Formato de almacenamiento abierto e implementación en Python para grandes arreglos científicos fragmentados en entornos cloud y de alto rendimiento.",
+    "workAvailable": [
+      "Especificación y ZEPs",
+      "Almacenamiento en la nube y autenticación",
+      "Rendimiento",
+      "Interoperabilidad",
+      "Implementación en Python"
+    ],
+    "skills": [
+      "Python",
+      "almacenamiento en la nube",
+      "arreglos fragmentados",
+      "computación científica"
+    ],
+    "calls": [
+      "Abierta y recurrente: reuniones quincenales de la comunidad y de Zarr-Python, abiertas a todos."
+    ],
+    "caveats": [
+      "No hay una política explícita para oyentes silenciosos; las actas visibles están retrasadas respecto del calendario actual."
+    ]
+  },
+  "openlineage": {
+    "title": "OpenLineage",
+    "domains": [
+      "datos y aprendizaje automático",
+      "linaje de datos",
+      "metadatos",
+      "ingeniería de datos"
+    ],
+    "collaborationType": "estándar abierto",
+    "summary": "Estándar abierto para recopilar linaje de datos y metadatos operativos en pipelines y herramientas analíticas.",
+    "workAvailable": [
+      "Integraciones con Airflow, Spark, dbt y Flink",
+      "Especificación de eventos",
+      "Compatibilidad",
+      "Consumidores de metadatos"
+    ],
+    "skills": [
+      "Python",
+      "Java",
+      "linaje de datos",
+      "esquemas de eventos"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión mensual el tercer miércoles, con confirmación, actas y grabaciones."
+    ],
+    "caveats": [
+      "El impacto es principalmente de infraestructura habilitante, no de una aplicación final."
+    ]
+  },
+  "openmetadata": {
+    "title": "OpenMetadata",
+    "domains": [
+      "datos y aprendizaje automático",
+      "catálogo de datos",
+      "gobierno de datos",
+      "metadatos"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Plataforma abierta para catálogo, calidad, linaje y gobierno de los activos de datos de una organización.",
+    "workAvailable": [
+      "Catálogo y calidad",
+      "Gobierno y linaje",
+      "Conectores",
+      "Búsqueda"
+    ],
+    "skills": [
+      "Python",
+      "Java",
+      "TypeScript",
+      "gobierno de datos",
+      "metadatos"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión quincenal con grabaciones públicas."
+    ],
+    "caveats": [
+      "Las cifras de adopción y los casos de estudio son reportados por el proyecto o su proveedor."
+    ]
+  },
+  "openml": {
+    "title": "OpenML",
+    "domains": [
+      "datos y aprendizaje automático",
+      "aprendizaje automático",
+      "benchmarking",
       "datos abiertos"
     ],
-    "collaborationType": "contribución de datos",
-    "summary": "Proponer e implementar una tabla faltante de INDEC como importación piloto de Data Commons con procedencia detallada.",
+    "collaborationType": "ciencia abierta",
+    "summary": "Plataforma abierta para compartir datasets, tareas y experimentos reproducibles de aprendizaje automático.",
     "workAvailable": [
-      "Revisar la cobertura existente y presentar una solicitud oficial de datos",
-      "Mapear una tabla aceptada a entidades y variables estadísticas",
-      "Agregar una transformación reproducible, datos de prueba, pruebas, procedencia y metadatos de licencia"
+      "Backend y frontend",
+      "Bibliotecas cliente y API",
+      "Experiencia de usuario",
+      "Datasets e integraciones"
     ],
     "skills": [
       "Python",
-      "modelado de datos",
-      "grafos de conocimiento",
-      "metadatos estadísticos"
+      "R",
+      "Java",
+      "aprendizaje automático",
+      "desarrollo web"
+    ],
+    "calls": [
+      "Sin llamada recurrente verificada: el proyecto organiza hackatones ocasionales."
     ],
     "caveats": [
-      "No construir la importación hasta que se acepte la solicitud oficial de datos.",
-      "Se requiere un Contributor License Agreement de Google.",
-      "El conjunto de datos de origen debe cumplir la política de licencias de Data Commons."
+      "Coordiná los cambios grandes en un issue antes de implementarlos."
     ]
   },
-  "mapyourgrid-argentina": {
-    "title": "Mapear la red de transmisión de Argentina",
+  "scipy": {
+    "title": "SciPy",
     "domains": [
-      "energía",
-      "geoespacial",
-      "OpenStreetMap"
+      "datos y aprendizaje automático",
+      "computación científica",
+      "análisis numérico",
+      "código abierto"
     ],
-    "collaborationType": "voluntariado",
-    "summary": "Mejorar la cobertura abierta de la red eléctrica mediante una campaña coordinada de mapeo y control de calidad en Argentina.",
+    "collaborationType": "ciencia abierta",
+    "summary": "Biblioteca científica fundamental de Python, utilizada en computación numérica, procesamiento de señales, optimización y aprendizaje automático.",
     "workAvailable": [
-      "Acordar una provincia o corredor de transmisión con la comunidad MapYourGrid",
-      "Relevar líneas incompletas y hallazgos de calidad mediante fuentes verificables",
-      "Publicar conjuntos de cambios revisados en OpenStreetMap y una nota comparativa de calidad"
-    ],
-    "skills": [
-      "GIS",
-      "JOSM",
-      "etiquetado de OpenStreetMap",
-      "imágenes satelitales"
-    ],
-    "caveats": [
-      "Registrar el alcance regional propuesto con la comunidad del proyecto antes de editar.",
-      "No copiar mapas incompatibles ni datos restringidos de infraestructura.",
-      "Los datos de OpenStreetMap se rigen por ODbL y las convenciones locales de mapeo."
-    ]
-  },
-  "pypsa-earth-country-filter": {
-    "title": "Filtrar centrales eléctricas personalizadas por país",
-    "domains": [
-      "sistemas energéticos",
-      "ingeniería de datos",
-      "geoespacial"
-    ],
-    "collaborationType": "código abierto",
-    "summary": "Implementar filtrado por país para entradas personalizadas de centrales eléctricas en modelos reproducibles de sistemas energéticos.",
-    "workAvailable": [
-      "Confirmar la semántica de las claves de país en la incidencia 1352 o en una llamada de desarrollo",
-      "Agregar el filtrado al flujo de construcción de centrales",
-      "Agregar datos de prueba de regresión para uno y varios países y su documentación"
+      "Estadística y optimización",
+      "Procesamiento de señales",
+      "Álgebra lineal",
+      "Rendimiento",
+      "Compatibilidad numérica"
     ],
     "skills": [
       "Python",
-      "pandas",
-      "pytest",
-      "Snakemake",
-      "datos energéticos"
+      "NumPy",
+      "métodos numéricos",
+      "computación científica"
+    ],
+    "calls": [
+      "Sin llamada recurrente: las reuniones comunitarias fueron canceladas en agosto de 2025."
     ],
     "caveats": [
-      "La incidencia sigue sin asignar y solicita ayuda, pero es anterior al ciclo actual; hay que reconfirmarla antes de programar.",
-      "El código es AGPL-3.0-or-later y las solicitudes de cambios requieren consentimiento explícito sobre la licencia.",
-      "Hay que utilizar el flujo de Snakemake y las convenciones de prueba del proyecto."
+      "No te bases en páginas antiguas que todavía anuncian las reuniones canceladas."
     ]
   },
-  "open-terms-trackers": {
-    "title": "Restaurar rastreadores de términos rotos",
+  "opentelemetry": {
+    "title": "OpenTelemetry",
     "domains": [
-      "archivo web",
-      "calidad de datos",
-      "derechos digitales"
+      "sistemas e infraestructura",
+      "observabilidad",
+      "agentes de IA",
+      "telemetría"
     ],
-    "collaborationType": "código abierto",
-    "summary": "Reparar un lote acotado de declaraciones que ya no rastrean correctamente documentos de términos o políticas.",
+    "collaborationType": "estándar abierto",
+    "summary": "Estándar y herramientas de observabilidad neutrales respecto del proveedor para trazas, métricas, logs e instrumentación de agentes de IA.",
     "workAvailable": [
-      "Autoasignarse entre tres y cinco incidencias de selectores o cambios de estructura",
-      "Actualizar URL y reglas de selección preservando las declaraciones anteriores",
-      "Ejecutar validaciones de capturas repetidas y presentar solicitudes de cambios pequeñas y revisables"
+      "Collector y SDK",
+      "Profiling y logs",
+      "Plano de control",
+      "Convenciones semánticas para IA y agentes"
     ],
     "skills": [
-      "JSON",
-      "selectores CSS",
-      "inspección en navegador",
-      "procedencia de datos"
+      "Go",
+      "Java",
+      "Python",
+      "observabilidad",
+      "trazabilidad distribuida"
+    ],
+    "calls": [
+      "Abierta y recurrente: varias llamadas de SIG. El SIG de IA generativa se reúne semanalmente y acepta oyentes."
     ],
     "caveats": [
-      "Evitar casos bloqueados por acceso o tiempo de espera salvo que quienes mantienen el proyecto confirmen una solución abordable.",
-      "Las declaraciones usan EUPL-1.2 y las versiones generadas ODC-BY 1.0.",
-      "Las declaraciones históricas deben preservarse con metadatos de vigencia correctos."
+      "El ecosistema está fragmentado; elegí un SIG antes de proponer trabajo."
     ]
   },
-  "opensanctions-tag-taxonomy": {
-    "title": "Refinar la taxonomía de etiquetas de conjuntos de datos",
+  "kserve": {
+    "title": "KServe",
     "domains": [
-      "datos de sanciones",
-      "metadatos",
-      "calidad de datos"
+      "sistemas e infraestructura",
+      "servicio de modelos",
+      "Kubernetes",
+      "infraestructura de IA"
     ],
-    "collaborationType": "código abierto",
-    "summary": "Migrar una familia acordada de etiquetas de conjuntos de datos y mejorar las comprobaciones de consistencia y la documentación de metadatos.",
+    "collaborationType": "infraestructura abierta",
+    "summary": "Plataforma de servicio de modelos nativa de Kubernetes, utilizada en producción para cargas de IA predictiva y generativa.",
     "workAvailable": [
-      "Discutir la incidencia 5908 y acordar un recorte de migración",
-      "Actualizar etiquetas en un conjunto acotado de conjuntos de datos",
-      "Agregar comprobaciones de consistencia y validar los metadatos generados"
+      "Servicio generativo",
+      "Runtimes",
+      "Despliegues canary",
+      "Descarga de KV-cache",
+      "Observabilidad",
+      "Ejecución confidencial"
+    ],
+    "skills": [
+      "Go",
+      "Python",
+      "Kubernetes",
+      "servicio de modelos",
+      "Knative"
+    ],
+    "calls": [
+      "Abierta y recurrente: grupo de trabajo público quincenal."
+    ],
+    "caveats": [
+      "Requiere Kubernetes y normalmente Go o Python; no tiene una hoja de ruta única tan clara como la de Flux."
+    ]
+  },
+  "vllm": {
+    "title": "vLLM",
+    "domains": [
+      "sistemas e infraestructura",
+      "inferencia de LLM",
+      "infraestructura de GPU",
+      "servicio de modelos"
+    ],
+    "collaborationType": "infraestructura abierta",
+    "summary": "Motor de inferencia de alto rendimiento para modelos de lenguaje, utilizado en servicios en producción y despliegues de modelos abiertos.",
+    "workAvailable": [
+      "Servicio distribuido",
+      "Enrutamiento",
+      "KV cache",
+      "Cuantización",
+      "Multimodalidad",
+      "Kernels y soporte de hardware"
     ],
     "skills": [
       "Python",
-      "YAML",
-      "diseño de taxonomías",
-      "pruebas de calidad de datos"
+      "CUDA",
+      "sistemas distribuidos",
+      "inferencia de LLM",
+      "ingeniería de rendimiento"
+    ],
+    "calls": [
+      "Abierta y recurrente: horarios de consulta cada dos semanas, abiertos y grabados."
     ],
     "caveats": [
-      "La incidencia está marcada explícitamente para discusión; no realizar una edición masiva sin coordinación.",
-      "Cada contribuidor debe confirmar que tiene derecho a presentar todo el material incluido.",
-      "El código es MIT, mientras que los datos publicados y las fuentes incorporadas tienen licencias separadas."
+      "El desarrollo completo suele requerir GPU y CI costosa; las contribuciones asistidas por IA deben declararse según la política del proyecto."
     ]
   },
-  "common-voice-argentine-spanish": {
-    "title": "Mejorar datos de voz en español argentino",
+  "opencost": {
+    "title": "OpenCost",
     "domains": [
-      "datos de voz",
-      "datos lingüísticos",
-      "calidad de datos"
+      "sistemas e infraestructura",
+      "FinOps",
+      "Kubernetes",
+      "infraestructura de IA"
     ],
-    "collaborationType": "datos comunitarios",
-    "summary": "Realizar una campaña coordinada de frases, grabación y validación para datos de voz en español argentino.",
+    "collaborationType": "infraestructura abierta",
+    "summary": "Plataforma abierta de monitoreo de costos para Kubernetes e infraestructura de IA, con cobertura emergente de costos de inferencia.",
     "workAvailable": [
-      "Confirmar la variante y la ventana de publicación con la comunidad Common Voice",
-      "Aportar y revisar una cantidad acordada de frases y grabaciones originales o de dominio público",
-      "Publicar cantidades de contribuciones, procedencia y metodología de revisión de calidad"
+      "Costos de IA e inferencia",
+      "Data Model 2.0",
+      "Exportadores y plugins",
+      "Seguridad",
+      "Integración con MCP"
     ],
     "skills": [
-      "español argentino",
-      "control de calidad de voz",
-      "facilitación comunitaria",
-      "procedencia de datos"
+      "Go",
+      "Kubernetes",
+      "FinOps",
+      "Prometheus",
+      "gestión de costos cloud"
+    ],
+    "calls": [
+      "Abierta y recurrente: cada dos semanas, alternando regiones."
     ],
     "caveats": [
-      "Coordinar la variante exacta y el cierre de la versión del conjunto de datos antes de comenzar.",
-      "El texto presentado debe ser original o demostrablemente de dominio público.",
-      "Se aplican requisitos de edad, consentimiento y supervisión a los participantes."
+      "La lista de adoptantes es relativamente corta y autodeclarada; el costeo de IA todavía está madurando."
     ]
   },
-  "loculus-ingest-regressions": {
-    "title": "Agregar pruebas de regresión para la ingesta de Loculus",
+  "flux": {
+    "title": "Flux",
     "domains": [
-      "genómica de patógenos",
-      "ingesta de datos",
-      "pruebas"
+      "sistemas e infraestructura",
+      "GitOps",
+      "Kubernetes",
+      "cadena de suministro"
     ],
-    "collaborationType": "código abierto",
-    "summary": "Agregar un recorte acotado de pruebas de regresión para la ingesta de secuencias de patógenos después de que una actualización externa escapara a la cobertura existente.",
+    "collaborationType": "infraestructura abierta",
+    "summary": "Kit de herramientas GitOps para entrega continua e infraestructura de Kubernetes reproducible.",
     "workAvailable": [
-      "Confirmar el recorte de pruebas con quien mantiene la incidencia 7531",
-      "Cubrir una entrada vacía y un caso exitoso de ingesta repetida sin revisiones",
-      "Documentar los datos de prueba y ejecutar las comprobaciones de integración relevantes"
+      "Flujos GitOps",
+      "Identidad de cargas de trabajo",
+      "OCI y OIDC",
+      "Trazabilidad con OpenTelemetry",
+      "Dependencias avanzadas"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "GitOps",
+      "entrega continua"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión semanal y revisión de errores, públicas y grabadas."
+    ],
+    "caveats": [
+      "Los cambios grandes requieren RFC y revisión de compatibilidad de API."
+    ]
+  },
+  "kyverno": {
+    "title": "Kyverno",
+    "domains": [
+      "sistemas e infraestructura",
+      "políticas como código",
+      "seguridad",
+      "Kubernetes"
+    ],
+    "collaborationType": "infraestructura abierta",
+    "summary": "Motor de políticas como código para seguridad, cumplimiento y controles de cadena de suministro en Kubernetes.",
+    "workAvailable": [
+      "Políticas como código",
+      "Políticas CEL",
+      "Verificación de imágenes",
+      "Seguridad de la cadena de suministro",
+      "Migración de API"
+    ],
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "políticas como código",
+      "seguridad"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión comunitaria semanal; se requiere unirse al Google Group."
+    ],
+    "caveats": [
+      "Para recibir las invitaciones a las reuniones es necesario unirse al Google Group."
+    ]
+  },
+  "falco": {
+    "title": "Falco",
+    "domains": [
+      "sistemas e infraestructura",
+      "seguridad en tiempo de ejecución",
+      "eBPF",
+      "Kubernetes"
+    ],
+    "collaborationType": "infraestructura abierta",
+    "summary": "Proyecto de seguridad en tiempo de ejecución para detectar comportamiento anómalo en contenedores, Kubernetes y hosts Linux.",
+    "workAvailable": [
+      "eBPF",
+      "Reglas",
+      "Plugins",
+      "Imágenes distroless",
+      "Métricas",
+      "Seguridad de la cadena de suministro"
+    ],
+    "skills": [
+      "C++",
+      "eBPF",
+      "Linux",
+      "Kubernetes",
+      "seguridad en tiempo de ejecución"
+    ],
+    "calls": [
+      "Abierta y recurrente: reunión quincenal con calendario público."
+    ],
+    "caveats": [
+      "El trabajo del motor requiere Linux, eBPF y C++; las reglas y la documentación son puntos de entrada más accesibles. La hoja de ruta visible se actualizó por última vez en 2024."
+    ]
+  },
+  "modelbench-ailuminate": {
+    "title": "ModelBench y AILuminate",
+    "domains": [
+      "investigación aplicada",
+      "seguridad de IA",
+      "benchmarking",
+      "gobernanza de IA"
+    ],
+    "collaborationType": "ciencia abierta",
+    "summary": "Benchmarks y herramientas abiertas para evaluar seguridad, jailbreaks y confiabilidad de sistemas de IA.",
+    "workAvailable": [
+      "Safety 1.2.1",
+      "Benchmarks de jailbreak",
+      "Informes",
+      "Anotaciones",
+      "Benchmarks de agentes"
     ],
     "skills": [
       "Python",
-      "Snakemake",
-      "pruebas de integración",
-      "datos genómicos"
+      "seguridad de IA",
+      "benchmarking",
+      "estadística"
+    ],
+    "calls": [
+      "Requiere registro: reunión semanal de Riesgo y Confiabilidad de IA; se requieren registro y aprobación."
     ],
     "caveats": [
-      "La incidencia completa supera una unidad de cuatro semanas; proceder solo con un recorte aprobado.",
-      "El repositorio es AGPL-3.0 y exige pruebas para código no trivial.",
-      "La cobertura de extremo a extremo completa puede requerir infraestructura Kubernetes más pesada."
+      "AILuminate no certifica que un sistema sea seguro; mide riesgos específicos."
     ]
   },
-  "satnogs-decoder-schema-validation": {
-    "title": "Validar esquemas de decodificadores de telemetría",
+  "medperf": {
+    "title": "MedPerf",
     "domains": [
-      "datos satelitales",
-      "telemetría",
-      "calidad de datos"
+      "investigación aplicada",
+      "aprendizaje federado",
+      "salud",
+      "privacidad"
     ],
-    "collaborationType": "código abierto",
-    "summary": "Impedir que campos de telemetría incompatibles con valores de tipo arreglo lleguen a la ingesta de SatNOGS mediante validación de esquemas en CI.",
+    "collaborationType": "ciencia abierta",
+    "summary": "Plataforma abierta para la evaluación federada de modelos médicos de IA sin centralizar datos clínicos.",
     "workAvailable": [
-      "Acordar las formas de campo permitidas con quienes mantienen la incidencia 85",
-      "Implementar un validador específico con datos de prueba válidos e inválidos",
-      "Ejecutar la validación en CI y documentar su uso local por contribuidores"
+      "Evaluación federada",
+      "Metadatos seguros para auditoría",
+      "Instalación",
+      "Benchmarks",
+      "Experiencia de usuario"
     ],
     "skills": [
       "Python",
-      "Kaitai Struct",
-      "validación de esquemas",
-      "GitLab CI"
+      "aprendizaje federado",
+      "datos de salud",
+      "privacidad"
+    ],
+    "calls": [
+      "Sin llamada recurrente verificada: el grupo Medical acepta registros, pero no publica una próxima reunión recurrente."
     ],
     "caveats": [
-      "El contrato de validación todavía no está especificado; se necesita acuerdo de diseño antes de implementar.",
-      "Las contribuciones requieren una línea Signed-off-by del Developer Certificate of Origin.",
-      "Cada contribuidor debe comprender y responsabilizarse por todo el trabajo presentado."
+      "El uso clínico está en etapa de investigación; no se demuestra una mejora en resultados de pacientes."
     ]
   },
-  "gtfs-validator-unused-station": {
-    "title": "Corregir la severidad del aviso de estación sin uso",
+  "openmrs": {
+    "title": "OpenMRS",
     "domains": [
-      "transporte público",
-      "GTFS",
-      "calidad de datos"
+      "investigación aplicada",
+      "salud global",
+      "historias clínicas electrónicas",
+      "interoperabilidad"
     ],
     "collaborationType": "código abierto",
-    "summary": "Corregir la severidad del aviso de estación sin uso de GTFS Validator y actualizar sus pruebas y documentación generada.",
+    "summary": "Plataforma abierta de historia clínica electrónica desplegada en sistemas de salud de bajos recursos y programas nacionales.",
     "workAvailable": [
-      "Reclamar la incidencia 1348 en GitHub y en el Slack de contribuidores",
-      "Confirmar e implementar la severidad objetivo del aviso",
-      "Actualizar pruebas, datos de prueba y documentación generada de la regla"
+      "Historias clínicas",
+      "Interoperabilidad",
+      "QA",
+      "Módulos",
+      "Documentación",
+      "Despliegues nacionales"
     ],
     "skills": [
       "Java",
-      "JUnit",
-      "Gradle",
-      "GTFS"
+      "JavaScript",
+      "informática de la salud",
+      "interoperabilidad"
+    ],
+    "calls": [
+      "Abierta y recurrente: Squads Call semanal. Los oyentes son explícitamente bienvenidos."
     ],
     "caveats": [
-      "Anunciar la intención antes de programar y mantener la solicitud de cambios limitada a una funcionalidad.",
-      "El proyecto utiliza Apache-2.0 y Google Java Style.",
-      "No sustituirla por incidencias cercanas que ya tengan trabajo en curso de otros contribuidores."
+      "Los despliegues nacionales requieren contexto de dominio e informática de la salud."
     ]
   },
-  "policyengine-chip-evidence": {
-    "title": "Revisar evidencia sobre la valoración de beneficios CHIP",
+  "ohdsi-atlas": {
+    "title": "OHDSI ATLAS",
     "domains": [
-      "políticas públicas",
-      "microsimulación",
-      "datos de salud"
+      "investigación aplicada",
+      "datos de salud",
+      "investigación observacional",
+      "OMOP"
     ],
-    "collaborationType": "investigación de código abierto",
-    "summary": "Conciliar poblaciones, servicios, denominadores de inscripción y períodos fiscales de CHIP en California antes de modificar valores del modelo.",
+    "collaborationType": "ciencia abierta",
+    "summary": "Aplicación abierta para investigación observacional en salud sobre datos OMOP federados.",
     "workAvailable": [
-      "Construir una matriz de fuentes y evidencia a partir de documentos oficiales del programa",
-      "Probar las alternativas de valoración descritas en la incidencia 10155",
-      "Publicar cálculos reproducibles, limitaciones y una regla de decisión recomendada"
+      "ATLAS 3",
+      "Cohortes",
+      "Análisis",
+      "Experiencia de usuario",
+      "Vocabularios",
+      "Interoperabilidad OMOP"
     ],
     "skills": [
-      "investigación de políticas públicas",
-      "Python",
-      "pandas",
-      "análisis reproducible"
+      "Java",
+      "SQL",
+      "R",
+      "OMOP",
+      "investigación observacional"
+    ],
+    "calls": [
+      "Abierta y recurrente: llamada comunitaria semanal, abierta y grabada; ATLAS también tiene su propio grupo de trabajo."
     ],
     "caveats": [
-      "La contribución acotada consiste en evidencia y una recomendación, no en un cambio unilateral del modelo.",
-      "Las citas oficiales y unidades anuales consistentes son esenciales.",
-      "El repositorio es AGPL-3.0 y los cambios posteriores del modelo requieren pruebas y actualización del registro de cambios."
+      "La evidencia observacional no establece causalidad."
+    ]
+  },
+  "opentripplanner": {
+    "title": "OpenTripPlanner",
+    "domains": [
+      "investigación aplicada",
+      "transporte público",
+      "routing",
+      "GTFS"
+    ],
+    "collaborationType": "código abierto",
+    "summary": "Plataforma abierta de planificación de viajes multimodales utilizada por agencias de transporte público.",
+    "workAvailable": [
+      "Routing multimodal",
+      "GTFS",
+      "Accesibilidad",
+      "Datos en tiempo real",
+      "Rendimiento",
+      "Gobernanza de la hoja de ruta"
+    ],
+    "skills": [
+      "Java",
+      "GTFS",
+      "routing",
+      "transporte público",
+      "datos geoespaciales"
+    ],
+    "calls": [
+      "Abierta y recurrente: reuniones de desarrollo dos veces por semana y una reunión mensual de producto; el acceso está documentado en la gobernanza."
+    ],
+    "caveats": [
+      "Las contribuciones requieren dos aprobaciones de organizaciones distintas; acordá primero el alcance."
+    ]
+  },
+  "open-food-facts-robotoff": {
+    "title": "Open Food Facts Robotoff",
+    "domains": [
+      "investigación aplicada",
+      "datos alimentarios",
+      "visión por computadora",
+      "datos abiertos"
+    ],
+    "collaborationType": "datos abiertos",
+    "summary": "Servicio de Open Food Facts que extrae y valida información de productos alimentarios para salud pública y aplicaciones de consumo.",
+    "workAvailable": [
+      "OCR",
+      "Extracción de información",
+      "Clasificación",
+      "Calidad de datos",
+      "API",
+      "Revisión humana"
+    ],
+    "skills": [
+      "Python",
+      "visión por computadora",
+      "OCR",
+      "PLN",
+      "calidad de datos"
+    ],
+    "calls": [
+      "Abierta y recurrente: primer martes de cada mes mediante Google Meet público."
+    ],
+    "caveats": [
+      "La página llama a la reunión semanal, pero la regla publicada es mensual."
+    ]
+  },
+  "hot-tasking-manager": {
+    "title": "HOT Tasking Manager",
+    "domains": [
+      "investigación aplicada",
+      "humanitario",
+      "geoespacial",
+      "OpenStreetMap"
+    ],
+    "collaborationType": "datos abiertos",
+    "summary": "Plataforma de coordinación de mapeo humanitario utilizada por organizaciones de ayuda y comunidades de mapeo abierto.",
+    "workAvailable": [
+      "Coordinación de mapeo",
+      "Validación",
+      "Experiencia de usuario",
+      "Rendimiento",
+      "Sandbox"
+    ],
+    "skills": [
+      "Python",
+      "JavaScript",
+      "geoespacial",
+      "mapeo humanitario",
+      "UX"
+    ],
+    "calls": [
+      "Requiere confirmación: existieron reuniones mensuales abiertas, pero la fuente disponible es antigua; confirmá el calendario actual."
+    ],
+    "caveats": [
+      "La fuente disponible sobre la reunión es de 2023; confirmá que siga activa."
+    ]
+  },
+  "pypsa": {
+    "title": "PyPSA",
+    "domains": [
+      "investigación aplicada",
+      "sistemas energéticos",
+      "optimización",
+      "clima"
+    ],
+    "collaborationType": "ciencia abierta",
+    "summary": "Framework abierto de modelado de sistemas energéticos utilizado para análisis de expansión de capacidad y planificación.",
+    "workAvailable": [
+      "Modelos de red",
+      "Optimización",
+      "Escenarios",
+      "Datos energéticos",
+      "Documentación"
+    ],
+    "skills": [
+      "Python",
+      "optimización",
+      "sistemas energéticos",
+      "pandas",
+      "modelado de redes"
+    ],
+    "calls": [
+      "Sin llamada recurrente fija verificada: existen reuniones de usuarios y grabaciones, pero no se documenta una cadencia pública fija."
+    ],
+    "caveats": [
+      "Las reuniones de usuarios no son una llamada pública recurrente fija."
     ]
   }
 }
